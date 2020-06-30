@@ -29,11 +29,20 @@ Service for doing CRUD type operations for `DataTypeDefinition` and `DataType` o
 ## [DomainService](DomainService)
 Service for doing CRUD type operations for domains.
 
+## [EntityService](EntityService)
+Service for doing CRUD type operations for entities.
+
+## [ExternalLoginService](ExternalLoginService)
+Service used to store the external login info.
+
 ## [FileService](FileService)
 Service for doing CRUD type operations for `Script`, `Stylesheet` and `Template` objects.
 
 ## [LocalizationService](LocalizationService)
 Service for doing CRUD type operations for `Dictionary` and `Language` objects.
+
+## [MacroService](MacroService)
+Defines the MacroService, which is an easy access to operations involving `IMacro`.
 
 ## [MediaService](MediaService)
 Service for doing CRUD type operations for `Media` objects.
