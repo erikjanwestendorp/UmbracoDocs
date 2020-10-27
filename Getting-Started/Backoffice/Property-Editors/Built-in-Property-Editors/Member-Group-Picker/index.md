@@ -25,7 +25,7 @@ The member group picker opens a panel to pick one or more member groups from the
 ```csharp
 @if (Model.HasValue("memberGroup"))
 {
-    var memberGroup = Model.Value<string>("memberGroup");
+    var memberGroup = Model.Value<string>("memberGroup"); 
     <p>@memberGroup</p>
 }
 ```
