@@ -22,7 +22,7 @@ The new infrastructure comes with minimum requirements on what version of Umbrac
 |---|---|---|---|
 |  Umbraco CMS  |  8.6.7 |
 |  Umbraco Forms  |  8.5.3 |
-|  Umbraco Deploy  |  3.5.3 |
+|  Umbraco Deploy  |  4.0.5 |
 
 ### Umbraco 7
 
@@ -30,7 +30,7 @@ The new infrastructure comes with minimum requirements on what version of Umbrac
 |---|---|---|---|
 |  Umbraco CMS  |  7.7.6 |
 |  Umbraco Forms  |  6.0.8 |
-|  Umbraco Deploy |  2.0.0 |
+|  Umbraco Deploy |  2.0.18 |
 
 You can find the Umbraco CMS, Forms and Deploy version for each environment listed on the project page in the Umbraco Cloud Portal:
 
@@ -70,7 +70,7 @@ Work on the project(s) can resume immediately after receiving confirmation of a 
 
 ### New Umbraco Cloud project URL
 The project URL will change from `my-project-alias.s1.umbraco.io` to `my-project-alias.euwest01.umbraco.io`. It is only the project URL that changes. Custom hostnames will continue to work as before. 
-<!--
+
 ### New GIT repository URL
 There will be an improved repository URL you can switch to, but __it is not required as part of the migration__. The GIT repository will still be accessible from the same URL as before and any custom domains assigned to the project will continue to work as expected. 
 
@@ -84,10 +84,6 @@ will become
 
 This brings a whole host of advantages both for local development, password management and adds more flexibility overall. If a site has been migrated from the old infrastructure, the old GUID-based URL will continue to work after the migration as we do not want to break any potential CI/CD setup.
 
-:::note
-This feature is currently UNAVAILABLE with no specific ETA. We'll remove this note once it has been released.
-:::
--->
 ### New outgoing IP addresses (for allow lists)
 The outgoing IP addresses on Umbraco Cloud will be changed once the projects are running on the new infrastructure. This is only relevant if you are working with an allow list. In this case, please add the new outgoing IPs prior to migration.
 
