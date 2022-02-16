@@ -19,7 +19,7 @@ to manage, APIs become leaky and ultimately you'll end up with more problems tha
 In all Umbraco base classes that you'll normally use, these objects are already exposed as properties, so please use these instead!
 For example, all Razor views that Umbraco creates expose an `UmbracoContext` property which is the UmbracoContext, they expose an `ApplicationContext`
 property which is Umbraco's `ApplicationContext`. The other base classes that expose all the instances you need are things like `SurfaceController`,
-`UmbracoApiController`, `UmbracoController`, `RenderMvcController`, `UmbracoUserControl`, `UmbracoPage`, `UmbracoHttpHandler`, and the list goes on...
+`UmbracoApiController`, `UmbracoController`, `RenderMvcController`, `UmbracoHttpHandler`, and the list goes on...
 
 __Example of using base class properties instead of Singleton accessors:__
 
@@ -50,14 +50,11 @@ public class ContactFormSurfaceController: SurfaceController
             // ServiceContext:
             Services.ContentService.GetById(1234);
 
-            // ApplicationContext:
-            ApplicationContext.ApplicationCache.RuntimeCache.GetCacheItem("myKey", () => "hello world");
+            // AppCaches:
+            AppCaches.RuntimeCache.GetCacheItem("myKey", () => "hello world");
 
             // UmbracoContext:
             UmbracoContext.UrlProvider.GetUrl(4321);
-
-            // DatabaseContext:
-            DatabaseContext.Database.ExecuteScalar<int>("SELECT COUNT(*) FROM umbracoNode");
         }
     }
 }
