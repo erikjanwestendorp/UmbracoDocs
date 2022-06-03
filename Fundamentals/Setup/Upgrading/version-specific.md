@@ -12,6 +12,19 @@ Follow the steps in the [general upgrade guide](general.md), then these addition
 
 The upgrade path between Umbraco 9 and Umbraco 10 can be done directly by updating your project using NuGet.
 
+:::warning
+**Important**: SQL CE is no longer a supported database engine.
+
+There is no official migration path from SQL CE to another database engine.
+
+The following options may suit your needs:
+
++ Follow a community guide to migrate from a SQL CE database to SQL Server e.g. [article by Jan Reilink](https://www.saotn.org/convert-sqlce-database-to-sql-server/)
++ Setup a new database for v10 and use [uSync](https://jumoo.co.uk/usync/) to transfer document types and content across.
++ Setup a new database for v10 and use a premium tool such as [redgate SQL Data Compare](https://www.red-gate.com/products/sql-development/sql-data-compare/) to copy database contents across.
++ Setup a new database for v10 and use a premium tool such as [Umbraco Deploy](https://umbraco.com/products/umbraco-deploy) to transfer document types and content across.
+:::
+
 ### Steps on how to upgrade using Visual Studio
 
 - Open your Umbraco 9 project in Visual Studio.
@@ -27,7 +40,7 @@ The upgrade path between Umbraco 9 and Umbraco 10 can be done directly by updati
 After updating the project through NuGet, you will need to update your project from `net5.0` to `net6.0`
 Additionally, you will need to update the `Program.cs` to the following:
 
-```cs
+```csharp
 using Umbraco.Cms.Web.Common.Hosting;
 public class Program
     {
@@ -42,7 +55,7 @@ public class Program
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStaticWebAssets();
-                    webBuilder.UseStartup&lt;Startup&gt;();
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 ```
