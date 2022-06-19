@@ -1,5 +1,6 @@
 ---
 versionFrom: 9.0.0
+versionTo: 10.0.0
 meta.Title: "Umbraco Database"
 meta.Description: "A guide to creating a custom Database table in Umbraco"
 ---
@@ -124,7 +125,7 @@ namespace MyNamespace
             public string Website { get; set; }
 
             [Column("Message")]
-            [SpecialDbType(SpecialDbTypes.NTEXT)]
+            [SpecialDbType(SpecialDbTypes.NVARCHARMAX)]
             public string Message { get; set; }
         }
     }

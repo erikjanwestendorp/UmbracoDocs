@@ -1,6 +1,6 @@
 ---
 versionFrom: 7.0.0
-needsV9Update: "true"
+versionTo: 10.0.0
 ---
 
 # Upgrading - version specific
@@ -20,6 +20,8 @@ Version 10 contains a number of breaking changes but we won't expect many projec
 #### Views and client-side files
 
 Umbraco 10 distributes the views and client-side files as part of a Razor class library, distributed in the Umbraco.Forms.StaticAssets package.  This means these assets are no longer individual files available on disk. The advantage of this approach is that that avoids changes made to them by solution developers being inadvertently lost when the project is rebuilt.
+
+When upgrading from Forms 9, you should either first run a `dotnet clean`, or, after installing Forms 10, delete the `App_Plugins/UmbracoForms` folder.  This will ensure there aren't two copies of the `package.manifest` file, which would cause issues by registering duplicate property editors.
 
 #### Configuration
 

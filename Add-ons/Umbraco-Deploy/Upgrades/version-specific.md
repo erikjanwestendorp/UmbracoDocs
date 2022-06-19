@@ -1,13 +1,16 @@
 ---
 versionFrom: 9.0.0
+versionTo: 10.0.0
 meta.Title: "Version specific upgrades"
 meta.Description: "Version specific documentation for upgrading to new major versions of Umbraco Deploy."
 ---
 
 # Version Specific Upgrade Details
+
 This page covers specific upgrade documentation for when migrating to a new major of Umbraco Deploy.
 
 ## Version 10
+
 Version 10 of Umbraco Deploy has a minimum dependency on Umbraco CMS core of `10.0.0`. It runs on .NET 6.
 
 The forms deployment component has a minimum dependency on Umbraco Forms of `10.0.0`.
@@ -20,11 +23,22 @@ Version 10 contains a number of breaking changes but we won't expect many projec
 
 #### Database Initialization
 
-When using Umbraco Deploy with Umbraco Cloud, a development database is automatically created when restoring a project into a local environment for the first time. With Umbraco 9 and previous versions, SQL CE could be used for this.  This database version is no longer supported in Umbraco 10, so SQLlite is available instead.  SQLlite will be the default format used for the local database.
+When using Umbraco Deploy with Umbraco Cloud, a development database is automatically created when restoring a project into a local environment for the first time. With Umbraco 9 and previous versions, SQL CE could be used for this.  This database type is no longer supported in Umbraco 10, so SQLite is available instead.  SQLite will be the default format used for the local database.
 
-If you prefer to use a supported alternative, i.e. LocalDb or SQL Server, ensure that a connection string is in place before triggering the restore operation.
+If you prefer to use a supported alternative, you can ensure that a connection string is in place before triggering the restore operation.
 
-For example, to use LocalDb, you would place this in your `appSettings.json` configuration file:
+For example, to use a local SQL Server Express instance, you would place this in your `appSettings.json` configuration file:
+
+```json
+{
+  "ConnectionStrings": {
+    "umbracoDbDSN": "Server=.\\SQLEXPRESS;Database=UmbracoDb;Integrated Security=true",
+    "umbracoDbDSN_ProviderName": "Microsoft.Data.SqlClient"
+  }
+}
+```
+
+If you prefer to use LocalDB, either set a connection string as above:
 
 ```json
 {
@@ -34,6 +48,22 @@ For example, to use LocalDb, you would place this in your `appSettings.json` con
   }
 }
 ```
+
+Or set the configuration value of `Umbraco:Deploy:Settings:PreferLocalDbConnectionString` to `true`:
+
+```json
+{
+    "Umbraco": {
+        "Deploy": {
+            "Settings": {
+                "PreferLocalDbConnectionString": true
+            }
+        }
+    }
+}
+```
+
+If you are upgrading from Umbraco 9 and already have a LocalDB instance, setting this value to `true` will ensure it is used rather than a new, empty SQLite database.
 
 #### Configuration
 
