@@ -11,6 +11,16 @@ Follow the steps in the [general upgrade guide](general.md), then these addition
 
 ## Version 9 to version 10
 
+:::warning
+**Important**: .net version 6.0.5 is the minimum required version for Umbraco 10 to be able to run. You can check with `dotnet --list-sdks` what your latest installed SDK version is.  
+SDK version 6.0.300 is the one that includes .net 6.0.5.  
+At the time of writing, .net 6.0.6 is out with an SDK version of 6.0.301. 
+:::
+
+## Video Tutorial
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/075H_ekJBKI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 The upgrade path between Umbraco 9 and Umbraco 10 can be done directly by updating your project using NuGet. You will need to ensure the packages you are using are available in Umbraco 10.
 
 Are you looking to upgrade an Umbraco Cloud project from 9 to 10? Follow the guide made for [Upgrading your project from Umbraco 9 to 10](../../../Umbraco-Cloud/Upgrades/Migrating-from-9-to-10/) instead, as it requires a few steps specific to Umbraco Cloud.
