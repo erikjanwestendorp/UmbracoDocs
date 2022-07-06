@@ -12,9 +12,9 @@ Follow the steps in the [general upgrade guide](general.md), then these addition
 ## Version 9 to version 10
 
 :::warning
-**Important**: .net version 6.0.5 is the minimum required version for Umbraco 10 to be able to run. You can check with `dotnet --list-sdks` what your latest installed SDK version is.  
-SDK version 6.0.300 is the one that includes .net 6.0.5.  
-At the time of writing, .net 6.0.6 is out with an SDK version of 6.0.301. 
+**Important**: .net version 6.0.5 is the minimum required version for Umbraco 10 to be able to run. You can check with `dotnet --list-sdks` what your latest installed SDK version is.
+SDK version 6.0.300 is the one that includes .net 6.0.5.
+At the time of writing, .net 6.0.6 is out with an SDK version of 6.0.301.
 :::
 
 ## Video Tutorial
@@ -77,8 +77,10 @@ The following options may suit your needs:
     - `/umbraco/UmbracoWebsite`
     - `/umbraco/config/lang`
     - `/umbraco/config/appsettings-schema.json`
-    - `/App_Plugins/UmbracoForms` (if you are using Umbraco Forms on your project)
-10. Build and run your project to finish the installation of Umbraco 10.
+
+10. If using Umbraco Forms, update your files and folders according to the [Upgrading - version specific](../../../Add-ons/UmbracoForms/Installation/Version-Specific.md) for version 10 article.
+
+11. Build and run your project to finish the installation of Umbraco 10.
 
 To re-enable the appsettings IntelliSense, you must update your schema reference in the `appsettings.json` file and any other `appsettings.{Environment}.json` files from:
 
