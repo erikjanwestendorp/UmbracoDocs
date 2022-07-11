@@ -5,7 +5,7 @@ versionTo: 8.0.0
 
 # Working with a local clone of an Umbraco Cloud site
 
-To work with a local copy of your site you'll need to use Windows and have a local web server installed (like WebMatrix / IIS). If you're not using Windows you can still work with your site's files (Templates, Css, JavaScript, etc...) but you'll need to deploy these to your development site before you can "see" your updates - head over to our chapter on [Working with UaaS Cli](../Working-With-UaaS-Cli/index-v7.md) for more documentation on this.
+To work with a local copy of your site you'll need to use Windows and have a local web server installed (like WebMatrix / IIS). If you're not using Windows you can still work with your site's files (Templates, Css, JavaScript, etc...) but you'll need to deploy these to your development site before you can "see" your updates - head over to our chapter on [Working with UaaS Cli](../Working-With-Mac/index-v7.md) for more documentation on this.
 
 ## Video tutorial
 
@@ -39,7 +39,7 @@ Here are the steps to clone your site (**We'll use Fork in this example.**):
 
 ![Clone to local machine](images/clone-to-local.gif)
 
-Now you have an exact copy of your Umbraco Cloud environment that you can run locally. 
+Now you have an exact copy of your Umbraco Cloud environment that you can run locally.
 
 We like to use Visual Studio Code when working locally, but you can use Visual Studio or any other development tool or web server. When you run your local site for the first time, you’ll be prompted to restore your site's content. Wait until this process completes as it also creates the local SqlCE database for your site.
 
@@ -54,5 +54,5 @@ If you have multiple media items see our recommendations for working with [Media
 :::links
 ## Related Article
 
-- [Working with Visual Studio](Working-With-Visual-Studio/index-v8.md)
+- [Working with Visual Studio](Working-With-Visual-Studio/)
 :::
