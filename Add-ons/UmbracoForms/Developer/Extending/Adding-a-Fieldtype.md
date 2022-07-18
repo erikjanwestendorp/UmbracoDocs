@@ -34,6 +34,7 @@ namespace MyFormsExtensions
             this.DataType = FieldDataType.String;
             this.SortOrder = 10;
             this.SupportsRegex = true;
+            this.FieldTypeViewName = "FieldType.MyCustomField.cshtml";
         }
 
         // You can do custom validation in here which will occur when the form is submitted.
@@ -84,7 +85,9 @@ namespace MyFormsExtensions
 
 ## Partial view
 
-Then we will start building the view for the default theme of the form at `Views\Partials\Forms\Themes\default\FieldTypes\FieldType.MyCustomField.cshtml`
+Then we will start building the view for the default theme of the form at `Views\Partials\Forms\Themes\default\FieldTypes\FieldType.MyCustomField.cshtml`.
+
+The file name for the partial view should match the value set on the `FieldTypeViewName` property.
 
 ```csharp
 @model Umbraco.Forms.Mvc.Models.FieldViewModel
@@ -108,6 +111,8 @@ The final step involves building the HTML view which will be rendered in Umbraco
     style="max-width: 100px"
 />
 ```
+
+In the HTML you can access settings via `field.settings`, e.g. `{{field.settings.Caption}}` to render a "Caption" setting. It is also possible to access prevalues via `field.parsedPreValues`.
 
 For built-in field types, Umbraco Forms look for this file in the folder:  `App_Plugins\UmbracoForms\backoffice\Common\FieldTypes\` and will expect to find a file with a name matching the class's name, i.e. `mycustomfield.html`.
 

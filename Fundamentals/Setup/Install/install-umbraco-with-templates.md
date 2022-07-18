@@ -17,12 +17,12 @@ We have made custom Umbraco templates that are available for use with `dotnet ne
 2. Run `dotnet new -i Umbraco.Templates` to install the project templates.  
 *The solution is packaged up into the NuGet package [Umbraco.Templates](https://www.nuget.org/packages/Umbraco.Templates) and can be installed into the dotnet CLI*.
 
-> Once that is complete, you can see that Umbraco was added to the list of available projects types by running `dotnet new -all`:
+> Once that is complete, you can see that Umbraco was added to the list of available projects types by running `dotnet new --list`:
 
 ```none
 Templates                    Short Name               Language          Tags
 ------------------------------------------------------------------------------------------------------
-Umbraco Solution             umbraco                  [C#]              Web/CMS/Umbraco
+Umbraco Project              umbraco                  [C#]              Web/CMS/Umbraco
 Umbraco Package              umbracopackage           [C#]              Web/CMS/Umbraco/Package/Plugin
 ```
 :::note
