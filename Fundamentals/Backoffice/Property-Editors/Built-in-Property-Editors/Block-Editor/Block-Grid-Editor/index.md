@@ -68,7 +68,7 @@ The Data Type editor allows you to configure the following properties:
 
 ## Setup Block Types
 
-Block Types are based on **Element Types**. These can be created beforehand or while setting up your Block Types.
+Block Types are based on **[Element Types](../../../../../Data/Defining-content/index.md#what-is-an-element-type)**. These can be created beforehand or while setting up your Block Types.
 
 Once you have added an Element Type as a Block Type on your Block Grid Data Type you have the option to configure it.
 
@@ -90,7 +90,7 @@ Customize the user experience for your content editors when they work with the B
 
   :::tip
   Label example: "My Block {{myPropertyAlias}}" will be shown as: "My Block FooBar".
-  
+
   You can also use more advanced expression using AngularJS filters, like `{{myPropertyAlias | limitTo:100}}` or for a property using Richtext editor `{{myPropertyAlias | ncRichText | truncate:true:100}}`. It is also possible to use properties from the Settings model by using `{{$settings.propertyAlias}}`.
 
   Get more tips on how to use AngularJS filters in Umbraco CMS from this community-made [Umbraco AngularJS filter cheat sheet](https://joe.gl/ombek/blog/umbraco-angularjs-filter-cheat-sheet/).
@@ -131,8 +131,8 @@ The thumbnails for the catalogue are presented in the format of 16:10. We recomm
 
 ### Allowance
 
-- **Allow in root** - Determines wether the Block can be created at the root of your layout. Turn this off if you only want a Block to appear within Block Areas.
-- **Allow in areas** - Determines wether the Block can be created inside Areas of other Blocks. If this is turned off it can still be allowed in Block Areas by defining specific allowed Blocks.
+- **Allow in root** - Determines whether the Block can be created at the root of your layout. Turn this off if you only want a Block to appear within Block Areas.
+- **Allow in areas** - Determines whether the Block can be created inside Areas of other Blocks. If this is turned off it can still be allowed in Block Areas by defining specific allowed Blocks.
 
 ## Areas
 
@@ -145,7 +145,7 @@ Each Area has a size, defined by column and rows spans. The grid for the Areas a
 To scale an Area, click and drag the scale-button in the bottom-right corner of an Area.
 
 - **Grid Columns for Areas** - Overwrites the amount of columns used for the Area grid.
-- **Areas** - Determines wether the Block can be created inside Areas of other Blocks.
+- **Areas** - Determines whether the Block can be created inside Areas of other Blocks.
 
 ![Block Grid - Areas](images/BlockGridEditor_Areas.png)
 
@@ -205,7 +205,7 @@ To delete a Block, click the trash icon which appears on the mouse hover.
 
 Blocks can be rearranged using the click and drag feature. Move them up or down to place them in the desired order.
 
-Moving a Block from one Area to another is done in the same way. If a Block is not allowed in the given position, the area will display a red color and neglect the new position.
+Moving a Block from one Area to another is done in the same way. If a Block is not allowed in the given position, the area will display a red color and not allow the new position.
 
 ![Block Grid - Sorting Blocks](images/Sorting_BlockGrid_Blocks.gif)
 
@@ -220,9 +220,7 @@ Rendering the stored value of your **Block Grid** property editor can be done in
 
 You can choose to use the built-in rendering mechanism for rendering Blocks using a Partial View for each block.
 
-The default rendering method is named `GetBlockGridHtmlAsync()` and comes with a few options.
-
-Example use-case:
+The default rendering method is named `GetBlockGridHtmlAsync()` and comes with a few options - for example:
 
 ```csharp
 @await Html.GetBlockGridHtmlAsync(Model, "myGrid")
@@ -231,8 +229,6 @@ Example use-case:
 In the sample above `"myGrid"` is the alias of the Block Grid editor.
 
 If you are using ModelsBuilder, the example will look like this:
-
-Example:
 
 ```csharp
 @await Html.GetBlockGridHtmlAsync(Model.MyGrid)
@@ -288,6 +284,15 @@ If you like to use the Default Layout Stylesheet, you must copy the stylesheet t
 ```csharp
 <link rel="stylesheet" href="@Url.Content("~/css/blockgridlayout.css")" />
 ```
+
+:::note
+A set of built-in Partial Views are responsible for rendering the Blocks and Areas in a grid layout. If you want to tweak or change the way the grid layout is rendered, you can use the built-in Partial Views as a template:
+
+1. Clone the views from `<a href="https://github.com/umbraco/Umbraco-CMS/">GitHub</a>`. They can be found in 
+   `/src/Umbraco.Cms.StaticAssets/Views/Partials/blockgrid/`
+2. Copy the cloned views to the local folder `Views/Partials/BlockGrid/`
+3. Make changes to your copied views. The entry point for `GetBlockGridHtmlAsync()` is the view `default.cshtml`
+   :::
 
 ### 2. Build your own rendering
 
@@ -381,7 +386,7 @@ For example: You can use the below HTML structure:
 <div class="umb-block-grid"
      style="--umb-block-grid--grid-columns: 12;"
 >
-    
+
     <!-- Notice this is the same markup used every time we will be printing a list of blocks: -->
     <div class="umb-block-grid__layout-container">
 
@@ -402,7 +407,7 @@ For example: You can use the below HTML structure:
         >
 
             <!-- Here the Razor View or Custom View for this block will be rendered. -->
-            
+
             <!-- Each razor view must render the 'area-container' them self.
             This can be done by the Razor helper method:
 
@@ -445,7 +450,7 @@ For example: You can use the below HTML structure:
 
         </div>
         <!-- end of repeat -->
-        
+
     </div>
 
 </div>
