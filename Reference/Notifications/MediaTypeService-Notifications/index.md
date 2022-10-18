@@ -16,6 +16,7 @@ The MediaTypeService class implements IMediaTypeService. It provides access to o
     <th>Notification</th>
     <th>Members</th>
     <th>Description</th>
+    
   </tr>
 
   <tr>
