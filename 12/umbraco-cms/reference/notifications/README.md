@@ -110,8 +110,7 @@ public static class UmbracoBuilderNotificationExtensions
     }
 }
 ```
-
-You can then register all these notifications by calling `AddDontShoutNotifications` in `ConfigureServices` or your composer, just like you would `AddNotificationHandler`:
+You can then register all these notifications by calling `AddDontShoutNotifications` in ConfigureServices or your composer, similarly to how you would `AddNotificationHandler`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
