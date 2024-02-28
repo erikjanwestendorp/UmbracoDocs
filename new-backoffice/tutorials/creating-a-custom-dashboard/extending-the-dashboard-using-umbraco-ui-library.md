@@ -4,7 +4,7 @@ description: >-
   prettier. To do this we can use the Umbraco UI library.
 ---
 
-# Extending the Dashboard using Umbraco UI library
+# Using Umbraco UI library in the Dashboard
 
 {% hint style="warning" %}
 This page is a work in progress. It will be updated as the software evolves.
@@ -12,7 +12,7 @@ This page is a work in progress. It will be updated as the software evolves.
 
 ## Overview
 
-This is the fourth and final part of the guide to building a Custom Dashboard. This part continues work on the dashboard we built in part three: [Adding functionality to the Dashboard](adding-functionality-to-the-dashboard.md). But it goes further to showcase how we can use the UI Library in our extension.&#x20;
+This is the fourth and final part of the guide to building a Custom Dashboard. This part continues work on the dashboard we built in part three: [Adding functionality to the Dashboard](adding-functionality-to-the-dashboard.md). But it goes further to showcase how we can use the UI Library in our extension.
 
 ## Umbraco UI Library
 
@@ -20,7 +20,9 @@ The [Umbraco UI Library](../../extending/ui-library.md) is a set of web componen
 
 By using the variables available from the UI Library, you ensure that your extensions are a consistent size with the rest of the backoffice.
 
-Let's start by wrapping `uui-box` around our render output. This makes our dashboard the same style as the built-in dashboards of Umbraco.
+### UI Box
+
+1. Let's start by wrapping `uui-box` around our render output. This makes our dashboard the same style as the built-in dashboards of Umbraco:
 
 {% code title="welcome-dashboard.element.ts" %}
 ```typescript
@@ -36,7 +38,7 @@ render() {
 ```
 {% endcode %}
 
-The `uui-box` has a headline property. Let's move our headline into the headline property.
+2. The `uui-box` has a headline property as well. Let's move our headline into the headline property.
 
 {% code title="welcome-dashboard.element.ts" %}
 ```typescript
@@ -52,7 +54,9 @@ The `uui-box` has a headline property. Let's move our headline into the headline
 ```
 {% endcode %}
 
-The `uui-box` also has a headline slot if you want to add an element instead. This element can also be styled and contain other elements. So let's say we want to keep using `umb-localize` instead of `localize.term()`, we can accomplish this by doing so:&#x20;
+3. The `uui-box` also has a headline slot if you want to add an element instead. This element can also be styled and contain other elements. \
+   \
+   Let's keep using `umb-localize` instead of `localize.term()`. This can be accomplished like so:
 
 {% code title="welcome-dashboard.element.ts" %}
 ```typescript
@@ -72,7 +76,7 @@ render() {
 ```
 {% endcode %}
 
-The UI Library also has a lot of variables we can use such as sizes and colors. Let's update our padding to ensure that our element is always consistent with the rest of the backoffice:
+4. The UI Library also has a lot of variables we can use such as sizes and colors. Let's update our `padding` to ensure that our element is always consistent with the rest of the backoffice:
 
 {% code title="welcome-dashboard.element.ts" %}
 ```typescript
@@ -100,45 +104,41 @@ This already looks a lot better!
 
 {% code title="welcome-dashboard.element.ts" lineNumbers="true" %}
 ```typescript
-import { UMB_AUTH, UmbLoggedInUser } from "@umbraco-cms/backoffice/auth";
-import { LitElement, css, html, customElement, state } from "@umbraco-cms/backoffice/external/lit";
-import { UmbUserDetail, UmbUserRepository } from '@umbraco-cms/backoffice/users';
+import { type UmbCurrentUserModel, UMB_CURRENT_USER_CONTEXT } from "@umbraco-cms/backoffice/current-user";
+import { LitElement, css, html, customElement, state, repeat } from "@umbraco-cms/backoffice/external/lit";
+import { type UmbUserDetailModel, UmbUserCollectionRepository } from '@umbraco-cms/backoffice/user';
 import { UmbElementMixin } from "@umbraco-cms/backoffice/element-api";
 
 @customElement('my-welcome-dashboard')
 export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
 	@state()
-	private _currentUser?: UmbLoggedInUser;
+    private _currentUser?: UmbCurrentUserModel;
 
-	@state()
-	private _userData?: Array<UmbUserDetail>;
+    @state()
+    private _userData: Array<UmbUserDetailModel> = [];
 
-	private _auth?: typeof UMB_AUTH.TYPE;
+    #userRepository = new UmbUserCollectionRepository(this);
 
-	private _userRepository = new UmbUserRepository(this);
+    constructor() {
+        super();
+        this.consumeContext(UMB_CURRENT_USER_CONTEXT, (instance) => {
+            this._observeCurrentUser(instance);
+        });
+        this._getPagedUserData();
+    }
 
-	constructor() {
-		super();
-		this.consumeContext(UMB_AUTH, (instance) => {
-			this._auth = instance;
-			this._observeCurrentUser();
-		});
-		this._getDataFromRepository();
-	}
+    //Get the current user
+    private async _observeCurrentUser(instance: typeof UMB_CURRENT_USER_CONTEXT.TYPE) {
+        this.observe(instance.currentUser, (currentUser) => {
+            this._currentUser = currentUser;
+        });
+    }
 
-	//Get the current user
-	private async _observeCurrentUser() {
-		if (!this._auth) return;
-		this.observe(this._auth.currentUser, (currentUser) => {
-			this._currentUser = currentUser;
-		});
-	}
-
-	//Get all users
-	private async _getDataFromRepository() {
-		const { data } = await this._userRepository.requestCollection();
-		this._userData = data?.items;
-	}
+    //Get all users
+    private async _getPagedUserData() {
+        const { data } = await this.#userRepository.requestCollection();
+        this._userData = data?.items ?? [];
+    }
 
 	render() {
 		return html`
@@ -157,12 +157,14 @@ export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
 						<umb-localize key="welcomeDashboard_copyright"> © Sample Company 20XX </umb-localize>
 					</p>
 				</div>
-				<div id="users-wrapper">${this._userData?.map((user) => this._renderUser(user))}</div>
+				<div id="users-wrapper">
+                    ${repeat(this._userData, (user) => user.unique, (user) => this._renderUser(user))}
+                </div>
 			</uui-box>
 		`;
 	}
 
-	private _renderUser(user: UmbUserDetail) {
+	private _renderUser(user: UmbUserDetailModel) {
 		return html`<div class="user">
 			<div>${user.name}</div>
 			<div>${user.email}</div>
@@ -204,9 +206,11 @@ declare global {
 
 </details>
 
-Let's try another uui element.
+### UI Table
 
-Since we have a lot of information from the users, it could be a good idea to insert it into a proper table. The Umbraco UI (UUI) Library also includes a [uui-table](https://uui.umbraco.com/?path=/docs/layout-table-table--docs), so let's use that.
+Let's try another uui element. Since we have a lot of information from the users, it could be a good idea to insert it into a proper table.&#x20;
+
+1. The Umbraco UI (UUI) Library also includes a [uui-table](https://uui.umbraco.com/?path=/docs/layout-table-table--docs), so let's use it:
 
 {% code title="welcome-dashboard.element.ts" %}
 ```typescript
@@ -222,24 +226,24 @@ render() {
 					<uui-table-head-cell>Email</uui-table-head-cell>
 					<uui-table-head-cell>Status</uui-table-head-cell>
 				</uui-table-row>
-				${this._userData?.map((user) => this._renderUser(user))}
+				${repeat(this._userData, (user) => user.unique, (user) => this._renderUser(user))}
 			</uui-table>
 		</uui-box>
 	`;
 }
 
-private _renderUser(user: UmbUserDetail) {
-	if (!user) return;
-	return html`<uui-table-row class="user">
-		<uui-table-cell>${user.name}</uui-table-cell>
-		<uui-table-cell>${user.email}</uui-table-cell>
-		<uui-table-cell>${user.state}</uui-table-cell>
-	</uui-table-row>`;
+private _renderUser(user: UmbUserDetailModel) {
+    if (!user) return;
+    return html`<uui-table-row class="user">
+        <uui-table-cell>${user.name}</uui-table-cell>
+        <uui-table-cell>${user.email}</uui-table-cell>
+        <uui-table-cell>${user.state}</uui-table-cell>
+    </uui-table-row>`;
 }
 ```
 {% endcode %}
 
-Since the `uui-table` and others are handling the table, we can redo our CSS a bit:
+2. Since the `uui-table` and others are handling the table, we can redo our CSS a bit:
 
 {% code title="welcome-dashboard.element.ts" %}
 ```typescript
@@ -274,48 +278,44 @@ Your dashboard component should now look like this:
 
 {% code title="welcome-dashboard.element.ts" lineNumbers="true" %}
 ```typescript
-import { UMB_AUTH, UmbLoggedInUser } from "@umbraco-cms/backoffice/auth";
-import { LitElement, css, html, customElement, state } from "@umbraco-cms/backoffice/external/lit";
-import { UmbUserDetail, UmbUserRepository } from '@umbraco-cms/backoffice/users';
+import { type UmbCurrentUserModel, UMB_CURRENT_USER_CONTEXT } from "@umbraco-cms/backoffice/current-user";
+import { LitElement, css, html, customElement, state, repeat } from "@umbraco-cms/backoffice/external/lit";
+import { type UmbUserDetailModel, UmbUserCollectionRepository } from '@umbraco-cms/backoffice/user';
 import { UmbElementMixin } from "@umbraco-cms/backoffice/element-api";
 
 @customElement('my-welcome-dashboard')
 export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
-	@state()
-	private _currentUser?: UmbLoggedInUser;
+    @state()
+    private _currentUser?: UmbCurrentUserModel;
 
-	@state()
-	private _userData?: Array<UmbUserDetail>;
+    @state()
+    private _userData: Array<UmbUserDetailModel> = [];
 
-	private _auth?: typeof UMB_AUTH.TYPE;
+    #userRepository = new UmbUserCollectionRepository(this);
 
-	private _userRepository = new UmbUserRepository(this);
+    constructor() {
+        super();
+        this.consumeContext(UMB_CURRENT_USER_CONTEXT, (instance) => {
+            this._observeCurrentUser(instance);
+        });
+        this._getPagedUserData();
+    }
 
-	constructor() {
-		super();
-		this.consumeContext(UMB_AUTH, (instance) => {
-			this._auth = instance;
-			this._observeCurrentUser();
-		});
-		this._getPagedUserData();
-	}
+    //Get the current user
+    private async _observeCurrentUser(instance: typeof UMB_CURRENT_USER_CONTEXT.TYPE) {
+        this.observe(instance.currentUser, (currentUser) => {
+            this._currentUser = currentUser;
+        });
+    }
 
-	//Get the current user
-	private async _observeCurrentUser() {
-		if (!this._auth) return;
-		this.observe(this._auth.currentUser, (currentUser) => {
-			this._currentUser = currentUser;
-		});
-	}
+    //Get all users
+    private async _getPagedUserData() {
+        const { data } = await this.#userRepository.requestCollection();
+        this._userData = data?.items ?? [];
+    }
 
-	//Get all users
-	private async _getPagedUserData() {
-		const { data } = await this._userRepository.requestCollection();
-		this._userData = data?.items;
-	}
-
-	render() {
-		return html`
+    render() {
+        return html`
 			<uui-box>
 				<h1 slot="headline">
 					<umb-localize key="welcomeDashboard_heading">Welcome</umb-localize>
@@ -338,23 +338,23 @@ export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
 						<uui-table-head-cell>Email</uui-table-head-cell>
 						<uui-table-head-cell>Status</uui-table-head-cell>
 					</uui-table-row>
-					${this._userData?.map((user) => this._renderUser(user))}
+                    ${repeat(this._userData, (user) => user.unique, (user) => this._renderUser(user))}
 				</uui-table>
 			</uui-box>
 		`;
-	}
+    }
 
-	private _renderUser(user: UmbUserDetail) {
-		if (!user) return;
-		return html`<uui-table-row class="user">
+    private _renderUser(user: UmbUserDetailModel) {
+        if (!user) return;
+        return html`<uui-table-row class="user">
 			<uui-table-cell>${user.name}</uui-table-cell>
 			<uui-table-cell>${user.email}</uui-table-cell>
 			<uui-table-cell>${user.state}</uui-table-cell>
 		</uui-table-row>`;
-	}
+    }
 
-	static styles = [
-		css`
+    static styles = [
+        css`
 			:host {
 				display: block;
 				padding: var(--uui-size-layout-1);
@@ -370,26 +370,28 @@ export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
 				background-color: var(--uui-color-surface-alt);
 			}
 		`,
-	];
+    ];
 }
 
 export default MyWelcomeDashboardElement;
 
 declare global {
-	interface HTMLElementTagNameMap {
-		'my-welcome-dashboard': MyWelcomeDashboardElement;
-	}
+    interface HTMLElementTagNameMap {
+        'my-welcome-dashboard': MyWelcomeDashboardElement;
+    }
 }
 ```
 {% endcode %}
 
 </details>
 
-{% hint style="success" %}
-**Challenge (optional):** Insert the <mark style="color:orange;">`user.state`</mark> into a <mark style="color:orange;">`uui-tag`</mark> that uses different values of the properties<mark style="color:orange;">`look`</mark> and <mark style="color:orange;">`color`</mark>. The values depend on the state of the user. For example, use look="primary" and color="positive" when the user is <mark style="color:orange;">`Active`</mark>
+### **Challenge (optional):**
+
+Insert the <mark style="color:orange;">`user.state`</mark> into a <mark style="color:orange;">`uui-tag`</mark> that uses different values of the properties<mark style="color:orange;">`look`</mark> and <mark style="color:orange;">`color`</mark>.&#x20;
+
+The values depend on the state of the user. For example, use `look="primary"` and `color="positive"` when the user is <mark style="color:orange;">`Active`</mark>
 
 [Check out the uui-tag in the library here](https://uui.umbraco.com/?path=/story/uui-tag--looks-and-colors)
-{% endhint %}
 
 <details>
 
@@ -403,7 +405,7 @@ import { InterfaceColor, InterfaceLook } from '@umbraco-cms/backoffice/external/
 
 	...
 
-	private _renderUser(user: UmbUserDetail) {
+	private _renderUser(user: UmbUserDetailModel) {
 		if (!user) return;
 		const state = this.getLookAndColorFromUserState(user.state);
 		return html`<uui-table-row class="user">
@@ -432,4 +434,6 @@ import { InterfaceColor, InterfaceLook } from '@umbraco-cms/backoffice/external/
 
 </details>
 
-The `uui-table-row` also have a selectable property. We advise you to continue to experiment with different UUI elements from the UI library to build awesome interfaces!
+The `uui-table-row` also have a selectable property.&#x20;
+
+Continue to experiment with different UUI elements from the UI library to build awesome interfaces!
