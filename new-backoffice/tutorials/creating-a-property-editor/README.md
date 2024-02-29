@@ -16,6 +16,7 @@ The steps we will go through in part 1 are:
 * ​[Creating a Web Component​](./#2.-creating-a-simple-web-component)
 * ​[Registering the Data Type in Umbraco](./#3.-registering-the-data-type-in-umbraco)
 * [Adding styling and setting up events in Web Components](./#4.-adding-styling-and-setting-up-events-in-the-web-components)
+* [Setup Event Logic](./#step-5-setup-event-logic)
 
 ### Prerequisites
 
@@ -78,7 +79,7 @@ Now let's create the web component we need for our property editor.&#x20;
 import { LitElement, html, customElement, property } from "@umbraco-cms/backoffice/external/lit";
 import { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/extension-registry";
 
-@customElement("my-suggestions-property-editor-ui")
+@customElement('my-suggestions-property-editor-ui')
 export class MySuggestionsPropertyEditorUIElement
     extends LitElement
     implements UmbPropertyEditorUiElement
@@ -93,7 +94,7 @@ export class MySuggestionsPropertyEditorUIElement
 
 declare global {
     interface HTMLElementTagNameMap {
-        "my-suggestions-property-editor-ui": MySuggestionsPropertyEditorUIElement;
+        'my-suggestions-property-editor-ui': MySuggestionsPropertyEditorUIElement;
     }
 }
 ```
@@ -296,7 +297,7 @@ import { LitElement, html, css, customElement, property, state } from "@umbraco-
 import { LitElement, css, html, customElement, property, state } from "@umbraco-cms/backoffice/external/lit";
 import { UmbPropertyEditorExtensionElement } from "@umbraco-cms/backoffice/extension-registry";
 
-@customElement("my-suggestions-property-editor-ui")
+@customElement('my-suggestions-property-editor-ui')
 export class MySuggestionsPropertyEditorUIElement
     extends LitElement
     implements UmbPropertyEditorExtensionElement
@@ -375,7 +376,7 @@ export class MySuggestionsPropertyEditorUIElement
 
 declare global {
     interface HTMLElementTagNameMap {
-        "my-suggestions-property-editor-ui": MySuggestionsPropertyEditorUIElement;
+        'my-suggestions-property-editor-ui': MySuggestionsPropertyEditorUIElement;
     }
 }
 ```
