@@ -13,7 +13,7 @@ This is the second part of our guide to building a Custom Dashboard. This part c
 1. In the `welcome-dashboard` folder create a new folder called "`Localization`"
 2. Then create two new files `en-us.js` and `da-dk.js`:
 
-Add the following code to `en-us.js`
+* Add the following code to `en-us.js`
 
 {% code title="en-us.js" lineNumbers="true" %}
 ```javascript
@@ -27,7 +27,7 @@ export default {
 ```
 {% endcode %}
 
-Add the following code to `da-dk.js`
+* Add the following code to `da-dk.js`
 
 {% code title="da-dk.js" lineNumbers="true" %}
 ```javascript
@@ -238,7 +238,7 @@ This is how our dashboard should now look like:
 </div>
 
 {% hint style="info" %}
-Tip: If you do not have many translations, you can also choose to include the localizations directly in the meta-object. Read more about translations in the [**Localization**](../../extending/localization/) article.
+Tip: If you do not have many translations, you can also choose to include the localizations directly in the meta-object. Read more about translations in the [**Localization**](../../extending-backoffice/localization/) article.
 {% endhint %}
 
 ## Going Further
