@@ -10,6 +10,8 @@
   * [Installation](fundamentals/setup/install/README.md)
     * [Installing Preview Builds](fundamentals/setup/install/preview-builds.md)
     * [Installing Nightly Builds](fundamentals/setup/install/installing-nightly-builds.md)
+  * [Upgrade your project](fundamentals/setup/upgrading/README.md)
+    * [Version Specific Upgrades](fundamentals/setup/upgrading/version-specific/README.md)
 * [Backoffice](fundamentals/backoffice/README.md)
   * [Document Blueprints](fundamentals/backoffice/document-blueprints.md)
 
@@ -75,4 +77,4 @@
 * [Creating a Property Editor](tutorials/creating-a-property-editor/README.md)
   * [Adding configuration to a Property Editor](tutorials/creating-a-property-editor/adding-configuration-to-a-property-editor.md)
   * [Integrating context with a Property Editor](tutorials/creating-a-property-editor/integrating-context-with-a-property-editor.md)
-  * [Integrating services with a property editor](tutorials/creating-a-property-editor/integrating-services-with-a-property-editor.md)
+  * [Integrating services with a Property Editor](tutorials/creating-a-property-editor/integrating-services-with-a-property-editor.md)
