@@ -462,7 +462,7 @@ Now if an editor visits the backoffice via the backoffice URL they will only see
 
 ![Backoffice + production domains only](images/backoffice-see-prod.png)
 
-NB: it's not a 1-1 mapping, but a grouping. Multiple Urls can be added to a group. Think multilingual production and staging variations, and in the example above, if an editor logged in to the backoffice via the production URL, eg umbraco-v8.localtest.me/umbraco - they would see the umbraco-v8-backoffice.localtest.me domain listed.
+NB: it's not a 1-1 mapping, but a grouping. Multiple Urls can be added to a group. Think multilingual production and staging variations, and in the example above, if an editor logged in to the backoffice via the production URL, for example umbraco-v8.localtest.me/umbraco - they would see the umbraco-v8-backoffice.localtest.me domain listed.
 
 #### Grouping the groupings - BindSites
 
