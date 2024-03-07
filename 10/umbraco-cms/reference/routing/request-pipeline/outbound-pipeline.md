@@ -204,7 +204,7 @@ public interface IUrlProvider
 }
 ```
 
-The URL returned in the 'UrlInfo' object by GetUrl can be completely custom.
+The URL returned in the 'UrlInfo' object by GetUrl can be custom.
 
 If implementing a custom Url Provider, consider following things:
 
