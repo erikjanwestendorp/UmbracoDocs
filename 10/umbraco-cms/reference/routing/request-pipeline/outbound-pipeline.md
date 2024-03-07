@@ -16,7 +16,7 @@ To explain things we will use the following content tree:
 
 ## 1. Create segments
 
-When the URL is constructed, Umbraco will convert every node in the tree into a segment. Each published [Content](../../management/models/content.md) item has a corresponding url segment.
+When the URL is constructed, Umbraco will convert every node in the tree into a segment. Each published [Content](../../management/models/content.md) item has a corresponding URL segment.
 
 In our example "Our Products" will become "our-products" and "Swibble" will become "swibble".
 
@@ -143,7 +143,7 @@ The Url of a node consists of a complete [URI](https://en.wikipedia.org/wiki/Uni
 
 In our example the "swibble" node could have the following URL: "http://example.com/our-products/swibble"
 
-Generating this url is handled by the Url Provider. The Url Provider is called whenever a request is made in code for a Url e.g.:
+Generating this URL is handled by the Url Provider. The Url Provider is called whenever a request is made in code for a Url e.g.:
 
 ```csharp
 @Model.Url
@@ -155,7 +155,7 @@ The DI container of an Umbraco implementation contains a collection of `UrlProvi
 
 ### DefaultUrlProvider
 
-Umbraco ships with a `DefaultUrlProvider`, which provides the implementation for the out of the box mapping of the structure of the content tree to the url.
+Umbraco ships with a `DefaultUrlProvider`, which provides the implementation for the out of the box mapping of the structure of the content tree to the URL.
 
 ```csharp
 // This one is initialized by default
@@ -204,7 +204,7 @@ public interface IUrlProvider
 }
 ```
 
-The url returned in the 'UrlInfo' object by GetUrl can be completely custom.
+The URL returned in the 'UrlInfo' object by GetUrl can be completely custom.
 
 If implementing a custom Url Provider, consider following things:
 
@@ -218,7 +218,7 @@ If there is only a small change to the logic around Url generation, then a smart
 
 #### Example
 
-Add /fish on the end of every url. It's important to note here that since we're changing the outbound url, but not how we handle urls inbound, this **will** break the routing. In order to make the routing work again you have to implement a custom content finder, see [IContentFinder](icontentfinder.md) for more information on how to do that.
+Add /fish on the end of every URL. It's important to note here that since we're changing the outbound URL, but not how we handle urls inbound, this **will** break the routing. In order to make the routing work again you have to implement a custom content finder, see [IContentFinder](icontentfinder.md) for more information on how to do that.
 
 ```csharp
 using System;
@@ -315,7 +315,7 @@ For example, let's consider a convention-led `umbracoUrlAlias` property that ena
 
 ### Url Provider Mode
 
-Specifies the type of urls that the url provider should produce, eg. absolute vs. relative Urls. Auto is the default
+Specifies the type of urls that the URL provider should produce, eg. absolute vs. relative Urls. Auto is the default
 
 These are the different modes:
 
@@ -397,15 +397,15 @@ namespace RoutingDocs.SiteDomainMapper
 
 ### Default SiteDomainMapper
 
-Umbraco ships with a default `SiteDomainMapper`. This has some useful functionality for grouping sets of domains together. With Umbraco Cloud, or another Umbraco development environment scenario, there maybe be multiple domains setup for a site 'live, 'staging', 'testing' or a seperate domain to access the backoffice. Each domain will be setup as a 'Culture and Hostname' inside Umbraco. By default editors will see the full list of possible Urls for each of their content items on each domain, which can be confusing. If the additional urls aren't present in Culture and Hostnames, then when testing the front-end of the site on a 'staging' url, will result in navigation links taking you to the registered domain!
+Umbraco ships with a default `SiteDomainMapper`. This has some useful functionality for grouping sets of domains together. With Umbraco Cloud, or another Umbraco development environment scenario, there maybe be multiple domains setup for a site 'live, 'staging', 'testing' or a seperate domain to access the backoffice. Each domain will be setup as a 'Culture and Hostname' inside Umbraco. By default editors will see the full list of possible Urls for each of their content items on each domain, which can be confusing. If the additional urls aren't present in Culture and Hostnames, then when testing the front-end of the site on a 'staging' URL, will result in navigation links taking you to the registered domain!
 
 ![Culture and Hostnames multiple domains](images/culture-and-hostnames-v8.png)
 
-What the editor sees without any SiteDomainMapper, visiting the backoffice url:
+What the editor sees without any SiteDomainMapper, visiting the backoffice URL:
 
 ![All domains listed](images/no-sitedomainhelp.png)
 
-Which is 'noise' and can lead to confusion: accidentally clicking the staging url, which is likely to be served from a different environment / different database etc may display the wrong content...
+Which is 'noise' and can lead to confusion: accidentally clicking the staging URL, which is likely to be served from a different environment / different database etc may display the wrong content...
 
 To avoid this problem, use the default SiteDomainMapper's AddSite method to group Urls together.
 
@@ -454,15 +454,15 @@ namespace RoutingDocs.SiteDomainMapping
 }
 ```
 
-Now if an editor visits the backoffice via the staging url they will only see domains for the staging url:
+Now if an editor visits the backoffice via the staging URL they will only see domains for the staging URL:
 
 ![Staging domain only](images/staging-only-staging.png)
 
-Now if an editor visits the backoffice via the backoffice url they will only see domains for the backoffice url and the production url:
+Now if an editor visits the backoffice via the backoffice URL they will only see domains for the backoffice URL and the production URL:
 
 ![Backoffice + production domains only](images/backoffice-see-prod.png)
 
-NB: it's not a 1-1 mapping, but a grouping. Multiple Urls can be added to a group. Think multilingual production and staging variations, and in the example above, if an editor logged in to the backoffice via the production url, eg umbraco-v8.localtest.me/umbraco - they would see the umbraco-v8-backoffice.localtest.me domain listed.
+NB: it's not a 1-1 mapping, but a grouping. Multiple Urls can be added to a group. Think multilingual production and staging variations, and in the example above, if an editor logged in to the backoffice via the production URL, eg umbraco-v8.localtest.me/umbraco - they would see the umbraco-v8-backoffice.localtest.me domain listed.
 
 #### Grouping the groupings - BindSites
 
