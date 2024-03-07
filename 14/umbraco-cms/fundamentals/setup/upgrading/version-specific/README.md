@@ -34,9 +34,13 @@ Below you can find the list of breaking changes introduced in Umbraco 14.
 * [Migration from Newtonsoft.Json to the System.Text.Json which removes Nested Content and Grid value converter and so on](https://github.com/umbraco/Umbraco-CMS/pull/15728)
 * [Legacy media picker has been removed](https://github.com/umbraco/Umbraco-CMS/pull/15835)
 * [Macros have been removed](https://github.com/umbraco/Announcements/issues/14). Use partial views and/or blocks in the RTE.
-* package-manifest is now umbraco.package.json
+* [package-manifest is now umbraco.package.json](../../../../extending-backoffice/package-manifest.md)
+* [Smidge has been removed from default installation](https://github.com/umbraco/Umbraco-CMS/pull/15788). Can be manually installed if needed.
 * New login screen
+* In the backoffice from your profile information you can now choose Light, Dark or Contract mode for the backoffice.
 
-For more details of changes for each preview version of new backoffice check out the [Github Release Notes](https://github.com/umbraco/Umbraco.CMS.Backoffice/releases).
+**In-depth and further breaking changes for v14 can be found on the** [**CMS Github**](https://github.com/umbraco/Umbraco-CMS/pulls?q=is%3Apr+base%3Av14%2Fdev+label%3Acategory%2Fbreaking) **repository.**
+
+For details of changes for each preview version of new backoffice check out the [Github Release Notes](https://github.com/umbraco/Umbraco.CMS.Backoffice/releases).
 
 </details>

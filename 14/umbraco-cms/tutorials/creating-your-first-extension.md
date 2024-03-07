@@ -145,7 +145,7 @@ Be aware that any files in the `App_Plugins` folder are publicly available. If y
 npm create vite@latest my-typescript-extension -- --template lit-ts
 ```
 
-This sets up our new project in a folder named `my-extension` and creates a `package.json` file, which includes the necessary packages.
+This sets up our new project in a folder named `my-typescript-extension` and creates a `package.json` file, which includes the necessary packages.
 
 2. Navigate to the new `my-typescript-extension` project folder and install the packages using:
 
@@ -156,10 +156,10 @@ npm install
 3. The last thing we need to install now is our Backoffice package. You can install the package using the following command:
 
 ```bash
-npm install --registry https://www.myget.org/F/umbracoprereleases/npm/ -D @umbraco-cms/backoffice@14.0.0--preview008
+npm install --registry https://www.myget.org/F/umbracoprereleases/npm/ -D @umbraco-cms/backoffice@14.0.0-beta001
 ```
 
-This will add a package to your devDependencies containing the TypeScript definitions for the Umbraco Backoffice. The `--preview008` is the version of the package, which will change as new versions are released.
+This will add a package to your devDependencies containing the TypeScript definitions for the Umbraco Backoffice. The `-beta001` is the version of the package, which will change as new versions are released.
 
 {% hint style="warning" %}
 If you see any errors during this process, make sure that you have the right tools installed (Node, .NET, and so on). Also, make sure you have followed the steps on how to [Setup Your Development Environment](../extending-backoffice/development-flow/).
@@ -209,7 +209,7 @@ import {
 } from "@umbraco-cms/backoffice/notification";
 
 @customElement("my-typescript-element")
-export default class MyElement extends UmbElementMixin(LitElement) {
+export default class MyTypeScriptElement extends UmbElementMixin(LitElement) {
     #notificationContext?: UmbNotificationContext;
 
     constructor() {
