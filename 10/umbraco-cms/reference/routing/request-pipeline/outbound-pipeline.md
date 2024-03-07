@@ -405,7 +405,7 @@ What the editor sees without any SiteDomainMapper, visiting the backoffice URL:
 
 ![All domains listed](images/no-sitedomainhelp.png)
 
-Which is 'noise' and can lead to confusion: accidentally clicking the staging URL, which is likely to be served from a different environment / different database etc may display the wrong content...
+Which is 'noise' and can lead to confusion: accidentally clicking the staging URL, which is likely to be served from a different environment / different database and so on may display the wrong content...
 
 To avoid this problem, use the default SiteDomainMapper's AddSite method to group Urls together.
 
