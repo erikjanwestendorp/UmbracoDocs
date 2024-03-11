@@ -115,7 +115,7 @@ If we look at our example, the "swibble" node will receive the path: "/our-produ
 
 ### Multiple sites in a single Umbraco implementation
 
-But, what if there are multiple websites in a single Umbraco Implementation? in this multi-site scenario then an (internal) path to a node such as "/our-products/swibble-123xyz" could belong to any of the sites, or match multiple nodes in multiple sites. In this scenario additional sites will have their internal path prefixed by the node id of their root node. Any content node with a hostname defines a “new root” for paths.
+But, what if there are multiple websites in a single Umbraco Implementation? In this multi-site scenario, an (internal) path to a node such as "/our-products/swibble-123xyz" could belong to any of the sites. It could also match multiple nodes in multiple sites. In this scenario additional sites will have their internal path prefixed by the node id of their root node. Any content node with a hostname defines a “new root” for paths.
 
 ![path example](images/path-example-v8.png)
 
@@ -185,10 +185,10 @@ public class DefaultUrlProvider : IUrlProvider
 * If "addTrailingSlash" is true, then add a slash.
 * Then add the virtual directory.
 
-If the URL provider encounters collisions when generating content URLs, it will always select the first available node and assign the URL to this one. The remaining nodes will be marked as colliding and will not have a URL generated. Fetching the URL of a node with a collision URL will result in an error string including the node ID (#err-1094) since this node does not currently have an active URL. This can happen if an umbracoUrlName property is being used to override the generated URL of a node, or in some cases when having multiple root nodes without hostnames assigned.
+If the URL provider encounters collisions when generating content URLs, it will always select the first available node and assign the URL to this one. The remaining nodes will be marked as colliding and will not have a URL generated. Fetching the URL of a node with a collision URL will result in an error string. This includes the node ID (#err-1094) since this node does not currently have an active URL. This can happen if an umbracoUrlName property is being used to override the generated URL of a node. It can also occur in some cases when having multiple root nodes without hostnames assigned.
 
 {% hint style="warning" %}
-This means publishing an unpublished node with a conflicting URL, might change the active node being rendered on that specific URL in cases where the published node should now take priority according to sort order in the tree!
+This means publishing an unpublished node with a conflicting URL might change the active node being rendered on that specific URL. This happens in cases where the published node should now take priority according to sort order in the tree!
 {% endhint %}
 
 ### Custom Url Provider
@@ -213,7 +213,7 @@ If implementing a custom Url Provider, consider following things:
 * Inbound might require rewriting.
 
 {% hint style="info" %}
-If there is only a small change to the logic around Url generation, then a smart way to create a custom Url Provider is to inherit from the DefaultUrlProvider and override the GetUrl() virtual method.
+If there is only a small change to the logic around URL generation, inheriting from the DefaultUrlProvider is a smart approach. You can then override the GetUrl() virtual method.
 {% endhint %}
 
 #### Example
