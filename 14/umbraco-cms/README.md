@@ -22,10 +22,11 @@ The new Backoffice for Umbraco CMS is scheduled for release along with Umbraco 1
 4. [Creating a custom dashboard](tutorials/creating-a-custom-dashboard.md)
 5. [Creating a property editor](tutorials/creating-a-property-editor/)
 6. [Terminology](extending-backoffice/customize-backoffice.md#terminology)
+7. [UI Library and UI API](extending-backoffice/ui-library.md) external documentations
 
 ### Breaking Changes
 
-Some breaking changes have been introduced in the Umbraco 14. You can find the list of breaking changes or other changes from v14 in the [Version Specific Upgrades](fundamentals/setup/upgrading/version-specific/) article.
+Some breaking changes have been introduced in the Umbraco 14. You can find the list of breaking changes or other changes from v14 in the [Version Specific Upgrades](fundamentals/setup/upgrading/version-specific/) article. In the same article, you can find the breaking changes between each v14 version.&#x20;
 
 You can also find a sneak peak of what is upcoming on v14 of the CMS in the [Umbraco Product Update Blog](https://umbraco.com/blog/umbraco-product-update-february-2024/#CMS).
 

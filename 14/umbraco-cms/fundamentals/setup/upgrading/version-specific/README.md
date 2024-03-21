@@ -23,7 +23,7 @@ Use the [general upgrade guide](../) to complete the upgrade of your project.
 
 <details>
 
-<summary>Umbraco 14</summary>
+<summary>Umbraco 14 </summary>
 
 Below you can find the list of breaking changes introduced in Umbraco 14 CMS.
 
@@ -35,10 +35,12 @@ Below you can find the list of breaking changes introduced in Umbraco 14 CMS.
 * Nested Content and Grid Layout have been removed
 * [Legacy media picker has been removed](https://github.com/umbraco/Umbraco-CMS/pull/15835)
 * [Macros have been removed](https://github.com/umbraco/Announcements/issues/14). Use partial views and/or blocks in the RTE.
+* XPath has been removed. An alternative is using the Dynamic Roots in the Multinode Treepicker.
 * [package-manifest is now umbraco.package.json](../../../../extending-backoffice/package-manifest.md)
 * [Smidge has been removed from default installation](https://github.com/umbraco/Umbraco-CMS/pull/15788). Can be manually installed if needed.
 * New login screen
 * **Light, Dark or Contract Mode** option has been added in the backoffice. You can choose your preffered mode from your profile information.
+* [UI Library and UI API](../../../../extending-backoffice/ui-library.md) external documentations.
 
 **In-depth and further breaking changes for v14 can be found on the** [**CMS Github**](https://github.com/umbraco/Umbraco-CMS/pulls?q=is%3Apr+base%3Av14%2Fdev+label%3Acategory%2Fbreaking) **repository.**
 
@@ -46,12 +48,30 @@ Below you can find the list of breaking changes introduced in Umbraco 14 CMS.
 
 <details>
 
-<summary>Umbraco 14 Beta </summary>
+<summary>Umbraco 14 Beta Versions</summary>
 
-Below you can find the list of breaking changes introduced in Umbraco 14 Beta.
+Below you can find the list of breaking changes introduced in Umbraco 14 Beta release versions.
 
+[**Beta 1**](https://github.com/umbraco/Umbraco.CMS.Backoffice/releases/tag/v14.0.0-beta001)\
+Official release of Beta, 6th March 2023.&#x20;
 
+[**Beta 2**](https://github.com/umbraco/Umbraco.CMS.Backoffice/releases/tag/v14.0.0-beta002)
 
-**In-depth and further breaking changes for v14 beta versions can be found on the Release Notes on the** [**Umbraco.CMS.Backoffice** ](https://github.com/umbraco/Umbraco.CMS.Backoffice/releases)**repository.**
+There are a few breaking changes since **Beta 1**. Most of the changes concern property editors and getting them to work with migrations as well as new values.
+
+* [#1408](https://github.com/umbraco/Umbraco.CMS.Backoffice/pull/1408) - Refactor: Workspace Collection Condition (plus new Context token)
+* [#1423](https://github.com/umbraco/Umbraco.CMS.Backoffice/pull/1423) - Feature/individual publication modals
+* [#1439](https://github.com/umbraco/Umbraco.CMS.Backoffice/pull/1439) - rename selectedIds + Corrections for Lit warnings
+
+Management API Breaking Changes
+
+* [#15892](https://github.com/umbraco/Umbraco-CMS/pull/15892) - Revoke previous sessions when AllowConcurrentLogins is false
+* [#15890](https://github.com/umbraco/Umbraco-CMS/pull/15890) - Extend IContentEntitySlim
+* [#15891](https://github.com/umbraco/Umbraco-CMS/pull/15891) - Remove Keep Alive Job
+* [#15887](https://github.com/umbraco/Umbraco-CMS/pull/15887) - Workaround for failing entity tree children
+* [#15862](https://github.com/umbraco/Umbraco-CMS/pull/15862) - Removed “type” from tree item response models
+* [#15856](https://github.com/umbraco/Umbraco-CMS/pull/15856) - Remove duplicate pagination helper
+
+**In-depth previous, further and other changes for v14 beta versions can be found on the Release Notes on the** [**Umbraco.CMS.Backoffice** ](https://github.com/umbraco/Umbraco.CMS.Backoffice/releases)**repository.**
 
 </details>
