@@ -95,7 +95,7 @@ Before the migration process can start, you will need to have a Umbraco Cloud pr
 <figure><img src="../../.gitbook/assets/Umbraco-Cloud.Trial-Flow.gif" alt=""><figcaption><p>How to start a Umbraco Cloud trial</p></figcaption></figure>
 
 1. The best way to get started with Umbraco Cloud is to [create a trial project](https://umbraco.com/)
-2. When your project is starting choose to start with a _clean slate_ - you need to have an empty Cloud project for the migration to be successful
+2. You need to have an empty Cloud project for the migration to be successful
 3. We recommend that you set up your project with at least two environments.
 
 ![Manage environments](images/setup-dev-env.png)
@@ -200,11 +200,12 @@ For more details about UDA files, read the [UDA Files](../../set-up/power-tools/
   * If you have any files in the folder, you can safely remove those at this point
 * Start your local cloud project
 * Go to the settings section in your project
-* Select `Extract Schema To Data Files` Command from the **Deploy Operations** drop-down and click **Trigger Operation**.
+* Go to the Deploy tab
+* Under **Deploy Operations** > **Export Schema To Data Files** click `Export Schema`.
   * Generating the UDA files may take a while, depending on the extent of your project
   * You will see a `Last deployment operation completed` status once the export is done
-  * Run `Schema Deployment From Data Files` to check that the UDA files have been generated correctly
-  * When you see a `Last deployment operation completed` status, it means everything is working as expected
+  * Run `Update Umbraco Schema` to check that the UDA files have been generated correctly
+  * When you see a `Last deployment operation completed` status at the top of this page, it means everything is working as expected
 * You should now see that your `/Umbraco/Deploy/revision` folder has been populated with UDA files corresponding to your project's metadata
 
 ![Run echo > deploy-export](images/deployDashBoard.png)
