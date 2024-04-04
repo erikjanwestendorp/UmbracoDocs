@@ -54,12 +54,13 @@ Unlike other property editors, the Prevalue IDs are not directly accessible in R
 
 ## Add values programmatically
 
-See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](../../../../reference/management/services/contentservice/).
+See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](../../../../reference/management/services/README.md#contentservice).
 
 ```csharp
 @inject IContentService Services;
+@using Umbraco.Cms.Core.Serialization
 @using Umbraco.Cms.Core.Services;
-@using Newtonsoft.Json
+@inject IJsonSerializer Serializer;
 @{
     // Get access to ContentService
     var contentService = Services;
@@ -71,7 +72,7 @@ See the example below to see how a value can be added or changed programmaticall
     var content = contentService.GetById(guid); // ID of your page
 
     // Set the value of the property with alias 'superHeros'.
-    content.SetValue("superHeros", JsonConvert.SerializeObject(new[] { "Umbraco", "CodeGarden"}));
+    content.SetValue("superHeros", Serializer.Serialize(new[] { "Umbraco", "CodeGarden"}));
 
     // Save the change
     contentService.Save(content);
@@ -95,6 +96,6 @@ If Modelsbuilder is enabled you can get the alias of the desired property withou
 @{
 
 // Set the value of the property with alias 'superHeros'
-content.SetValue(Home.GetModelPropertyType(_publishedSnapshotAccessor,x => x.SuperHeros).Alias, JsonConvert.SerializeObject(new[] { "Umbraco", "CodeGarden"}));
+content.SetValue(Home.GetModelPropertyType(_publishedSnapshotAccessor,x => x.SuperHeros).Alias, Serializer.Serialize(new[] { "Umbraco", "CodeGarden"}));
 }
 ```

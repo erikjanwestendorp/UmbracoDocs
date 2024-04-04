@@ -112,19 +112,18 @@ Set the `htmlEncode` to false so that the URL is not HTML encoded
 
 ## Add values programmatically
 
-To update a content property value you need the [Content Service](../../../../reference/management/services/contentservice/).
+To update a content property value you need the [Content Service](../../../../reference/management/services/README.md#contentservice).
 
 The following sample demonstrates how to add or change the value of an Image Cropper property programmatically. The sample creates an API controller with an action, which must be invoked via a POST request to the URL written above the action.
 
 ```csharp
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.PropertyEditors;
 using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+using Umbraco.Cms.Core.Serialization;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Web.Common.Controllers;
-using Umbraco.Extensions;
 
 namespace Umbraco.Docs.Samples.Web.Property_Editors_Add_Values;
 
@@ -133,16 +132,17 @@ public class CreateImageCropperValuesController : UmbracoApiController
     private readonly IContentService _contentService;
     private readonly IMediaService _mediaService;
     private readonly MediaUrlGeneratorCollection _mediaUrlGeneratorCollection;
-
+    private readonly IJsonSerializer serializer;
 
     public CreateImageCropperValuesController(
         IContentService contentService,
         IMediaService mediaService,
-        MediaUrlGeneratorCollection mediaUrlGeneratorCollection)
+        MediaUrlGeneratorCollection mediaUrlGeneratorCollection, IJsonSerializer serializer)
     {
         _contentService = contentService;
         _mediaService = mediaService;
         _mediaUrlGeneratorCollection = mediaUrlGeneratorCollection;
+        this.serializer = serializer;
     }
 
     // /Umbraco/Api/CreateImageCropperValues/CreateImageCropperValues
@@ -176,7 +176,7 @@ public class CreateImageCropperValuesController : UmbracoApiController
         };
 
         // Serialize the image cropper value
-        var propertyValue = JsonConvert.SerializeObject(imageCropperValue);
+        var propertyValue = serializer.Serialize(imageCropperValue);
 
         // Set the value of the property with alias "cropper"
         // - remember to add the "culture" parameter if "cropper" is set to vary by culture

@@ -81,12 +81,13 @@ Prevalues are the options which are shown in the dropdown list. You can add, edi
 
 ## Add values programmatically
 
-See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](../../../../../reference/management/services/contentservice/).
+See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](../../../../../reference/management/services/README.md#contentservice).
 
 ```csharp
 @using Umbraco.Cms.Core.Services;
 @inject IContentService Services;
-@using Newtonsoft.Json
+@using Umbraco.Cms.Core.Serialization
+@inject IJsonSerializer Serializer;
 @{
     // Get access to ContentService
     var contentService = Services;
@@ -98,7 +99,7 @@ See the example below to see how a value can be added or changed programmaticall
     var content = contentService.GetById(guid); // ID of your page
 
     // Set the value of the property with alias 'categories'. 
-    content.SetValue("categories", JsonConvert.SerializeObject(new[] { "News" }));
+    content.SetValue("categories", Serializer.Serialize(new[] { "News" }));
 
     // Save the change
     contentService.Save(content);
@@ -121,6 +122,6 @@ If Modelsbuilder is enabled you can get the alias of the desired property withou
 @inject IPublishedSnapshotAccessor _publishedSnapshotAccessor;
 @{
     // Set the value of the property with alias 'categories'
-    content.SetValue(Home.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Categories).Alias, JsonConvert.SerializeObject(new[] { "News" }));
+    content.SetValue(Home.GetModelPropertyType(_publishedSnapshotAccessor, x => x.Categories).Alias, Serializer.Serialize(new[] { "News" }));
 }
 ```
