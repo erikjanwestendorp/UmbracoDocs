@@ -1,3 +1,7 @@
+---
+description: Example of how to use a MediaService Notification
+---
+
 # MediaService Notifications
 
 The MediaService class implements IMediaService. It provides access to operations involving IMedia.
@@ -76,27 +80,56 @@ namespace MyProject
 
 ![image](https://github.com/umbraco/UmbracoDocs/assets/6904597/67696298-2710-4aeb-bd0a-33c6d8414216)
 
-## Events
+<details>
 
-| Notification                        | Members                                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MediaSavingNotification             | <ul><li>IEnumerable&#x3C;IMedia> SavedEntities</li><li>EventMessages Messages</li><li>IDictionary&#x3C;string,object> State</li><li>bool Cancel</li></ul>                                                            | <p>Published when MediaService.Save is called in the API.<br>NOTE: It can be skipped completely if the parameter "raiseEvents" is set to false during the Save method call (true by default).<br>SavedEntities: Gets the collection of IMedia objects being saved.</p>                                                                                                                                                                                                                                                                                  |
-| MediaSavedNotification              | <ul><li>IEnumerable&#x3C;IMedia> SavedEntities</li><li>EventMessages Messages</li><li>IDictionary&#x3C;string,object> State</li></ul>                                                                                | <p>Published when MediaService.Save is called in the API and after the data has been persisted.<br>NOTE: It can be skipped completely if the parameter "raiseEvents" is set to false during the Save method call (true by default).<br>SavedEntities: Gets the saved collection of IMedia objects.</p>                                                                                                                                                                                                                                                  |
-| MediaMovingNotification             | <ul><li>IEnumerable&#x3C;MoveEventInfo&#x3C;IMedia>> MoveInfoCollection</li><li>EventMessages Messages</li><li>IDictionary&#x3C;string,object> State</li><li>bool Cancel</li></ul>                                   | <p>Published when MediaService.Move is called in the API.<br>NOTE: If the target parent is the Recycle bin, this notification is never published. Try the MediaMovingToRecycleBinNotification instead.<br>MoveInfoCollection will for each moving entity provide:</p><ol><li>Entity: Gets the IMedia object being moved</li><li>OriginalPath: The original path the entity is moved from</li><li>NewParentId: Gets the Id of the parent the entity will have after it has been moved</li></ol>                                                          |
-| MediaMovedNotification              | <ul><li>IEnumerable&#x3C;MoveEventInfo&#x3C;IMedia>> MoveInfoCollection</li><li>EventMessages Messages</li><li>IDictionary&#x3C;string,object> State</li></ul>                                                       | <p>Published when MediaService.Move is called in the API. The event is fired after the media object has been moved.<br>NOTE: If the target parent is the Recycle bin, this notification is never published. Try the MediaMovedToRecycleBinNotification instead.<br>MoveInfoCollection will for each moving entity provide:</p><ol><li>Entity: Gets the IMedia object being moved</li><li>OriginalPath: The original path the entity is moved from</li><li>NewParentId: Gets the Id of the parent the entity will have after it has been moved</li></ol> |
-| MediaMovingToRecycleBinNotification | <ul><li>IEnumerable&#x3C;MoveEventInfo&#x3C;IMedia>> MoveInfoCollection</li><li>EventMessages Messages</li><li>IDictionary&#x3C;string,object> State</li><li>bool Cancel</li></ul>                                   | <p>Published when MediaService.MoveToRecycleBin is called in the API.<br>MoveInfoCollection will for each moving entity provide:</p><ol><li>Entity: Gets the IMedia object being moved</li><li>OriginalPath: The original path the entity is moved from</li><li>NewParentId: Gets the Id of the RecycleBin</li></ol>                                                                                                                                                                                                                                    |
-| MediaMovedToRecycleBinNotification  | <ul><li>IEnumerable&#x3C;MoveEventInfo&#x3C;IMedia>> MoveInfoCollection</li><li>EventMessages Messages</li><li>IDictionary&#x3C;string,object> State</li></ul>                                                       | <p>Published when MediaService.MoveToRecycleBin is called in the API, after the media object has been moved to the RecycleBin.<br>MoveInfoCollection will for each moving entity provide:</p><ol><li>Entity: Gets the IMedia object being moved</li><li>OriginalPath: The original path the entity is moved from</li><li>NewParentId: Gets the Id of the RecycleBin</li></ol>                                                                                                                                                                           |
-| MediaDeletingNotification           | <ul><li>IEnumerable&#x3C;IMedia> DeletedEntities</li><li>EventMessages Messages</li><li>IDictionary&#x3C;string,object> State</li><li>bool Cancel</li></ul>                                                          | <p>Published when MediaService.DeleteMediaOfType, MediaService.Delete, MediaService.EmptyRecycleBin are called in the API.<br>DeletedEntities: Gets the collection of IMedia objects being deleted.</p>                                                                                                                                                                                                                                                                                                                                                 |
-| MediaDeletedNotification            | <ul><li>IEnumerable&#x3C;IMedia> DeletedEntities</li><li>EventMessages Messages</li><li>IDictionary&#x3C;string,object> State</li></ul>                                                                              | <p>Published when MediaService.Delete, MediaService.EmptyRecycleBin are called in the API, after the media has been deleted.<br>DeletedEntities: Gets the collection of deleted IMedia objects.</p>                                                                                                                                                                                                                                                                                                                                                     |
-| MediaDeletingVersionsNotification   | <ul><li>EventMessages Messages</li><li>IDictionary&#x3C;string,object> State</li><li>bool Cancel</li><li>int Id</li><li>int SpecificVersion</li><li>DateTime DateToRetain</li><li>bool DeletePriorVersions</li></ul> | <p>Published when MediaService.DeleteVersion, MediaService.DeleteVersions are called in the API.<br></p><ol><li>Id: Gets the id of the IMedia object being deleted.</li><li>DateToRetain: Gets the latest version date.</li><li>SpecificVersion: Gets the id of the IMedia object version being deleted.</li><li>DeletePriorVersions: False by default</li></ol>                                                                                                                                                                                        |
-| MediaDeletedVersionsNotification    | <ul><li>EventMessages Messages</li><li>IDictionary&#x3C;string,object> State</li><li>int Id</li><li>int SpecificVersion</li><li>DateTime DateToRetain</li><li>bool DeletePriorVersions</li></ul>                     | <p>Published when MediaService.DeleteVersion, MediaService.DeleteVersions are called in the API, after the media version has been deleted<br></p><ol><li>Id: Gets the id of the deleted IMedia object.</li><li>DateToRetain: Gets the latest version date.</li><li>SpecificVersion: Gets the id of the deleted IMedia object version.</li><li>DeletePriorVersions: False by default</li></ol>                                                                                                                                                           |
+<summary>What happened to Creating and Created events?</summary>
 
-### What happened to Creating and Created events?
-
-Both the MediaService.Creating and MediaService.Created events have been obsoleted. Because of this, these were not moved over to notifications, and no longer exist. Why? Because these events were not guaranteed to trigger and therefore should not have been used. This is because these events _only_ triggered when the MediaService.CreateMedia method was used which is an entirely optional way to create media entities. It is also possible to construct a new media item - which is generally the preferred and consistent way - and therefore the Creating/Created events would not execute when constructing media that way.
+Both the MediaService.Creating and MediaService.Created events have been obsoleted. Because of this, these were not moved over to notifications, and no longer exist. Why? Because these events were not guaranteed to trigger and therefore should not have been used. This is because these events *only* triggered when the MediaService.CreateMedia method was used which is an entirely optional way to create media entities. It is also possible to construct a new media item - which is generally the preferred and consistent way - and therefore the Creating/Created events would not execute when constructing media that way.
 
 Furthermore, there was no reason to listen for the Creating/Created events because they were misleading. They didn't trigger before and after the entity had been persisted. Instead they triggered inside the CreateMedia method which never persists the entity. It constructs a new media object.
 
-#### What do we use instead?
+**What do we use instead?**
 
 The MediaSavingNotification and MediaSavedNotification will always be published before and after an entity has been persisted. You can determine if an entity is brand new with either of those notifications. With the Saving notification - before the entity is persisted - you can check the entity's HasIdentity property which will be 'false' if it is brand new. In the Saved event you can [check to see if the entity 'remembers being dirty'](determining-new-entity.md)
+
+</details>
+
+<details>
+
+<summary>What happened to <code>raiseEvent</code>method parameters?</summary>
+
+RaiseEvent method service parameters have been removed from v9 and to name some reasons why:
+
+- Because it's entirely inconsistent, not all services have this as method parameters and maintaining that consistency is impossible especially if 3rd party libraries support events/notifications.
+- It's hacky. There's no good way to suppress events/notifications this way at a higher (scoped) level.
+- There's also hard-coded logic to ignore these parameters sometimes which makes it even more inconsistent.
+- There are events below services at the repository level that cannot be controlled by this flag.
+
+**What do we use instead?**
+
+We can suppress notifications at the scope level which makes things consistent and will work for all services that use a Scope. Also, there's no required maintenance to make sure that new service methods will also work.
+
+**How to use scopes**:
+
+- Create an explicit scope and call scope.Notifications.Supress().
+- The result of Suppress() is IDisposable, so until it is disposed, notifications will not be added to the queue.
+
+[Example](https://github.com/umbraco/Umbraco-CMS/blob/b69afe81f3f6fcd37480b3b0295a62af44ede245/tests/Umbraco.Tests.Integration/Umbraco.Infrastructure/Scoping/SupressNotificationsTests.cs#L35):
+
+```csharp
+using (IScope scope = ScopeProvider.CreateScope(autoComplete: true))
+using (IDisposable _ = scope.Notifications.Supress())
+{
+    // TODO: Calls to service methods here will not have notifications
+}
+```
+
+Child scope will inherit the parent Scope's notification object which means if a parent scope has notifications suppressed, then so does the child scope. You cannot call Supress() more than once for the same outer scope instance else an exception will be thrown. This ensures that you cannot un-suppress notifications at a child level for an outer scope. It also ensures that suppressing events is an explicit thing to do.
+
+**Why would one want to suppress events?**
+
+The main reason for ever doing this would be performance for bulk operations. The callers hould be aware that suppressing events will lead to an inconsistent content cache state (if notifications are suppressed for content or media services). This is because notifications are used by NuCache to populate the cmsContentNu table and populate the content caches. They are also used to populate the Examine indexes.
+
+So if you did suppress events, it will require you to rebuild the NuCache and examine data manually.
+
+</details>

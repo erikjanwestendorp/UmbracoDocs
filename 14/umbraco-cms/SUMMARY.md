@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Umbraco 14 (Beta) CMS Documentation](README.md)
+* [Umbraco 14 (RC) CMS Documentation](README.md)
 * [Contribute](https://docs.umbraco.com/welcome/contribute/getting-started)
 
 ## Fundamentals
@@ -88,7 +88,7 @@
   * [Adding Language Variants](tutorials/creating-a-basic-website/adding-language-variants.md)
   * [Conclusions](tutorials/creating-a-basic-website/conclusion.md)
 * [Creating your first extension](tutorials/creating-your-first-extension.md)
-* [Creating a Custom Dashboard](tutorials/creating-a-custom-dashboard.md)
+* [Creating a Custom Dashboard](tutorials/creating-a-custom-dashboard/README.md)
   * [Adding localization to the dashboard](tutorials/creating-a-custom-dashboard/adding-localization-to-the-dashboard.md)
   * [Adding functionality to the Dashboard](tutorials/creating-a-custom-dashboard/adding-functionality-to-the-dashboard.md)
   * [Using Umbraco UI library in the Dashboard](tutorials/creating-a-custom-dashboard/extending-the-dashboard-using-umbraco-ui-library.md)
@@ -96,3 +96,4 @@
   * [Adding configuration to a Property Editor](tutorials/creating-a-property-editor/adding-configuration-to-a-property-editor.md)
   * [Integrating context with a Property Editor](tutorials/creating-a-property-editor/integrating-context-with-a-property-editor.md)
   * [Integrating services with a Property Editor](tutorials/creating-a-property-editor/integrating-services-with-a-property-editor.md)
+* [Implementing Custom Error Pages](tutorials/custom-error-page.md)
