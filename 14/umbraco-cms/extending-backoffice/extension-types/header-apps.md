@@ -21,11 +21,12 @@ In this article, you can find an example of an extension registry. This example 
 
 Below you can find an example of how to setup a Header App using the manifest file.
 
-1. Follow the [Vite Package Setup](../development-flow/vite-package-setup.md) by creating a new project folder called "`header-app`" in `App_Plugins`.
-2. Create a manifest file named `umbraco-package.json` at the root of the `welcome-dashboard` folder. Here we define and configure our dashboard.
+1. Follow the [Vite Package Setup](../development-flow/vite-package-setup.md) to create a header app and name it "`header-app`" when using the guide.
+2. Create a manifest file named `umbraco-package.json` at the root of the `header-app` folder. Here we define and configure our dashboard.
 3. Add the following code to `umbraco-package.json`:
 
 {% code title="umbraco-package.json" lineNumbers="true" %}
+
 ```typescript
 {
   "$schema": "../../umbraco-package-schema.json",
@@ -47,6 +48,7 @@ Below you can find an example of how to setup a Header App using the manifest fi
   ]
 }
 ```
+
 {% endcode %}
 
 * First we define the type which is a `headerApp`. Then we add a unique alias and a name to define the extension UI.&#x20;
@@ -66,6 +68,7 @@ This is a continuation of the above steps from **Button Header App with Manifest
 1. Add a reference to the .js file. Update the `umbraco-package.json` with the following:
 
 {% code title="umbraco-package.json" lineNumbers="true" %}
+
 ```typescript
 {
   "$schema": "../../umbraco-package-schema.json",
@@ -77,7 +80,7 @@ This is a continuation of the above steps from **Button Header App with Manifest
       "alias": "My.HeaderApp",
       "name": "My Header App",
       "kind": "button",
-      "js": "/App_Plugins/header-app/dist/header-app.js",
+      "element": "/App_Plugins/header-app/dist/header-app.js",
       "meta": {
         "label": "Hello Umbraco",
         "icon": "icon-hearts",
@@ -87,11 +90,13 @@ This is a continuation of the above steps from **Button Header App with Manifest
   ]
 }
 ```
+
 {% endcode %}
 
 2. Replace the content of the `src/my-element.ts file` with the following:
 
 {% code title="my-element.ts" lineNumbers="true" %}
+
 ```typescript
 import { ManifestHeaderAppButtonKind, umbExtensionsRegistry } from '@umbraco-cms/backoffice/extension-registry';
 
@@ -109,6 +114,7 @@ const manifest: ManifestHeaderAppButtonKind = {
 
 umbExtensionsRegistry.register(manifest);
 ```
+
 {% endcode %}
 
 3. In the `header-app` folder run `npm run build` and then run the project. Then in the backoffice you will see our new Header App extension with **address book** **icon**:

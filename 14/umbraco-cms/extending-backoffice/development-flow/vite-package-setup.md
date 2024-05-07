@@ -51,12 +51,12 @@ npm install
 4. Install the Backoffice package. You can install the package using the following command:
 
 ```bash
-npm install --registry https://www.myget.org/F/umbracoprereleases/npm/ -D @umbraco-cms/backoffice@14.0.0-rc2
+npm install --registry https://www.myget.org/F/umbracoprereleases/npm/ -D @umbraco-cms/backoffice@14.0.0-rc3
 ```
 
 {% hint style="info" %}
 Optionally you can use `--legacy-peer-deps` in the installation command to avoid installing Umbraco´s sub-dependencies like TinyMCE and Monaco Editor:\
-`npm install --legacy-peer-deps --registry`[`https://www.myget.org/F/umbracoprereleases/npm/`](https://www.myget.org/F/umbracoprereleases/npm/)`-D @umbraco-cms/backoffice@14.0.0-rc2`
+`npm install --legacy-peer-deps --registry`[`https://www.myget.org/F/umbracoprereleases/npm/`](https://www.myget.org/F/umbracoprereleases/npm/)`-D @umbraco-cms/backoffice@14.0.0-rc3`
 
 If this is used the Intellisense to those external references will not be available.
 {% endhint %}
@@ -138,7 +138,7 @@ This example declares a Dashboard as part of your Package, using the Vite exampl
             "type": "dashboard",
             "alias": "My.Dashboard.MyExtension",
             "name": "My Dashboard",
-            "js": "/App_Plugins/my-dashboard/dist/my-dashboard.js",
+            "element": "/App_Plugins/my-dashboard/dist/my-dashboard.js",
             "elementName": "my-element",
             "meta": {
                 "label": "My Dashboard",
@@ -178,7 +178,7 @@ The final result looks like this:
 
 <figure><img src="../../.gitbook/assets/Vite_Package_Setup_Dashboard (1).png" alt=""><figcaption><p>My dashboard</p></figcaption></figure>
 
-If the Vite logo is not found, this is because the path to its location needs to be changed in the `my-element.ts` file from the `src` folder to:
+If the Vite logo is not found, this is because the path to its location needs to be changed. Modify the `my-element.ts` file in the `src` folder accordingly:
 
 ```typescript
 import viteLogo from '../dist/vite.svg'

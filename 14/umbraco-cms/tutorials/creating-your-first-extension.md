@@ -160,10 +160,10 @@ npm install
 3. The last thing we need to install now is our Backoffice package. You can install the package using the following command:
 
 ```bash
-npm install --registry https://www.myget.org/F/umbracoprereleases/npm/ -D @umbraco-cms/backoffice@14.0.0-rc2
+npm install --registry https://www.myget.org/F/umbracoprereleases/npm/ -D @umbraco-cms/backoffice@14.0.0-rc3
 ```
 
-This will add a package to your devDependencies containing the TypeScript definitions for the Umbraco Backoffice. The `-rc2` is the version of the package, which will change as new versions are released.
+This will add a package to your devDependencies containing the TypeScript definitions for the Umbraco Backoffice. The `-rc3` is the version of the package, which will change as new versions are released.
 
 {% hint style="warning" %}
 If you see any errors during this process, make sure that you have the right tools installed (Node, .NET, and so on). Also, make sure you have followed the steps on how to [Setup Your Development Environment](../extending-backoffice/development-flow/).
@@ -213,7 +213,7 @@ import {
     UMB_NOTIFICATION_CONTEXT,
 } from "@umbraco-cms/backoffice/notification";
 
-@customElement("my-typescript-element")
+@customElement('my-typescript-element')
 export default class MyTypeScriptElement extends UmbElementMixin(LitElement) {
     #notificationContext?: UmbNotificationContext;
 
@@ -246,7 +246,7 @@ export default class MyTypeScriptElement extends UmbElementMixin(LitElement) {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "my-typescript-element": MyTypeScriptElement;
+        'my-typescript-element': MyTypeScriptElement;
     }
 }
 
@@ -282,7 +282,7 @@ After running the build, you will see a new file in the `dist` folder with the n
             "type": "dashboard",
             "alias": "My.Dashboard.MyTypeScriptExtension",
             "name": "My TypeScript Extension",
-            "js": "/App_Plugins/my-typescript-extension/dist/my-typescript-extension.js",
+            "element": "/App_Plugins/my-typescript-extension/dist/my-typescript-extension.js",
             "weight": -1,
             "meta": {
                 "label": "My TypeScript Extension",
