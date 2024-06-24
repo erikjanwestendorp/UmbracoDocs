@@ -10,13 +10,13 @@ This guide explains how to set up a property editor and hook it into Umbraco's D
 
 The steps we will go through in part one are:
 
-* ​[Setting up a Plugin](./#setting-up-a-plugin)​
-* [​Creating a Web Component​](./#creating-a-web-component)
-* ​[Registering the Data Type in Umbraco](./#registering-the-data-type-in-umbraco)
+* [Setting up a Plugin](./#setting-up-a-plugin)
+* [Creating a Web Component](./#creating-a-web-component)
+* [Registering the Data Type in Umbraco](./#registering-the-data-type-in-umbraco)
 * [Adding styling and setting up events in Web Components](./#adding-styling-and-setting-up-events-in-the-web-components)
 * [Setup Event Logic](./#setup-event-logic)
 
-This tutorial uses Typescript and Lit with Umbraco, It is expected that your package is already [set up to use Typescript and Lit](../../extending-backoffice/development-flow/vite-package-setup.md).
+This tutorial uses Typescript and Lit with Umbraco, It is expected that your package is already [set up to use Typescript and Lit](../../extending/customize-backoffice/development-flow/vite-package-setup.md).
 
 To see how to set up an extension in Umbraco using Typescript and Lit, read the article [Creating your first extension](../creating-your-first-extension.md).
 
@@ -32,17 +32,16 @@ This tutorial will not go in-depth on how Typescript and Lit work. To learn abou
 At the tutorial's end, we'll have a Umbraco Suggestions Data Type, registered in the backoffice, and assigned to a Document Type. This Data Type can create and suggest values.
 
 {% hint style="info" %}
-At each step, you will find a dropdown for`suggestions-property-editor-ui.element.ts, and umbraco-package.json`to confirm your placement for code snippets.
+At each step, you will find a dropdown for `suggestions-property-editor-ui.element.ts and umbraco-package.json` to confirm your placement for code snippets.
 {% endhint %}
 
 ## Setting up a plugin
 
-1. Follow the [Vite Package Setup](../../extending-backoffice/development-flow/vite-package-setup.md) by creating a new project folder called "`suggestions`" in `App_Plugins`.
+1. Follow the [Vite Package Setup](../../extending/customize-backoffice/development-flow/vite-package-setup.md) by creating a new project folder called "`suggestions`" in `App_Plugins`.
 2. Then create the manifest file named `umbraco-package.json` at the root of the `suggestions` folder. Here we define and configure our dashboard.
 3. Add the following code to `umbraco-package.json`:
 
 {% code title="umbraco-package.json" %}
-
 ```json
 {
     "$schema": "../../umbraco-package-schema.json",
@@ -59,17 +58,22 @@ At each step, you will find a dropdown for`suggestions-property-editor-ui.elemen
                 "label": "Suggestions",
                 "icon": "icon-list",
                 "group": "common",
-                "propertyEditorSchemaAlias": "Umbraco.TextBox"
+                "propertyEditorSchemaAlias": "Umbraco.Plain.String"
             }
         }
     ]
 }
 ```
-
 {% endcode %}
 
 {% hint style="info" %}
-Make sure to restart the application after you create and update`umbraco-package.json`
+The `umbraco-package.json` files are cached by the server. When creating new `umbraco-package.json` files, it might take a few seconds before those are loaded into the server cache.
+{% endhint %}
+
+{% hint style="info" %}
+It is important to select the right `propertyEditorSchemaAlias` as it affects how the Property Editor data is made available when rendering the website.
+
+In this example, we selected the `Umbraco.Plain.String` because we want a string value. For more options, see the [default Property Editor Schema aliases](default-property-editor-schema-aliases.md) article.
 {% endhint %}
 
 ## Creating a Web Component
@@ -80,7 +84,6 @@ Now let's create the web component we need for our property editor.
 2. In this new file, add the following code:
 
 {% code title="suggestions-property-editor-ui.element.ts" %}
-
 ```typescript
 import { LitElement, html, customElement, property } from "@umbraco-cms/backoffice/external/lit";
 import { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/extension-registry";
@@ -101,10 +104,9 @@ declare global {
     }
 }
 ```
-
 {% endcode %}
 
-3. In the `vite.config.ts` file replace the `entry` to our newly created `.ts` file:
+3.  In the `vite.config.ts` file replace the `entry` to our newly created `.ts` file:
 
     ```typescript
     entry: "src/suggestions-property-editor-ui.element.ts"
@@ -115,13 +117,13 @@ Now our basic parts of the editor are done, namely:
 * The package manifest, telling Umbraco what to load
 * The web component for the editor
 
-4. Restart the application.
+4. Reload the backoffice.
 
 ## Registering the Data Type in Umbraco
 
 1. Add our newly added property editor "Suggestions" in the Document Type and save it.
 
-<figure><img src="../../.gitbook/assets/spaces_OdQETpqkO0Kcv8KMquKL_uploads_git-blob-c7d7e59228a3b5738a1464489ef7601b7f8d350d_suggestion-property-editor (1).webp" alt=""><figcaption></figcaption></figure>
+![Suggestions Property Editor](images/suggestions-property-editor.png)
 
 We can now edit the assigned property's value with our new property editor.
 
@@ -136,7 +138,6 @@ Let's start by creating an input field and some buttons that we can style and ho
 1. Update the render method to include some input fields and buttons in the `suggestions-property-editor-ui.element.ts` file:
 
 {% code title="suggestions-property-editor-ui.element.ts" %}
-
 ```typescript
 render() {
     return html`
@@ -168,7 +169,6 @@ render() {
     `;
   }
 ```
-
 {% endcode %}
 
 {% hint style="info" %}
@@ -178,17 +178,14 @@ The Umbraco UI library is already a part of the backoffice, which means we can s
 2. Add some styling. Update the import from lit to include CSS:
 
 {% code title="suggestions-property-editor-ui.element.ts" %}
-
 ```typescript
 import { LitElement, html, css, customElement, property } from "@umbraco-cms/backoffice/external/lit";
 ```
-
 {% endcode %}
 
 3. Add the CSS:
 
 {% code title="suggestions-property-editor-ui.element.ts" %}
-
 ```typescript
 render() {
   ...
@@ -207,12 +204,81 @@ static styles = [
   `,
 ];
 ```
-
 {% endcode %}
 
 It should now look something like this:
 
 <figure><img src="../../.gitbook/assets/NewPropertyEditorButtons (1).png" alt=""><figcaption></figcaption></figure>
+
+<details>
+
+<summary>See the file: suggestions-property-editor-ui.element.ts</summary>
+
+{% code title="suggestions-property-editor-ui.element.ts" lineNumbers="true" %}
+```typescript
+import { LitElement, html, css, customElement, property } from "@umbraco-cms/backoffice/external/lit";
+import { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/extension-registry";
+
+@customElement('my-suggestions-property-editor-ui')
+export default class MySuggestionsPropertyEditorUIElement extends LitElement implements UmbPropertyEditorUiElement {
+    @property({ type: String })
+    public value = "";
+
+    render() {
+        return html`
+          <uui-input
+            id="suggestion-input"
+            class="element"
+            label="text input"
+            .value=${this.value || ""}
+          >
+          </uui-input>
+          <div id="wrapper">
+            <uui-button
+              id="suggestion-button"
+              class="element"
+              look="primary"
+              label="give me suggestions"
+            >
+              Give me suggestions!
+            </uui-button>
+            <uui-button
+              id="suggestion-trimmer"
+              class="element"
+              look="outline"
+              label="Trim text"
+            >
+              Trim text
+            </uui-button>
+          </div>
+        `;
+    }
+
+    static styles = [
+        css`
+          #wrapper {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+          }
+          .element {
+            width: 100%;
+          }
+        `,
+      ];
+    
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'my-suggestions-property-editor-ui': MySuggestionsPropertyEditorUIElement;
+    }
+}
+```
+{% endcode %}
+
+</details>
 
 It's starting to look good! Next, let's look into setting up the event logic.
 
@@ -230,17 +296,14 @@ We then have to dispatch an `property-value-change` event which can be done in t
 1. Add the import so the event can be used:
 
 {% code title="suggestions-property-editor-ui.element.ts" %}
-
 ```typescript
 import { UmbPropertyValueChangeEvent } from "@umbraco-cms/backoffice/property-editor";
 ```
-
 {% endcode %}
 
 2. Add the event to the property editor:
 
 {% code title="suggestions-property-editor-ui.element.ts" %}
-
 ```typescript
   #onInput(e: InputEvent) {
     this.value = (e.target as HTMLInputElement).value;
@@ -265,7 +328,6 @@ import { UmbPropertyValueChangeEvent } from "@umbraco-cms/backoffice/property-ed
       ....
 }
 ```
-
 {% endcode %}
 
 Let's look at the suggestions button next.
@@ -278,17 +340,14 @@ Let's look at the suggestions button next.
 1. Update the import for Lit:
 
 {% code title="suggestions-property-editor-ui.element.ts" %}
-
 ```typescript
 import { LitElement, html, css, customElement, property, state } from "@umbraco-cms/backoffice/external/lit";
 ```
-
 {% endcode %}
 
 2. Add suggestions to the property editor:
 
 {% code title="suggestions-property-editor-ui.element.ts" %}
-
 ```typescript
   @state()
   private _suggestions = [
@@ -299,13 +358,11 @@ import { LitElement, html, css, customElement, property, state } from "@umbraco-
   ];
   render() {...}
 ```
-
 {% endcode %}
 
 3. Update the suggestion button in the render method to call a `onSuggestion` method when we press the button:
 
 {% code title="suggestions-property-editor-ui.element.ts" %}
-
 ```typescript
  #onSuggestion() {
     const randomIndex = (this._suggestions.length * Math.random()) | 0;
@@ -331,7 +388,6 @@ import { LitElement, html, css, customElement, property, state } from "@umbraco-
   `;
  }
 ```
-
 {% endcode %}
 
 <details>
@@ -339,7 +395,6 @@ import { LitElement, html, css, customElement, property, state } from "@umbraco-
 <summary>See the entire file: suggestions-property-editor-ui.element.ts</summary>
 
 {% code title="suggestions-property-editor-ui.element.ts" lineNumbers="true" %}
-
 ```typescript
 import { LitElement, css, html, customElement, property, state } from "@umbraco-cms/backoffice/external/lit";
 import { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/extension-registry";
@@ -425,7 +480,6 @@ declare global {
     }
 }
 ```
-
 {% endcode %}
 
 </details>
@@ -436,7 +490,7 @@ declare global {
 
 When we save or publish, the value of the Data Type is now automatically synced to the current content object and sent to the server.
 
-Learn more about extending this service by visiting the [Property Editors page](../../extending-backoffice/extension-types/property-editors/).
+Learn more about extending this service by visiting the [Property Editors page](../../extending/property-editors/composition/).
 
 ## Going further
 

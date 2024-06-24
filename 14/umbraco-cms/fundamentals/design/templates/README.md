@@ -10,15 +10,19 @@ _Templating in Umbraco builds on the concept of Razor Views from ASP.NET MVC - i
 
 By default, all document types should have a template attached - but in case you need an alternative template or a new one, you can create one:
 
-Open the **Settings** section inside the Umbraco backoffice and right-click the **Templates** folder. Choose **Create**. Enter a template name and click the **Save** button. You will now see the default template markup in the backoffice template editor.
+1. Go to the **Settings** section inside the Umbraco backoffice.
+2. Click **...** next to the **Templates** folder.
+3. Choose **Create**.
+4. Enter a template name.
+5. Click the **Save** button. You will now see the default template markup in the backoffice template editor.
 
-![Created template](../../../../../10/umbraco-cms/fundamentals/design/templates/images/create-template-v8.png)
+![Created template](images/create-template.png)
 
 ## Allowing a Template on a Document Type
 
 To use a template on a document, you must first allow it on the content's type. Open the Document Type you want to use the template, go to the Templates tab and select the template under the **Allowed Templates** section.
 
-![Allowing template](../../../../../10/umbraco-cms/fundamentals/design/templates/images/allow-template-v8.png)
+![Allowing template](images/allow-template.png)
 
 ## Inheriting a Master Template
 
@@ -40,7 +44,7 @@ A template can inherit content from a master template by using the ASP.NET views
 
 We then create a new template called **textpage** and in the template editor, click on the **Master Template** button and set its master template to the template called **MasterView**:
 
-![Inherit template](../../../../../10/umbraco-cms/fundamentals/design/templates/images/inherit-template-v8.png)
+![Inherit template](images/inherit-template.png)
 
 This changes the `Layout`value in the template markup, so **textpage** looks like this:
 
@@ -121,9 +125,9 @@ On your child page template call `@section Head {}` and then type your markup th
 
 Another way to reuse HTML is to use partial views - which are small reusable views that can be injected into another view.
 
-Like templates, create a partial view, by right-clicking **Partial Views** and selecting **Create**. You can then either create an empty partial view or create a partial view from a snippet.
+Like templates, create a partial view, by clicking **...** next to the **Partial Views** folder and selecting **Create**. You can then either create an empty partial view or create a partial view from a snippet.
 
-![Create partial](../../../../../10/umbraco-cms/fundamentals/design/templates/images/create-partial-v8.png)
+![Create partial](images/create-partial.png)
 
 The created partial view can now be injected into any template by using the `@Html.Partial()` method like so:
 

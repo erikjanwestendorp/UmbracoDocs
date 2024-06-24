@@ -12,7 +12,7 @@ Unlike other property editors, the Prevalue IDs are not directly accessible in R
 
 ## Data Type Definition Example
 
-![True/Checkbox List Definition](../../../../../../10/umbraco-cms/fundamentals/backoffice/property-editors/built-in-property-editors/images/checkbox-list-setup-v8.png)
+![True/Checkbox List Definition](images/checkbox-list-setup.png)
 
 ## Content Example
 
@@ -54,7 +54,7 @@ Unlike other property editors, the Prevalue IDs are not directly accessible in R
 
 ## Add values programmatically
 
-See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](../../../../reference/management/services/README.md#contentservice).
+See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](https://apidocs.umbraco.com/v14/csharp/api/Umbraco.Cms.Core.Services.ContentService.html).
 
 ```csharp
 @inject IContentService Services;

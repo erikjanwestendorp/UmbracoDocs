@@ -8,7 +8,7 @@ This property editors returns a single `MediaWithCrops` item if the "Pick multip
 
 ## Data Type Definition Example
 
-![Media Picker Data Type Definition](../../../../../../10/umbraco-cms/fundamentals/backoffice/property-editors/built-in-property-editors/images/MediaPicker-DataType-v10.png)
+![Media Picker Data Type Definition](images/MediaPicker-DataType.png)
 
 ### Accepted types
 
@@ -139,7 +139,7 @@ You can retrieve globally defined crops explicitly by using `GetCropUrl` on the 
 
 ### Add values programmatically
 
-See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](../../../../reference/management/services/README.md#contentservice).
+See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](https://apidocs.umbraco.com/v14/csharp/api/Umbraco.Cms.Core.Services.ContentService.html).
 
 The following sample will update a single image in a Media Picker.
 

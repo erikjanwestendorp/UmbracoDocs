@@ -10,6 +10,10 @@ _This section will describe how to secure your Umbraco Api controllers based on 
 
 ### Inheriting from UmbracoAuthorizedApiController
 
+{% hint style="warning" %}
+`UmbracoAuthorizedApiController` has been removed from Umbraco 14. Use `ManagementApiControllerBase` class instead.
+{% endhint %}
+
 Probably the easiest way to ensure your controller is secured for only backoffice users is to inherit from `Umbraco.Cms.Web.BackOffice.Controllers.UmbracoAuthorizedApiController`. This is essentially the same as applying `[Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]` to your controller (see below).
 
 The `UmbracoAuthorizedApiController` is automatically routed. Check out the [routing documentation](../authorized.md) for more information on this topic.
@@ -21,10 +25,6 @@ To secure your controller based on backoffice membership use the attribute: `Mic
 This attribute will ensure that a valid backoffice user is logged in. It is important to know that this only works if the controller is routed to `/umbraco/backoffice/*`.
 
 **Example:**
-
-{% hint style="warning" %}
-The examples below uses UmbracoApiController which is removed in Umbraco 14. The replacement for this is UmbracoManagementApiControllerBase.
-{% endhint %}
 
 This will only allow a logged in backoffice user to access the `GetProduct`action:
 

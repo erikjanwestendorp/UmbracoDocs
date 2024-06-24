@@ -23,6 +23,7 @@
 ## API Documentation
 
 * [API Documentation](api-documentation/README.md)
+  * [Rate Limits](api-documentation/rate-limits.md)
 * [Redirect API](api-documentation/redirect.md)
 * [Content Delivery](api-documentation/content-delivery/README.md)
   * [Content](api-documentation/content-delivery/content.md)
@@ -67,3 +68,4 @@
 ## Release Notes
 * [February 2024](release-notes/2024-02-releasenotes.md)
 * [April 2024](release-notes/2024-04-releasenotes.md)
+* [Core Dependency Upgrade](release-notes/core-dependency-upgrade.md)

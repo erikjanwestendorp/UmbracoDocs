@@ -8,13 +8,7 @@ Textarea is an HTML textarea control for multiple lines of text. It can be confi
 
 ## Data Type Definition Example
 
-### Without a character limit
-
-![Textarea Data Type Definition](../../../../../../10/umbraco-cms/fundamentals/backoffice/property-editors/built-in-property-editors/images/Textarea-Setup-v10.png)
-
-### With a character limit
-
-![Textarea Data Type Definition With Limits](../../../../../../10/umbraco-cms/fundamentals/backoffice/property-editors/built-in-property-editors/images/Textarea-Setup-Limit-v8.png)
+![Textarea Data Type Definition](images/Textarea-Setup.png)
 
 ## Settings
 
@@ -51,7 +45,7 @@ Textarea is an HTML textarea control for multiple lines of text. It can be confi
 
 ## Add value programmatically
 
-See the example below to learn how a value can be added or changed programmatically to a Textarea property. To update a value of a property editor you need the [Content Service](../../../../reference/management/services/README.md#contentservice).
+See the example below to learn how a value can be added or changed programmatically to a Textarea property. To update a value of a property editor you need the [Content Service](https://apidocs.umbraco.com/v14/csharp/api/Umbraco.Cms.Core.Services.ContentService.html).
 
 ```csharp
 @using Umbraco.Cms.Core.Services;

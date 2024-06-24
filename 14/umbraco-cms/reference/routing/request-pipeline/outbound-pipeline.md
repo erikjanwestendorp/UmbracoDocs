@@ -12,13 +12,11 @@ The **outbound pipeline** consists out of the following steps:
 
 To explain things we will use the following content tree:
 
-&#x20;
-
-<figure><img src="images/simple-content-tree-v8.png" alt=""><figcaption></figcaption></figure>
+![Content Tree](images/simple-content-tree-v14.png)
 
 ## 1. Create segments
 
-When the URL is constructed, Umbraco will convert every node in the tree into a segment. Each published [Content](../../management/models/content.md) item has a corresponding URL segment.
+When the URL is constructed, Umbraco will convert every node in the tree into a segment. Each published Content item has a corresponding URL segment.
 
 In our example "Our Products" will become "our-products" and "Swibble" will become "swibble".
 
@@ -117,7 +115,7 @@ If we look at our example, the "swibble" node will receive the path: "/our-produ
 
 But, what if there are multiple websites in a single Umbraco Implementation? in this multi-site scenario then an (internal) path to a node such as "/our-products/swibble-123xyz" could belong to any of the sites, or match multiple nodes in multiple sites. In this scenario additional sites will have their internal path prefixed by the node id of their root node. Any content node with a hostname defines a “new root” for paths.
 
-![path example](images/path-example-v8.png)
+![Path example](images/path-example-v14.png)
 
 | Node         | Segment        | Internal Path                |
 | ------------ | -------------- | ---------------------------- |
@@ -141,7 +139,7 @@ Paths can be cached, what comes next cannot (http vs https, current request…).
 
 The Url of a node consists of a complete [URI](https://en.wikipedia.org/wiki/Uniform\_Resource\_Identifier): the Schema, Domain name, (port) and the path.
 
-In our example the "swibble" node could have the following URL: "<http://example.com/our-products/swibble>"
+In our example the "swibble" node could have the following URL: "[http://example.com/our-products/swibble](http://example.com/our-products/swibble)"
 
 Generating this url is handled by the Url Provider. The Url Provider is called whenever a request is made in code for a Url e.g.:
 

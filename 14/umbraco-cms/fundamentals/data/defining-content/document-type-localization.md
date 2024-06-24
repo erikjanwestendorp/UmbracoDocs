@@ -4,6 +4,10 @@ description: Here you will learn how to apply localization for Document Types in
 
 # Document Type Localization
 
+{% hint style="warning" %}
+This article is a work in progress and may undergo further revisions, updates, or amendments. The information contained herein is subject to change without notice.
+{% endhint %}
+
 The Umbraco backoffice is fully localized to match the user's [configured language](../users.md). When defining Document Types, you can apply localization to:
 
 * Document Type names and descriptions.
@@ -13,7 +17,7 @@ The Umbraco backoffice is fully localized to match the user's [configured langua
 
 Setting up localization for Document Types is a two-step process:
 
-* Create the localizations in [user defined language files](../../../extending/language-files.md).
+* Create the localizations in [user defined language files](../../../extending/language-files/README.md).
 * Apply the localizations to the Document Types.
 
 {% hint style="info" %}
@@ -27,6 +31,7 @@ User defined language files are created in `/config/lang` and must be named `{la
 There are no specific requirements as to how localizations should be structured for use in Document Types. The following localizations have been used for the samples in this article:
 
 {% code title="en-us.user.xml" lineNumbers="true" %}
+
 ```xml
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <language>
@@ -52,6 +57,7 @@ There are no specific requirements as to how localizations should be structured 
     </area>
 </language>
 ```
+
 {% endcode %}
 
 {% hint style="info" %}

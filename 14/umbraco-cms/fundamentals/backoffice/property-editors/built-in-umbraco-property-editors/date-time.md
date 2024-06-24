@@ -8,7 +8,7 @@ Displays a calendar UI for selecting dates which are saved as a DateTime value.
 
 ## Data Type Definition Example
 
-![Data Type Definition Example](../../../../../../10/umbraco-cms/fundamentals/backoffice/property-editors/built-in-property-editors/images/date-time-v8.png)
+![Data Type Definiton](images/date-time.png)
 
 There are two settings available for manipulating the DateTime property.
 
@@ -36,7 +36,7 @@ The second setting is "Offset time". When enabling this setting the displayed ti
 
 ## Add values programmatically
 
-See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](../../../../reference/management/services/README.md#contentservice).
+See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](https://apidocs.umbraco.com/v14/csharp/api/Umbraco.Cms.Core.Services.ContentService.html).
 
 ```csharp
 @inject IContentService Services;

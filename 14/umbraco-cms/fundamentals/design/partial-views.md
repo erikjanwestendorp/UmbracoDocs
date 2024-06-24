@@ -10,7 +10,7 @@ A Partial View (`.cshtml` file) is a regular view that can be used multiple time
 
 You can create and edit partial views in the **Partial Views** folder from the **Settings** section of the Backoffice.
 
-![Creating a new partial view](../../../../10/umbraco-cms/fundamentals/design/images/creating-partial-view.png)
+![Creating a new partial view](templates/images/create-partial.png)
 
 In the **Create** menu, there are three options available:
 
@@ -20,17 +20,33 @@ In the **Create** menu, there are three options available:
 
 ## Creating a Partial View
 
-To create a partial view, go to the **Settings** section in the Umbraco backoffice and right-click the **Partial Views** folder. Choose **Create**. Select **New empty partial view** and enter a partial view name and click the **Save** button. You will now see the partial view markup in the backoffice editor.
+To create a partial view:
+
+1. Go to the **Settings** section in the Umbraco backoffice.
+2. Click **...** next to the **Partial Views** folder.
+3. Choose **Create**.
+4. Select **New empty partial view**.
+5. Enter a partial view name.
+6. Click the **Save** button. You will now see the partial view markup in the backoffice editor.
 
 ![Created partial view](../../../../10/umbraco-cms/fundamentals/design/images/created-partial-view.png)
+
+<figure><img src="../../.gitbook/assets/image (23).png" alt="Created partial view"><figcaption><p>Created partial view</p></figcaption></figure>
 
 By default, the partial view is saved in the `Views/Partials` folder in the solution.
 
 ## Creating a Partial View from Snippet
 
-To create a partial view from the snippet, go to the **Settings** section in the Umbraco backoffice and right-click the **Partial Views** folder. Choose **Create**. Select **New empty partial view from snippet**. Select the snippet you want to create a partial view for and enter a partial view name. The code snippet you selected is displayed in the backoffice editor. Click the **Save** button.
+To create a partial view from the snippet:
 
-![Created partial view from snippet](../../../../10/umbraco-cms/fundamentals/design/images/created-partial-view-from-snippet.png)
+1. Go to the **Settings** section in the Umbraco backoffice.
+2. Click **...** next to the **Partial Views** folder.
+3. Choose **Create**.
+4. Select **New empty partial view from snippet**. 
+5. Select the snippet you want to create a partial view for and enter a partial view name. The code snippet you selected is displayed in the backoffice editor.
+6. Click the **Save** button.
+
+<figure><img src="../../.gitbook/assets/image (25).png" alt=""><figcaption><p>Created partial view from snippet</p></figcaption></figure>
 
 By default, the partial view is saved in the `Views/Partials` folder in the solution. Umbraco provides the following partial view snippets:
 
@@ -52,9 +68,20 @@ By default, the partial view is saved in the `Views/Partials` folder in the solu
 
 ## Creating a Folder
 
-To create a folder, go to the **Settings** section in the Umbraco backoffice and right-click the **Partial Views** folder. Choose **Create**. Select **Folder**. Enter a folder name and click the **Create** button.
+To create a folder:
 
-![Created folder](../../../../10/umbraco-cms/fundamentals/design/images/Partial-Views-folder.png)
+1. Go to the **Settings** section in the Umbraco backoffice.
+2. Click **...** next to the **Partial Views** folder.
+3. Choose **Create**.
+4. Select **Folder**.
+5. Enter a folder name.
+6. Click the **Create** button.
+
+<div align="center">
+
+<figure><img src="../../.gitbook/assets/image (27).png" alt="Created folder"><figcaption><p>Created folder</p></figcaption></figure>
+
+</div>
 
 ## Rendering a Partial View
 

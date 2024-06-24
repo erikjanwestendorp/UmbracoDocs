@@ -18,7 +18,7 @@
 ## Upgrading
 
 * [Upgrading Umbraco Commerce](upgrading/upgrade.md)
-* [Version Specific Upgrade Notes](upgrading/version-specific-upgrade-notes.md)
+* [Version Specific Upgrade Notes](upgrading/version-specific-upgrades.md)
 * [Migrate from Vendr to Umbraco Commerce](upgrading/migrate-from-vendr-to-umbraco-commerce/README.md)
   * [Migrate Umbraco Commerce Checkout](upgrading/migrate-from-vendr-to-umbraco-commerce/migrate-umbraco-commerce-checkout.md)
   * [Migrate custom Payment Providers](upgrading/migrate-from-vendr-to-umbraco-commerce/migrate-custom-payment-providers.md)
@@ -44,7 +44,9 @@
 * [Calculators](key-concepts/calculators.md)
 * [Dependency Injection](key-concepts/dependency-injection.md)
 * [Discount Rules / Rewards](key-concepts/discount-rules-and-rewards.md)
-* [Events](key-concepts/events.md)
+* [Events](key-concepts/events)
+  * [List of validation events](key-concepts/events/list-of-validation-events.md)
+  * [List of notification events](key-concepts/events/list-of-notification-events.md)
 * [Fluent API](key-concepts/fluent-api.md)
 * [Order Calculation State](key-concepts/order-calculation-state.md)
 * [Payment Forms](key-concepts/payment-forms.md)

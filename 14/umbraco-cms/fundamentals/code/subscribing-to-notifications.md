@@ -16,7 +16,7 @@ We react to notifications in Umbraco inside a notification handler, so let's cre
 
 We now have a class that looks like this:
 
-```
+```csharp
 using Umbraco.Cms.Core.Events;
 using Umbraco.Cms.Core.Notifications;
 
@@ -50,7 +50,7 @@ To check that this works, let's add a message to the log every time a content no
 
 We'll need to inject a Microsoft ILogger into our notification handler. This can be done by adding `using Microsoft.Extensions.Logging;` to the top our file to add the required namespace. Next step is to add a constructor for our handler that allows Umbraco to inject the logger:
 
-```
+```csharp
 using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Events;
 using Umbraco.Cms.Core.Notifications;
@@ -87,7 +87,7 @@ public void Handle(ContentPublishedNotification notification)
 
 We could log the name of each item that is being published too:
 
-```
+```csharp
 public void Handle(ContentPublishedNotification notification)
 {
     // The custom code to fire every time content is published goes here!
@@ -101,7 +101,7 @@ public void Handle(ContentPublishedNotification notification)
 
 Now we have a `NotificationHandler` that logs the name of a piece of content every time it's published, however, we're not done yet.
 
-Umbraco needs to know that our handler exists and that it handles `ContentPublishedNotification`. To tell Umbraco this, we open up the `Program.cs` file in the root of the project. First, we need to add `using Umbraco.Cms.Core.Notifications;` to the top of this file as well. We now add `.AddNotificationHandler<ContentPublishedNotification, LogWhenPublishedHandler>()`  right before the `Build()` part. The method now looks like this:
+Umbraco needs to know that our handler exists and that it handles `ContentPublishedNotification`. To tell Umbraco this, we open up the `Program.cs` file in the root of the project. First, we need to add `using Umbraco.Cms.Core.Notifications;` to the top of this file as well. We now add `.AddNotificationHandler<ContentPublishedNotification, LogWhenPublishedHandler>()` right before the `Build()` part. The method now looks like this:
 
 ```csharp
 builder.CreateUmbracoBuilder()
@@ -141,7 +141,7 @@ public class LogWhenPublishedHandler : INotificationHandler<ContentPublishedNoti
 
 Now we're ready to spin up our site and give it a try. Go to the Umbraco backoffice and publish a piece of content. Switch to the Settings section and find the Log Viewer in the Settings tree:
 
-![Log Viewer](../../../../10/umbraco-cms/fundamentals/code/images/log-viewer.png)
+<figure><img src="../../.gitbook/assets/image (31).png" alt="Log Viewer"><figcaption><p>Log Viewer</p></figcaption></figure>
 
 Search 'All Logs', and if all is wired up correctly you should discover your custom publish log message entries:
 

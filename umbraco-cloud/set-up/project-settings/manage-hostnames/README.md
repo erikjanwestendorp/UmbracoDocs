@@ -24,12 +24,15 @@ Under **Settings** in the Umbraco Cloud Portal, you'll find **Hostnames**. This 
 
 <figure><img src="../../../.gitbook/assets/image (26).png" alt="Manage hostnames"><figcaption><p>Manage hostnames</p></figcaption></figure>
 
-Ensure that the hostname you are binding to your Umbraco Cloud environment has a DNS entry that resolves to the Umbraco Cloud service.
+Ensure that the hostname you are binding to your Umbraco Cloud environment has a DNS entry that resolves to the Umbraco Cloud service. The DNS settings can either use a CNAME **or** an A & AAAA record:
 
-We recommend setting a CNAME record for your hostname. You can also use A & AAAA records for the root of your domain.
+**CNAME**: usually used for domains with "`www`" in the URL, recommended to use if possible, as the record is not changed as often as A & AAAA IPs are. When setting up a CNAME it needs to point to `dns.umbraco.io`.
 
 * CNAME record value:
   * `dns.umbraco.io`
+
+**A & AAAA** records: they are usually used for the Apex domain (without "`www`" in the URL), and needs to be created at the root of your domain.
+
 * A records to either or both IPv4 addresses:
   * `162.159.140.127`
   * `172.66.0.125`
@@ -60,8 +63,6 @@ The following Records will become obsolete in the future. Refrain from using the
 
 {% hint style="info" %}
 Once you have updated your DNS records, you need to remove the hostname and re-add it from Umbraco Cloud to re-validate the certificate with Cloudflare.
-
-
 
 You can also check the DNS propagation using a site like [whatsmydns.net](https://www.whatsmydns.net/).
 {% endhint %}

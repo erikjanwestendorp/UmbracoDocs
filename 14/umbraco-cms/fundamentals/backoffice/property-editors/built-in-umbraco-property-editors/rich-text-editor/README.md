@@ -4,6 +4,10 @@
 
 `Returns: HTML`
 
+{% hint style="warning" %}
+This article is a work in progress and may undergo further revisions, updates, or amendments. The information contained herein is subject to change without notice.
+{% endhint %}
+
 The Rich Text Editor (RTE) is based on [tinymce](https://www.tinymce.com/) and is highly configurable. Depending on the configuration, it will give your content editors more flexibility when working with content that should be more than only plain text.
 
 {% hint style="info" %}
@@ -16,7 +20,6 @@ If your site is upgraded from an older version, follow the migration guides belo
 * [Migrate from version 4 to version 5](https://www.tiny.cloud/docs/tinymce/5/migration-from-4x/)
 * [Migrate from version 5 to version 6](https://www.tiny.cloud/docs/tinymce/6/migration-from-5x/)
 * [Migrate from version 6 to version 7](https://www.tiny.cloud/docs/tinymce/latest/migration-from-6x/)
-
 {% endhint %}
 
 ## [Configuration options](configuration.md)
@@ -68,7 +71,7 @@ Extend the functionality of the Rich Text Editor with plugins.
 
 ## Add values programmatically
 
-See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](../../../../../reference/management/services/README.md#contentservice).
+See the example below to see how a value can be added or changed programmatically. To update a value of a property editor you need the [Content Service](https://apidocs.umbraco.com/v14/csharp/api/Umbraco.Cms.Core.Services.ContentService.html).
 
 ```csharp
 @using Umbraco.Cms.Core.Services;

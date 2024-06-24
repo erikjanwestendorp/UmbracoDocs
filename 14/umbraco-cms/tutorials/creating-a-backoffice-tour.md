@@ -6,6 +6,10 @@ description: >-
 
 # Creating a Backoffice Tour
 
+{% hint style="warning" %}
+This article is a work in progress and may undergo further revisions, updates, or amendments. The information contained herein is subject to change without notice.
+{% endhint %}
+
 ## Introduction
 
 In this tutorial we will show how you can create a backoffice tour, helping users get started with working in the Umbraco backoffice.
@@ -16,7 +20,7 @@ Before moving on, we recommend reading the [Backoffice Tours](../extending/backo
 
 ## Video tutorial
 
-{% embed url="https://youtu.be/7xas45Keb_o" %}
+{% embed url="<https://youtu.be/7xas45Keb_o>" %}
 Video tutorial on how to create a backoffice tour
 {% endembed %}
 
@@ -104,7 +108,7 @@ A lot of elements in the backoffice have the `data-element` attribute, however, 
 
 To find the first `element`, follow the steps below:
 
-1. Go to the backoffice of your Umbraco project and log in.
+1. Log in to the backoffice of your Umbraco project.
 2. Right-click on Settings in the main navigation and inspect the element.
 
 <figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption><p>Inspecting the Settings navigation in the backoffice</p></figcaption></figure>
