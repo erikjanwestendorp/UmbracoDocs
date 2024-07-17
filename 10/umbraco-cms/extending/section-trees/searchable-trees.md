@@ -115,7 +115,7 @@ public class SearchResultEntity : EntityBasic
 {% endtab %}
 {% endtabs %}
 
-A `SearchResultEntity` consists of a Score (a Float value) identifying its relevance to the search term, and the set of `EntityBasic` properties that all Umbraco objects share: eg Name, Id, Udi, Icon, Trashed, Key, ParentId, Path, Alias, AdditionalData.
+A `SearchResultEntity` consists of a Score (a Float value) identifying its relevance to the search term, and the set of `EntityBasic` properties that all Umbraco objects share: for example Name, Id, Udi, Icon, Trashed, Key, ParentId, Path, Alias, AdditionalData.
 
 #### Example implementation of ISearchableTree
 
