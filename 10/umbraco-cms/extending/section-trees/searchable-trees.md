@@ -245,7 +245,7 @@ Umbraco automatically finds any implementation of `ISearchableTree` in your site
 
 Perhaps you want to change the logic for searching an existing section of the site, (why? - well you might have a 'company name' property on a MemberType in the Member section, and you want searches for that company name to filter the members who work there, the default implementation will only search on Member Name).
 
-Or perhaps you want to replace Examine search in the backoffice with an external Search Service, e.g. Azure Search. In a cloud-hosted implementation you don't need to build the Examine indexes on each new server as your cloud hosting scales out.
+Or perhaps you want to replace Examine search in the backoffice with an external Search Service, for example Azure Search. In a cloud-hosted implementation you don't need to build the Examine indexes on each new server as your cloud hosting scales out.
 
 ### Example
 
