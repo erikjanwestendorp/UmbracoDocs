@@ -1020,6 +1020,16 @@ Please contact us using the chat button at the bottom right corner of the [Umbra
 
 It is strictly forbidden to attempt to do a denial of service attack on your Cloud sites.
 
+### Can Umbraco Cloud support my website?
+
+The ability of Umbraco Cloud to support your website depends on different factors. This includes the number of visitors and the media storage your site requires.
+
+These details alone do not fully determine whether Umbraco Cloud is the right fit for your needs. 
+
+Each website can have different performance requirements based on how it is built and configured. We recommend running a load test, to learn whether Umbraco Cloud can handle your specific website. This test simulates real-world traffic and can help you understand the computation power and resources your website will require. 
+
+There are user-friendly tools available, such as [LoadNinja](https://loadninja.com/), to help you conduct these simulations. This will give you a clearer picture of whether Umbraco Cloud can support your website effectively.
+
 ### Are we allowed to do load testing on our Umbraco Cloud site?
 
 We would like to talk to you beforehand about your test plan for a load test on your Cloud site.
@@ -1204,13 +1214,9 @@ The hostnames contain the region your project is hosted on. Currently, there are
 
 #### Database
 
-Database backups are not available as downloads by default, but a copy can be downloaded using a Powershell script. By default 35 days point in time restore is available. Restore is dependent on your needs, requirements, and database size and will be handled on a case-by-case basis. Contact Umbraco Cloud support through the portal to discuss your requirements.
+&#x20;By default, a 35-day point-in-time database restore is available for your projects. It is also possible to restore a `.bacpac` file to your cloud environments.
 
-You can read more about database backups and how to perform these on Umbraco Cloud in the [databases/Backups section](databases/backups.md)
-
-{% hint style="warning" %}
-Contact Umbraco support to discuss your case and the associated restoration fee if you need to restore a database.
-{% endhint %}
+You can read more about database backups and restores and how to perform these on Umbraco Cloud in the [Databases/Backups section](databases/backups.md).
 
 #### Filesystem
 

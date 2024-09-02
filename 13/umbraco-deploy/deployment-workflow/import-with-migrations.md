@@ -68,8 +68,9 @@ You can do this via a composer, as in the following example. Here we register tw
 
 ```csharp
 using Umbraco.Cms.Core.Composing;
-using Umbraco.Deploy.Core.Migrators;
+using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Deploy.Infrastructure.Migrators;
+using Umbraco.Extensions;
 
 internal class ArtifactMigratorsComposer : IComposer
 {
@@ -242,7 +243,7 @@ using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.PropertyEditors;
 using Umbraco.Cms.Core.Serialization;
 using Umbraco.Cms.Core.Services;
-using Umbraco.Deploy.Infrastructure.Artifacts;
+using Umbraco.Deploy.Infrastructure.Migrators;
 
 public class ReplaceNestedContentDataTypeArtifactMigrator : ReplaceDataTypeArtifactMigratorBase<NestedContentConfiguration, BlockListConfiguration>
 {

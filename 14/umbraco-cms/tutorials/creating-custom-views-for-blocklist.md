@@ -1,6 +1,6 @@
 # Custom Views for Block List
 
-Custom Views are used to overwrite the AngularJS view for the Block List in the Content editor. We can improve the editing experience by overwriting the default representation of our block entries with a custom view that will provide a better view of how the content will look on the frontend.
+Custom Views are used to overwrite the presentation of a Block. We can improve the editing experience by providing a better representation of the Blocks content. It could be a presentation of how it will look on the front end or the specific properties available.
 
 {% hint style="warning" %}
 This article is a work in progress and may undergo further revisions, updates, or amendments. The information contained herein is subject to change without notice.
@@ -92,7 +92,7 @@ export class ExampleBlockCustomView extends UmbElementMixin(LitElement) implemen
     override render() {
         return html`
             <h5>My Custom View</h5>
-            <p>Headline: ${this.content.headline}</p>
+            <p>Headline: ${this.content?.headline}</p>
         `;
     }
 
@@ -134,6 +134,12 @@ Now that we have created our Web Component, let us register it to show up on our
 }
 ```
 
+While the `forContentTypeAlias` and `forBlockEditor` parameters are optional, they also accept arrays. They can therefore be used to declare a custom view for multiple blocks. The code snippet below shows an example of such an array:
+
+```typescript
+    forContentTypeAlias: ['product', 'anotherContentTypeAlias'],
+```
+
 Read about [extension-manifest](../extending/extending-overview/extension-registry/extension-manifest.md) to learn how to register an Extension Manifest.
 
 Once registered, the Block will be represented by the given Web Component.
@@ -150,7 +156,7 @@ To add content to the blocks:
 4. Enter the **Name** and **Details** in the Feature window. You will notice you can view the content as you type. This is because we have enabled the **Live editing** mode.
 5. Click **Confirm**.
 
-    <figure><img src="../../../10/umbraco-cms/tutorials/images/Feature-Content.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../10/umbraco-cms/tutorials/images/Feature-Content.png" alt=""><figcaption></figcaption></figure>
 
 ## Creating `Settings` section for Blocks
 
@@ -167,9 +173,9 @@ To add a Settings model:
    * **Enter a Name** for the element type. Let's say _Feature Settings_.
    * Give it an icon.
    * Click **Add Group** and **Enter a Name**. Let's call it _Settings_.
-   * Click **Add Property** and **Enter a Name**. Let's call it _Block Alignment_. An alias _blockTheme_ is generated.
+   * Click **Add Property** and **Enter a Name**. Let's call it _Block Alignment_. An alias `blockAlignment` is generated.
    * Select **Dropdown List** as the editor. The **Editor Settings** window opens.
-   * In the Add prevalue field, add **left**, **center** and **right** as values.
+   * In the Add options field, add **left**, **center** and **right** as values.
    * Click **Submit**.
 
        <figure><img src="../../../10/umbraco-cms/tutorials/images/prevalue-options-1.png" alt=""><figcaption></figcaption></figure>
@@ -180,81 +186,59 @@ To add a Settings model:
 9. Click **Submit** until you reach the Product document type.
 10. Click **Save**.
 
-We need to update the `custom.html` file with the following configuration:
+We need to update the `example-block-custom-view.ts` file with the following configuration:
 
-```html
-<section id="banner" ng-click="api.editBlock(block, block.hideContentInOverlay, index, parentForm)">
+{% code title="example-block-custom-view.ts" %}
 
-    <div class="text-block" ng-class="{'block-left': block.settingsData.blockAlignment[0] === 'left', 'block-center': block.settingsData.blockAlignment[0] === 'center', 'block-right': block.settingsData.blockAlignment[0] === 'right' }">
-        <div class="content">
-            <header>
-                <h1>{{block.data.featureName}}</h1>
-            </header>
-                <p>{{block.data.details}}</p>
-        </div>
-    </div>
-</section>
+```typescript
+import { html, customElement, LitElement, property, css } from '@umbraco-cms/backoffice/external/lit';
+import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
+import type { UmbBlockDataType, UmbBlockEditorCustomViewElement } from '@umbraco-cms/backoffice/extension-registry';
+
+@customElement('example-block-custom-view')
+export class ExampleBlockCustomView extends UmbElementMixin(LitElement) implements UmbBlockEditorCustomViewElement {
+
+    @property({ attribute: false })
+    content?: UmbBlockDataType;
+
+    @property({ attribute: false })
+    settings?: UmbBlockDataType;
+
+    override render() {
+        return html`
+            <div class="${this.settings?.blockAlignment ? 'align-' + this.settings?.blockAlignment : undefined}">
+                <h5>My Custom View</h5>
+                <p>Headline: ${this.content?.headline}</p>
+                <p>Alignment: ${this.settings?.blockAlignment}</p>
+            </div>
+        `;
+    }
+
+    static override styles = [
+        css`
+            :host {
+                display: block;
+                height: 100%;
+                box-sizing: border-box;
+                background-color: #dddddd;
+                border-radius: 9px;
+                padding: 12px;
+            }
+
+            .align-center {
+                text-align: center;
+            }
+            .align-right {
+                text-align: right;
+            }
+        `,
+    ];
+}
+
+export default ExampleBlockCustomView;
 ```
 
-Additionally, we need to update our stylesheet to use the color configuration. For this tutorial, I have created a `style.css` stylesheet with the following styles:
-
-```css
-@import url(https://fonts.googleapis.com/css?family=Montserrat|Source+Sans+Pro:400,700,300,600,600italic,400italic);
-
-body {
- font-family: 'Source Sans Pro', sans-serif;
-}
-
-h1{
-    font-weight:900;
-}
-
-.text-block{
-    padding:20px;
-}
-
-.block-left {
-    text-align: left;
-    border: 3px solid green;
-    padding: 10px;
-}
-
-.block-center {
-    text-align: center;
-    border: 3px solid green;
-    padding: 10px;
-}
-
-.block-right{
-    text-align: right;
-    border: 3px solid green;
-    padding: 10px;
-}
-```
-
-### Assigning the Stylesheet to the Block
-
-Now that we have updated our view and stylesheet let's assign it to our block.
-
-1. Go to **Product** in the **Settings** tree.
-2. Click the `cog` wheel next to **Features**.
-3. Select the **Product - Features - Block List**. The **Editor Settings** window opens.
-4. Select **Feature** from the **Available Blocks** configuration. The **Configuration of 'Feature'** window opens.
-5. Select **Add Stylesheet** and browse to **style.css**.
-
-    <figure><img src="../../../10/umbraco-cms/tutorials/images/Stylesheet-location.png" alt=""><figcaption></figcaption></figure>
-6. Select **Add Settings** in the **Settings model** and select **Feature Settings**.
-7. Click **Submit** until you reach the Product document type.
-8. Click **Save**.
-9. Restart your application. Now, when you head over to the **Product** page in the **Content** section and hover over the block you will notice the settings option.
-
-    <figure><img src="../../../10/umbraco-cms/tutorials/images/Settings-option.png" alt=""><figcaption></figcaption></figure>
-10. Click on **Edit Settings** and you can see the **Block Theme** options we created.
-
-    <figure><img src="../../../10/umbraco-cms/tutorials/images/Feature-Options-1.png" alt=""><figcaption></figcaption></figure>
-11. **Select a Theme** of your choice and click on **Submit** to see the changes reflect on your block.
-
-    <figure><img src="../../../10/umbraco-cms/tutorials/images/Block-settings-1.png" alt=""><figcaption></figcaption></figure>
+{% endcode %}
 
 ## Rendering the Block List Content
 
