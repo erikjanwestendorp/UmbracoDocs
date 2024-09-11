@@ -149,6 +149,33 @@ In those cases, it would mean that anyone who has a Google or Facebook account c
 
 If auto-linking for public providers such as these was needed you would need to limit the access. This can be done by domain or other information provided in the claims using the options/callbacks specified in those provider's authentication options.
 
+#### Is your project hosted on Umbraco Cloud?
+
+Umbraco Cloud uses Umbraco ID for all authentication, including access to the Umbraco Backoffice.
+
+If you are working with External Login Providers on a project hosted on Umbraco Cloud, extra configuration is required.
+
+To disable the automatic redirect to Umbraco ID, follow these steps:
+
+1. Open the `umbraco-cloud.json` file in your favorite code editor.
+2. Locate the `Identity` section.
+3. Add a new key: `AutoRedirectLogin`.
+4. Set the value to `false`.
+
+{% code title="umbraco-cloud.json" %}
+
+```json
+"Identity": {
+    "ClientId": "0297c0f6-83ad-4481-9ae2-07a3f5475333",
+    "ClientSecret": "Q5~T526ixOHlj47lg7Mu7_.zN1fK.7ua.9",
+    "EnvironmentId": "3105e6eb-4a1e-42dd-91e9-ffdbe3dd30a8",
+    "LocalLoginRedirectUri": "https://redirect.identity.umbraco.com",
+    "AutoRedirectLogin": false
+  }
+```
+
+{% endcode %}
+
 ### Auto-linking on Member authentication
 
 Auto-linking on Member authentication only makes sense if you have a public member registration already or the provider does not have public account creation.
@@ -353,7 +380,7 @@ You have a few options to configure the button:
 * `element` - Define your own custom element for the button. This is useful if you want to display something other than a button, For example: a link or an image. For more information, see the [Customizing the BackOffice Login Button](external-login-providers.md#customizing-the-backoffice-login-button) section.
 * `forProviderName` - The name of the provider you are configuring. This should match the `SchemeName` in the `GenericBackOfficeExternalLoginProviderOptions` class with "Umbraco." prepended.
 * `meta.label` - The label to display on the button. The user will see this text. For example: "Sign in with Generic".
-* `meta.defaultView.icon` - The icon to display on the button. You can use any of the icons from the Umbraco Icon Picker. If you want to use a custom icon, you need to first register it to the [`icons` extension point](../../extending/extending-overview/extension-types/icons.md).
+* `meta.defaultView.icon` - The icon to display on the button. You can use any of the icons from the Umbraco Icon Picker. If you want to use a custom icon, you need to first register it to the [`icons` extension point](../../customizing/extending-overview/extension-types/icons.md).
 * `meta.defaultView.color` - (Default: "secondary") The color of the button. You can use any of the colors from the [Umbraco UI Library](https://uui.umbraco.com/?path=/story/uui-button--looks-and-colors).
 * `meta.defaultView.look` - (Default: "default") The look of the button. You can use any of the looks from the [Umbraco UI Library](https://uui.umbraco.com/?path=/story/uui-button--looks-and-colors).
 * `meta.behavior.autoRedirect` - Automatically redirects the user to the external login provider, skipping the Umbraco login page, unless the user has specifically logged out or timed out.
@@ -612,7 +639,7 @@ The Custom Element can be implemented in a number of ways with many different li
 When you click the button, the form will submit a POST request to the `externalLoginUrl` property. The external login provider will then redirect back to the Umbraco site with the user logged in.
 
 {% hint style="info" %}
-You have access to the [Umbraco UI Library](../../extending/ui-documentation.md) in the custom element. You can use the UUI components directly in your template.
+You have access to the [Umbraco UI Library](../../customizing/ui-documentation.md) in the custom element. You can use the UUI components directly in your template.
 {% endhint %}
 
 {% code title="App_Plugins/ExternalLoginProviders/umbraco-package.json" lineNumbers="true" %}
