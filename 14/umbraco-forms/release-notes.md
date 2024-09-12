@@ -11,12 +11,23 @@ In this section, we have summarized the changes to Umbraco Forms released in eac
 If there are any breaking changes or other issues to be aware of when upgrading they are also noted here.
 
 {% hint style="info" %}
-If you are upgrading to a new major version, you can find information about the breaking changes in the [Version Specific Upgrade Notes](upgrading/version-specific/) article.
+If you are upgrading to a new major version, you can find information about the breaking changes in the [Version Specific Upgrade Notes](upgrading/version-specific.md) article.
 {% endhint %}
 
 ## Release History
 
 This section contains the release notes for Umbraco Forms 14 including all changes for this version.
+
+#### [**14.1.2**](https://github.com/umbraco/Umbraco.Forms.Issues/issues?q=is%3Aissue+is%3Aclosed+label%3Arelease%2F14.1.2) **(September 12th 2024)**
+
+* Added configurable field level rendering of reCAPTCHA 3 validation result [#1277](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1277).
+* Fixed validate and submit script to handle additional markup around submit buttons [#1280](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1280).
+* Fixed incorrect concatenation of field CSS classes [#1284](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1284).
+* Added server-side validation of configured maximum length for short and long answer fields.
+* Restored provision of field values in HTTP headers in Post as XML workflow.
+* Fixed issue with recording of form submissions in custom Examine indexes [#1282](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1282).
+* Added ability to retrieve "slim" workflow entities from services [#1283](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1283).
+* Fixed the following backoffice user interface issues [#1291](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1291), [#1290](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1290), [#1288](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1288), [#1287](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1287), [#1286](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1286), [#1278](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1278) and [#1275](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1275).
 
 #### [**14.1.1**](https://github.com/umbraco/Umbraco.Forms.Issues/issues?q=is%3Aissue+is%3Aclosed+label%3Arelease%2F14.1.1) **(August 6th 2024)**
 
@@ -79,7 +90,7 @@ Please ensure to check the rendering of these features on website forms after th
 #### [**14.0.0**](https://github.com/umbraco/Umbraco.Forms.Issues/issues?q=is%3Aissue+is%3Aclosed+label%3Arelease%2F14.0.0) **(May 30th 2024)**
 
 * Compatibility with Umbraco 14
-  * See full details of breaking changes under the [Version-specific Upgrade Guide](upgrading/version-specific/).
+  * See full details of breaking changes under the [Version-specific Upgrade Guide](upgrading/version-specific.md).
 
 ## Umbraco.Forms.Deploy
 
