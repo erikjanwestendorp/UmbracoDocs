@@ -1,15 +1,21 @@
-# Content Delivert Network Recommendations
+---
+description: >-
+  Learn more about recommendations when working with the Content Delivery
+  Network.
+---
 
-In this section you will find information and best-practices how to use a content delivery network (CDN) in combination with uMarketingSuite in your Umbraco installation.
+# Content Delivery Network recommendations
 
-### Pages (html)
+This article provides information and best practices on using Content Delivery Network (CDN)  with uMarketingSuite.
 
-You should not cache pages on CDN level. uMarketingSuite is based on serving a unique page to every (returning) visitor. By enabling page caching every visitor will be assigned the same uMarketingSuite ID and Analytics, A/B testing and Personalisation will not work correctly.
+## Pages (HTML)
 
-### Cache static files (CSS and javascript)
+D not cache pages on the CDN level. uMS is based on serving a unique page to every (returning) visitor. By enabling page caching every visitor will be assigned the same uMS ID and Analytics, A/B testing and Personalisation will not work correctly.
 
-It is possible to cache static CSS and javascript files. Please refer to the documentation of the CDN provider for the best-practice setup.
+### Cache static files (CSS and JavaScript)
 
-### Media files (Umbraco /media folder, images and pdf's)
+It is possible to cache static CSS and JavaScript files. Refer to the documentation of the CDN provider for the best-practice setup.
 
-It is possible to cache /media files. Please refer to the documentation of the CDN provider for best-practice the setup.
+### Media files (Umbraco /media folder, images, and PDFs)
+
+It is possible to cache `/media` files. Refer to the documentation of the CDN provider for best-practice setup.
