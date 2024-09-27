@@ -1,13 +1,21 @@
-# Create Your Own Events
+---
+description: Learn how to create and add custom events to uMS.
+---
 
-You can send your own client side events to the uMarketingSuite as well, for example if somebody pushes a button. 
+# Create your own events
 
-This can be done by executing the following javascript-call that has the following syntax:
+You can send custom client-side events to uMS. An example could be if somebody pushes a button.
 
-    ums("send", "event", "<Category name>", "<Action>", "<Label>");
+This is done by executing JavaScript using the following format:
 
-For example the following call sends an event to the uMarketingSuite that tracks the category "**Tracking**", the action "**Blocked**" and the label "**Google Analytics**:
+```js
+ums("send", "event", "<Category name>", "<Action>", "<Label>");
+```
 
-    ums("send", "event", "Tracking", "Blocked", "Google Analytics");
+The following example sends an event that tracks the category "**Tracking**", the action "**Blocked**" and the label "**Google Analytics**":
+
+```js
+ums("send", "event", "Tracking", "Blocked", "Google Analytics");
+```
 
 You can track all these events in the Events report of the Analytics section.
