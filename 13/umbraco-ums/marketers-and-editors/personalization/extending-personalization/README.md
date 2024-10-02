@@ -1,7 +1,14 @@
-# Extending personalization
+---
+description: >-
+  The personalization provided by Umbraco uMS is built so users can personalize
+  the content or layout of any page without programming skills from the UI.
+icon: square-exclamation
+---
 
-The personalization provided by the uMarketingSuite was built in such a way that the user is able to personalize the content or layout of any page from the Umbraco UI, without any programming skills. But no matter how hard we try to personalize personalization for you, we can never know how you like your personalization to be!
+# Extending Personalization
 
-One of the most common situations for implementing your own flavour of personalization is because you want to server specific content to a (group of) user(s). In the uMarketingSuite, we identify groups of visitors through segments, which consists of a set of requirements that are to be met. This segment information is then used to customize the user's experience through Applied Personalization.
+One of the most common situations for implementing personalization is because you want to serve specific content to your users.&#x20;
 
-In the following articles, we will explain the most common needs and methods of implementing your own flavour of personalization for your website.
+In Umbraco uMS, we identify groups of visitors through segments, consisting of a set of requirements to be met. This segment information is then used to customize the user's experience through Applied Personalization.
+
+The following articles cover common methods for implementing personalized content on your website.

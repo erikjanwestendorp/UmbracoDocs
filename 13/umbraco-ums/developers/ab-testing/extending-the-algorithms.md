@@ -1,5 +1,10 @@
-# Extending the algorithms
+---
+description: >-
+  Learn about the current limitations of implementing custom algorithms in uMarketingSuite.
+---
 
-Unfortunately it is not easy at this moment to implement your own algorithm at this moment. We do want to support this in the future, but it does not have our highest priority at this moment. 
+# Extending the Algorithms
 
-If you do however think this should have a much higher priority, please [drop us a message](mailto:info@umarketingsuite.com?subject=I%20want%20to%20implement%20my%20own%20algorithms) and we will see what we can do for each other :)!
+Currently, implementing custom algorithms is not straightforward. While future support for this feature is planned, it is not a top priority at this time.
+
+If you believe this should be prioritized, [send us a message](mailto:info@umarketingsuite.com?subject=I%20want%20to%20implement%20my%20own%20algorithms), and we will explore potential solutions together.
