@@ -29,7 +29,7 @@ We really appreciate your help in testing this release. Please make sure to desc
 
 If everything "just" worked (🤞) then describe that as well! Let us know exactly what you focused on that worked well.
 
-You can do this by heading to the [https://github.com/umbraco/HacktoberfestActivityLog](HacktoberfestActivityLog) repository and adding your name to the list in the "Low code/no code" section. 
+You can do this by heading to the [HacktoberfestActivityLog](https://github.com/umbraco/HacktoberfestActivityLog) repository and adding your name to the list in the "Low code/no code" section. 
 
 An example of a participation entry is:
 
@@ -81,6 +81,10 @@ Eligible contributions according to [the Hacktoberfest guidelines](https://hackt
 We [have set up a special GitHub repository](https://github.com/umbraco/HacktoberfestActivityLog) for you to record your contributions that are not a pull request.
 
 In order to record your journey of verifying documentation (like related blog post(s) in October, events organized), please edit the README.md file and add your activity at the end in the recommended format and submit that as a pull request. We’ll take it from there!
+
+{% hint style="info" %}
+The teams at [Skrift](https://skrift.io/) and [24 days in Umbraco](https://24days.in/umbraco-cms/write-for-us/) are always looking for new articles. Finish your initial draft in October to make it count! We'll ask the Skrift/24 days teams to verify a significant draft is ready.
+{% endhint %}
 
 ## Sponsor an Umbraco-related GitHub repository
 
