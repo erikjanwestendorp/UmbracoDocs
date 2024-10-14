@@ -1,4 +1,4 @@
-# licensing
+# Licensing
 
 May be not the most fun part of the package, but very important though.
 

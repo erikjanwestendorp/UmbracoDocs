@@ -1,10 +1,17 @@
 # Table of contents
 
+* [Umbraco Engage Documentation](README.md)
+
 ## Installation
 
-* [Umbraco uMS Documentation](README.md)
+* [System Requirements](getting-started/for-developers/system-requirements.md)
 * [Installation](installation/installation.md)
+* [Licensing](getting-started/for-developers/licensing.md)
 * [Troubleshooting Installs](installation/troubleshooting-installs.md)
+
+## Upgrading
+
+* [Migrate from uMarketingSuite](upgrading/migrate-from-umarketingsuite.md)
 
 ## Getting Started
 
@@ -16,13 +23,9 @@
     * [Generic Topbar Template](getting-started/for-marketers-and-editors/marketing-resources/generic-topbar-template.md)
     * [Generic Exit Intent Popup Template](getting-started/for-marketers-and-editors/marketing-resources/generic-exit-intent-popup-template.md)
 * [For Developers](getting-started/for-developers/README.md)
-  * [System Requirements](getting-started/for-developers/system-requirements.md)
-  * [Licensing](getting-started/for-developers/licensing.md)
   * [Infrastructure sizing](getting-started/for-developers/infrastructure-sizing.md)
   * [Load Balancing and CM/CD Environments](getting-started/for-developers/loadbalancing-and-cm-cd-environments.md)
   * [Content Delivery Network recommendations](getting-started/for-developers/content-delivery-network-recommendations.md)
-  * [Configuration options 1.x](getting-started/for-developers/configuration-options-1-x.md)
-  * [Configuration options 2.x](getting-started/for-developers/configuration-options-2-x.md)
   * [Cockpit](getting-started/for-developers/cockpit.md)
 
 ## Marketers and Editors
@@ -46,6 +49,7 @@
   * [Forms](marketers-and-editors/analytics/forms.md)
   * [Videos](marketers-and-editors/analytics/videos.md)
   * [Scroll Heatmap](marketers-and-editors/analytics/scroll-heatmap.md)
+  * [Difference between Google Analytics and uMS](marketers-and-editors/analytics/difference-in-analytics-between-google-analytics-and-umarketingsuite.md)
 * [A/B Testing](marketers-and-editors/ab-testing/README.md)
   * [What is A/B testing](marketers-and-editors/ab-testing/what-is-ab-testing.md)
   * [Types of A/B Tests](marketers-and-editors/ab-testing/types-of-ab-tests/README.md)
@@ -98,21 +102,21 @@
   * [Performance](developers/introduction/performance.md)
 * [Analytics](developers/analytics/README.md)
   * [What is measured by Default](developers/analytics/what-is-measured-by-default.md)
+  * [Types of Clients](developers/analytics/types-of-clients.md)
+  * [Location](developers/analytics/location.md)
+  * [Forms](developers/analytics/forms.md)
+  * [Videos](developers/analytics/videos.md)
+  * [Scroll Heatmap](developers/analytics/scroll-heatmap.md)
   * [Client-side Events](developers/analytics/client-side-events-and-additional-javascript-files/README.md)
     * [Additional Measurements with our uMW Analytics Scripts](developers/analytics/client-side-events-and-additional-javascript-files/additional-measurements-with-our-ums-analytics-scripts.md)
     * [Bridging Library for Google Analytics](developers/analytics/client-side-events-and-additional-javascript-files/bridging-library-for-google-analytics.md)
     * [Bridging Library for Google Tag Manager](developers/analytics/client-side-events-and-additional-javascript-files/bridging-library-for-google-tag-manager.md)
     * [Google Analytics Blocker Detection](developers/analytics/client-side-events-and-additional-javascript-files/google-analytics-blocker-detection.md)
     * [Create your own events](developers/analytics/client-side-events-and-additional-javascript-files/create-your-own-events.md)
-  * [Types of Clients](developers/analytics/types-of-clients.md)
-  * [Location](developers/analytics/location.md)
   * [Extending Analytics](developers/analytics/extending-analytics/README.md)
     * [Getting the Correct IP Address](developers/analytics/extending-analytics/getting-the-correct-ip-address.md)
     * [Implement an IP to location provider](developers/analytics/extending-analytics/implement-an-ip-to-location-provider.md)
     * [Sending data to the GTM Datalayer](developers/analytics/extending-analytics/sending-data-to-the-gtm-datalayer.md)
-  * [Forms](developers/analytics/forms.md)
-  * [Videos](developers/analytics/videos.md)
-  * [Scroll Heatmap](developers/analytics/scroll-heatmap.md)
 * [A/B testing](developers/ab-testing/README.md)
   * [Types of A/B tests](developers/ab-testing/types-of-ab-tests/README.md)
     * [Single-Page A/B test](developers/ab-testing/types-of-ab-tests/single-page-ab-test.md)
@@ -135,29 +139,15 @@
   * [External Profile Data](developers/profiling/external-profile-data.md)
 * [Reporting](developers/reporting.md)
 * [Settings](developers/settings/README.md)
-  * [Custom Goals Scoring](developers/settings/custom-goals-scoring.md)
+  * [The Configuration file](developers/settings/configuration-options-2-x.md)
   * [IP filtering](developers/settings/ip-filtering.md)
   * [Set up Goals](developers/settings/setup-goals.md)
-  * [The Configuration File](developers/settings/the-configuration-file.md)
+  * [Custom Goals Scoring](developers/settings/custom-goals-scoring.md)
   * [Permissions](developers/settings/permissions.md)
 * [Headless](developers/headless/README.md)
   * [Using the Marketing API](developers/headless/using-the-marketing-api.md)
   * [Headless Example](developers/headless/headless-example.md)
-* [Support](developers/support/README.md)
-  * [Known issues and work arounds](developers/support/known-issues-and-work-arounds/README.md)
-    * [Difference in analytics between Google Analytics and uMS](developers/support/known-issues-and-work-arounds/difference-in-analytics-between-google-analytics-and-umarketingsuite.md)
-    * [You cannot select persona or journey images](developers/support/known-issues-and-work-arounds/you-cant-select-persona-or-journey-images.md)
-    * [Boot failed after moving to Azure SQL](developers/support/known-issues-and-work-arounds/boot-failed-after-moving-to-azure-sql.md)
-    * [Boot failed when updating to uMS 1.15](developers/support/known-issues-and-work-arounds/boot-failed-when-updating-to-umarketingsuite-1-15.md)
-    * [Single-page A/B testing and personalization does not always work in Umbraco 10.0](developers/support/known-issues-and-work-arounds/single-page-ab-testing-and-personalization-does-not-always-work-in-umbraco-10-0.md)
-    * [uMS modules features not loading](developers/support/known-issues-and-work-arounds/umarketingsuite-modules-features-not-loading.md)
-    * [Notifications not working in Umbraco 8](developers/support/known-issues-and-work-arounds/notifications-not-working-in-umbraco-8.md)
-    * [Font Awesome icon finder 1.1.0 breaks the Date Picker](developers/support/known-issues-and-work-arounds/font-awesome-icon-finder-1-1-0-breaks-datepicker.md)
-    * [Fallback with MultiURLPicker property editor not working](developers/support/known-issues-and-work-arounds/fallback-with-multiurlpicker-property-editor-not-working.md)
-    * [umbraco-cloud-migration-plan-failed-at-step-addcolumnstoreindexesforanalyticstables-locally](developers/support/known-issues-and-work-arounds/umbraco-cloud-migration-plan-failed-at-step-addcolumnstoreindexesforanalyticstables-locally.md)
-    * [Visiting page with referral causes stackoverflow exception](developers/support/known-issues-and-work-arounds/visiting-page-with-referral-causes-stackoverflow-exception.md)
-    * [Incorrect statistics in Google Analytics using GA4 bridge](developers/support/known-issues-and-work-arounds/incorrect-statistics-in-google-analytics-using-ga4-bridge.md)
-    * [Huge reporting performance spike when using Umbraco 10 and higher](developers/support/known-issues-and-work-arounds/huge-reporting-performance-spike-when-using-umbraco-10-and-higher.md)
+* [Support](developers/support.md)
 
 ## Security and Privacy
 
@@ -173,7 +163,7 @@
 * [Tutorials](tutorials/README.md)
 * [Your first uMS setup](tutorials/your-first-uMS-setup.md)
 * [Get started with Personas and Personalization](tutorials/get-started-with-personas-and-personalization.md)
-* [A Personalized popup in 5 minutes](tutorials/a-personalized-popup-in-5-minutes.md)
+* [Create a Personalized Popup in 5 minutes](tutorials/a-personalized-popup-in-5-minutes.md)
 * [How to Personalize content](tutorials/how-to-personalize-content.md)
 * [8 steps towards the ideal A/B test](tutorials/8-steps-towards-the-ideal-ab-test.md)
 * [Partner Demos](tutorials/partner-demos.md)
