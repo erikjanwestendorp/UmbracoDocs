@@ -1,8 +1,7 @@
 ---
 description: >-
-  Below you will find the general steps to perform during the upgrade. You can
-  also jump directly to the detailed steps and instructions here <link to guide
-  of Corné below>
+  This guide provides a step-by-step approach to migrating a default
+  uMarketingSuite solution to Umbraco Engage.
 ---
 
 # Migrate from uMarketingSuite
@@ -13,72 +12,150 @@ This document is a work in progress.
 The final version will be available with the release of Umbraco Engage.
 {% endhint %}
 
-### **General upgrade steps from uMarketingSuite to Umbraco Engage**
-
-* Backup database from production environment and restore locally
-* Apply the databases changes as outlined below
-  * The database changes should be executed in < 10 sec. because we are using [sp\_rename](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-rename-transact-sql)
-* Apply the code changes as outlined below in the detailed steps
-* Test locally&#x20;
-* Apply the database changes and the new code to each environment (make sure to create backups of code and database!)
-
-### **Default scripts**
-
-Make sure to change the reference to the client side analytics scripts to:
-
-```
-<script src="~/Assets/Umbraco.Engage/Scripts/umbracoEngage.analytics.js"></script>
-<script src="~/Assets/Umbraco.Engage/Scripts/umbracoEngage.analytics.ga-bridge.js"></script>
-<script src="~/Assets/Umbraco.Engage/Scripts/umbracoEngage.analytics.blockerdetection.js"></script>
-```
-
-See the detailed steps and instructions here \<link to guide of Corné below>
-
-### **Implemented custom javascript events?**&#x20;
-
-Make sure to change all custom events from **ums** to **umbEngage**
-
-`ums("send", "event", "<Category name>", "<Action>", "<Label>")`&#x20;
-
-is now:
-
-`umbEngage("send", "event", "<Category name>", "<Action>", "<Label>")`
-
-### **Any custom code?**
-
-Did you build your own segments, added custom goal triggering etc. then have a close look at which namespaces and classes have been changed here \<link to the C# Class changes section>.
-
-
-
-### **Any custom firewall changes?**
-
-If the /umbraco/umarketingsuite/ path was previously allowed, this needs to change to /umbraco/engage/
-
----
-
-This guide provides a step-by-step approach to migrating a default uMarketingSuite solution to Umbraco Engage.
-
 {% hint style="warning" %}
 Upgrade to the latest version of uMarketingSuite before continuing with the migration.
 
 You can upgrade your installation by installing the [latest version](https://www.nuget.org/packages/uMarketingSuite/) on top of the existing one.
 {% endhint %}
 
-You can find additional information on migrating the add-on packages for UmbracoForms, Commerce & Headless in the [Further Migrations section](./#further-migrations) of this article.
+## Tutorial Content
 
-## Key changes
+* [Step 1: Set up a local environment](migrate-from-umarketingsuite.md#step-1-set-up-a-local-environment)
+* [Step 2: Prerequisites Check](migrate-from-umarketingsuite.md#step-2-prerequisites-check)
+* [Step 3: Replace NuGet packages and dependencies](migrate-from-umarketingsuite.md#step-3-replace-nuget-packages-and-dependencies)
+* [Step 4: Update analytics scripts, cockpit, and custom code ](migrate-from-umarketingsuite.md#step-4-update-analytics-scripts-cockpit-and-custom-code)
+* [Step 5: Update the database](migrate-from-umarketingsuite.md#step-5-update-the-database)&#x20;
+* [Step 6: Finalizing the migration](migrate-from-umarketingsuite.md#step-6-finalize-the-migration)
+* [Step 7: Validate the migration](migrate-from-umarketingsuite.md#step-7-validate-the-migration)
+* [Step 8: Upgrade additional environments](migrate-from-umarketingsuite.md#step-8-upgrade-additional-environments)
+* [Overview of the key changes in paths, scripts, namespaces, etc.](migrate-from-umarketingsuite.md#key-changes)
 
-Before outlining the exact steps, there are a few key changes to be aware of.
+## **Step 1: Set up a local environment**
 
-These changes will dictate the steps to take in the process of migrating to Umbraco Engage.
+The first step is to migrate from uMarketingSuite to Umbraco Engage in a local environment. This will be done using a copy of your production environment.
 
-Before getting started, it is worth noting that going from uMarketingSuite to Umbraco Engage is not a direct upgrade. 
-The changes are significant enough that it is more akin to a migration.
+1. Backup your database from the production environment.
+2. Restore the database locally.
 
-### Project, Package, and Namespace changes
+## Step 2: Prerequisites Check
+
+In this step, you need to check the Database state to see if the existing data can be migrated to Umbraco Engage.
+
+{% hint style="info" %}
+Are you using separate databases for uMarketingSuite and Umbraco? In that case, run the first group of checks on the Umbraco database and the second group of checks on the uMarketingSuite database.
+{% endhint %}
+
+1. Execute the prerequisites check using the following query:
+
+{% file src="../.gitbook/assets/Prerequisites-Checks.sql" %}
+Run this script on your locally restored database to prepare for the migration.
+{% endfile %}
+
+2. Verify that uMarketingSuite & uMarketingSuite addon version checks return the expected results.
+3. Verify that the uMarketingSuite table integrity check returns the expected results.
+
+The result should look like this:
+
+```
+---Running Version Pre-Requisite Checks for uMarketingSuite to Umbraco Engage Migration---
+✔️ Detected uMarketingSuite version 2.6.1 or higher
+✔️ Detected uMarketingSuite.UmbracoCommerce version 2.0.0 or higher
+✔️ Detected uMarketingSuite.UmbracoForms version 2.0.0 or higher
+---Running Integrity Pre-Requisite Checks for uMarketingSuite to Umbraco Engage Migration---
+✔️ The [uMarketingSuiteAnalyticsGoalCompletion] table is in a valid state to be upgraded.
+✔️ The [uMarketingSuiteAnalyticsPageEvent] table is in a valid state to be upgraded.
+---Finished running Pre-Requisite Checks. Please verify if all 5 checks succeeded before proceeding---
+```
+
+If any of these checks return a failure, please resolve the issue before proceeding with the migration.
+
+## Step 3: Replace NuGet packages and dependencies
+
+In this second step, you will replace all existing uMarketingSuite dependencies with Umbraco Engage dependencies.
+
+1. Make a backup of any custom implementation of uMarketingSuite-specific files you want to reuse.
+2. Remove the installed uMarketingSuite package from your project
+
+```
+dotnet remove package uMarketingSuite
+```
+
+3. Remove the other uMarketingSuite packages (if applicable) from your project:
+
+```bash
+dotnet remove package uMarketingSuite.Headless
+dotnet remove package uMarketingSuite.UmbracoForms
+dotnet remove package uMarketingSuite.Commerce
+```
+
+4. Delete the `App_Plugins\*` folder for uMarketingSuite (and if applicable `uMarketingSuite.UmbracoForms`):
+
+```bash
+rmdir /s App_Plugins\uMarketingSuite
+rmdir /s App_Plugins\uMarketingSuite.UmbracoForms
+```
+
+5. Delete the `Assets\uMarketingSuite` folder.
+
+```bash
+rmdir /s Assets\uMarketingSuite
+```
+
+6. Delete the `Partials\uMarketingSuite` folder.
+
+```bash
+rmdir /s Views\Partials\uMarketingSuite
+```
+
+7. Delete the existing license file in the `config\uMarketingSuite` folder.
+8. Delete the existing `appsettings-schema.uMarketingSuite.json` file from the root of the project (if exists).
+9. Install `Umbraco.Engage`:
+
+```bash
+dotnet add package Umbraco.Engage
+```
+
+10. Install any Umbraco Engage add-on packages that were previously removed.
+
+```bash
+dotnet add package Umbraco.Engage.Headless
+dotnet add package Umbraco.Engage.Forms
+dotnet add package Umbraco.Engage.Commerce
+```
+
+## Step 4: Update analytics scripts, cockpit, and custom code
+
+Based on the [Key Changes](migrate-from-umarketingsuite.md#key-changes) below update all uMarketingSuite references to the new Umbraco Engage alternatives. Ensure you update any Views/Partials that also reference these. This includes the different uMarketingSuite clientside scripts (like the analytics & ga4-bridge) and the Cockpit.&#x20;
+
+Please find below an overview of the changes to the default scripts in a uMarketingSuite installation:
+
+* All scripts & Asset Paths containing the `uMarketingSuite` keyword are renamed to:
+  * `Assets/Umbraco.Engage/Scripts/umbracoEngage.analytics.js`
+  * `Assets/Umbraco.Engage/Scripts/umbracoEngage.ga4-bridge.js`
+  * `Assets/Umbraco.Engage/Scripts/umbracoEngage.blockerdetection.js`
+* The Cockpit Partial View has been moved to:
+  * &#x20;`Partials/Umbraco.Engage/Cockpit`
+* If you are tracking custom events please make sure to update the calls to the send event method:
+  *   `ums("send", "event", "<Category name>", "<Action>", "<Label>")`
+
+      is now:
+
+      `umbEngage("send", "event", "<Category name>", "<Action>", "<Label>")`
+
+### **Custom code**
+
+Did you build custom segments, add custom goal triggering, change the module permissions (cookie consent), or something similar? Check which namespaces, classes, and entities have been changed in the Key Changes section below.
+
+### Key changes
+
+Below you will find the key changes to be aware of.&#x20;
+
+You can find additional information on migrating the add-on packages for UmbracoForms, Commerce & Headless in the [Further Migrations section](migrate-from-umarketingsuite.md#further-migrations) of this article.
+
+#### Project, Package, and Namespace changes
 
 | uMarketingSuite              | Umbraco Engage                |
-|------------------------------|-------------------------------|
+| ---------------------------- | ----------------------------- |
 | uMarketingSuite.Core         | Umbraco.Engage.Core           |
 | uMarketingSuite.Web          | Umbraco.Engage.Web            |
 | uMarketingSuite.Business     | Umbraco.Engage.Infrastructure |
@@ -91,29 +168,16 @@ The changes are significant enough that it is more akin to a migration.
 
 <details>
 
-<summary>C# Class changes</summary>
-
-* Namespace changes as documented above.
-* All classes containing the `uMarketingSuite` keyword are now updated to `UmbracoEngage`.
-    * Examples: `UMarketingSuiteApplicationComposer` is now `UmbracoEngageApplicationComposer`, and `AddMarketingApiDocumentation` is now `AddEngageApiDocumentation`
-</details>
-
-<details>
-
-<summary>Database changes</summary>
-
-* All Database tables, keys, constraints and indexes containing the `uMarketingSuite` keyword are now updated to `umbracoEngage`.
-  * Example: `uMarketingSuiteAnalyticsPageview` is now `umbracoEngageAnalyticsPageview`
-
-</details>
-
-<details>
 <summary>JavaScript changes</summary>
 
-* All scripts & Asset Paths containing the `uMarketingSuite` keyword have renamed to `umbracoEngage`.
-  * Example: `/Assets/uMarketingSuite/Scripts/uMarketingSuite.analytics.js` is now `/Assets/umbraco.Engage/Scripts/umbracoEngage.analytics.js`
+* The Asset Paths containing the `uMarketingSuite` keyword have renamed to `Umbraco.Engage`.
+* The scripts containing the `uMarketingSuite` keyword have renamed to `umbracoEngage`.
+  * Example: `/Assets/uMarketingSuite/Scripts/uMarketingSuite.analytics.js` is now `/Assets/Umbraco.Engage/Scripts/umbracoEngage.analytics.js`
 * All script extension points containing the `ums` keyword have been renamed to `umbEngage`.
-  * Example: Custom client-side events like `ums("send", "event", "<Category name>", "<Action>", "<Label>")` are now `umbEngage("send", "event", "<Category name>", "<Action>", "<Label>")`
+  * Example: Custom client-side events like \
+    `ums("send", "event", "<Category name>", "<Action>", "<Label>")` \
+    are now \
+    `umbEngage("send", "event", "<Category name>", "<Action>", "<Label>")`
 
 </details>
 
@@ -129,7 +193,7 @@ The changes are significant enough that it is more akin to a migration.
 
 <details>
 
-<summary>Umbraco & Configuration Changes</summary>
+<summary>Umbraco &#x26; Configuration Changes</summary>
 
 * The Section and corresponding user permission `uMarketingSuite` has been renamed to `Engage`.
 * The Media Folder `uMarketingSuite` has been renamed to `Engage`.
@@ -138,116 +202,66 @@ The changes are significant enough that it is more akin to a migration.
   * Using a new `appsettings.json` key existing installations can enable the legacy naming scheme to maintain compatibility with existing segments.
 * The `appsettings.json` key `uMarketingSuite` has been renamed to `Engage`.
   * Example: `uMarketingSuite:Settings:Enabled` is now `Engage:Settings:Enabled`
+
 </details>
 
-## Step 1: Prerequisites Check
+<details>
 
-In this first step, you need to check the Database state to see if the existing data can be migrated to Umbraco Engage.
+<summary>C# Class changes</summary>
 
-{% hint style="info" %}
-Are you using separate databases for uMarketingSuite and Umbraco? In that case, run the first group of checks on the Umbraco database and the second group of checks on the uMarketingSuite database.
-{% endhint %}
+* Namespace changes as documented above.
+* All classes containing the `uMarketingSuite` keyword are now updated to `UmbracoEngage`.
+  * Examples: `UMarketingSuiteApplicationComposer` is now `UmbracoEngageApplicationComposer`, and `AddMarketingApiDocumentation` is now `AddEngageApiDocumentation`
 
-1. Execute the prerequisites check using the following query:
-```LINK TO Step-1-Prerequisites.sql file```
-2. Verify that uMarketingSuite & uMarketingSuite addon version checks return the expected results.
-3. Verify that the uMarketingSuite table integrity check returns the expected results.
+</details>
 
-The result should look like this:
-```
----Running Version Pre-Requisite Checks for uMarketingSuite to Umbraco Engage Migration---
-✔️ Detected uMarketingSuite version 2.6.1 or higher
-✔️ Detected uMarketingSuite.UmbracoCommerce version 2.0.0 or higher
-✔️ Detected uMarketingSuite.UmbracoForms version 2.0.0 or higher
----Running Integrity Pre-Requisite Checks for uMarketingSuite to Umbraco Engage Migration---
-✔️ The [uMarketingSuiteAnalyticsGoalCompletion] table is in a valid state to be upgraded.
-✔️ The [uMarketingSuiteAnalyticsPageEvent] table is in a valid state to be upgraded.
----Finished running Pre-Requisite Checks. Please verify if all 5 checks succeeded before proceeding---
-```
-If any of these checks return a failure, please resolve the issue before proceeding with the migration.
+<details>
 
-## Step 2: Replace dependencies
+<summary>Database changes</summary>
 
-In this second step, you will replace all existing uMarketingSuite dependencies with Umbraco Engage dependencies.
+* All Database tables, keys, constraints and indexes containing the `uMarketingSuite` keyword are now updated to `umbracoEngage`.
+  * Example: `uMarketingSuiteAnalyticsPageview` is now `umbracoEngageAnalyticsPageview`
 
-1. (If applicable) Take a backup of any custom implementation of uMarketingSuite-specific files you want to reuse.
+</details>
 
-2. Remove any installed uMarketingSuite packages (including UmbracoForms, Commerce, and Headless) from your project:
 
-```bash
-dotnet remove package uMarketingSuite
-dotnet remove package uMarketingSuite.Headless
-dotnet remove package uMarketingSuite.UmbracoForms
-dotnet remove package uMarketingSuite.Commerce
-```
 
-3. Delete the `App_Plugins\*` folder for uMarketingSuite (and if applicable `uMarketingSuite.UmbracoForms`):
-
-```bash
-rmdir /s App_Plugins\uMarketingSuite
-rmdir /s App_Plugins\uMarketingSuite.UmbracoForms
-```
-4. Delete the `Assets\uMarketingSuite` folder.
- 
-```bash
-rmdir /s Assets\uMarketingSuite
- ```
-
-5. Delete the `Partials\uMarketingSuite` folder.
-  
-```bash
-rmdir /s Views\Partials\uMarketingSuite
-```
-6. Delete the existing license file in the `config\uMarketingSuite` folder.
-
-7. Delete the existing `appsettings-schema.uMarketingSuite.json` file from the root of the project.
-
-8. Install `Umbraco.Engage`:
-
-```bash
-dotnet add package Umbraco.Engage
-```
-
-9. Install Umbraco Engage add-on packages that were previously removed (If applicable).
-
-```bash
-dotnet add package Umbraco.Engage.Headless
-dotnet add package Umbraco.Engage.Forms
-dotnet add package Umbraco.Engage.Commerce
-```
-
-## Step 3: Update namespaces and entity names
-
-Based on the [Key Changes](./#key-changes) outlined above update all uMarketingSuite references to the new Umbraco Engage alternatives. Ensure you update any Views/Partials that also reference these. This includes the different uMarketingSuite clientside scripts (like the analytics & ga4-bridge) and the Cockpit.
-
-## Step 4: Update the database
+## Step 5: Update the database
 
 {% hint style="warning" %}
-Only proceed if all the prerequisites checks in Step 1 have passed.
+Only proceed if all the prerequisites checks in [Step 2](migrate-from-umarketingsuite.md#step-2-prerequisites-check) have passed.
 {% endhint %}
 
 In this step, you will update the database for Umbraco Engage.
 
-1. Backup your database(s).
+1. Back up your database(s).
 2. Rename the uMarketingSuite database tables, keys, constraints, and indexes using the following query:
 
-`LINK TO Step-2-Migrate-UMS-Tables.sql file`
+{% file src="../.gitbook/assets/Migrate-uMS-Tables.sql" %}
+Run this script on the database to rename all uMarketingSuite tables to Umbraco Engage.
+{% endfile %}
 
-3. Update the Umbraco database tables to rename the following uMarketingSuite properties:
+{% hint style="info" %}
+These database changes should be executed in < 10 seconds as [sp\_rename](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-rename-transact-sql) is used and no existing data is touched.
+{% endhint %}
+
+3. Update the Umbraco database tables with the script below to rename the following uMarketingSuite properties:
    * The `uMarketingSuite` Media folder,
-   * The `uMarketingSuite` Data Types & Data Type Folder, 
+   * The `uMarketingSuite` Data Types & Data Type Folder,
    * The `uMarketingSuite` User Group Permissions,
    * The Migration State KeyValue State for `uMarketingSuite`, `uMarketingSuite.UmbracoForms`, and `uMarketingSuite.UmbracoCommerce`.
 
-`LINK TO Step-3-Migrate-Umbraco-Data.sql file`
+{% file src="../.gitbook/assets/Migrate-Umbraco-Data.sql" %}
+Run this script to migrate all the Umbraco data.
+{% endfile %}
 
 4. Validate that no errors occurred and all tables were updated successfully. No queries should return that 0 rows were updated.
 
-## Step 5: Finalizing the migration
+## Step 6: Finalize the migration
 
 1. Delete any `obj`/`bin` folders in your projects to ensure a clean build.
 2. Recompile all projects and ensure all dependencies are restored correctly.
-3. Add your new Umbraco.Engage license key to the `appSettings.json` file:
+3. Add your new Umbraco Engage [license](../installation/licensing.md) key to the `appSettings.json` file:
 
 ```json
 "Umbraco": {
@@ -267,16 +281,13 @@ In this step, you will update the database for Umbraco Engage.
 }
 ```
 
-
 {% hint style="warning" %}
-
 The naming scheme for segments within content variations has changed from `umarketingsuite` to `engage`.
 
-It is required to enable the `UseLegacySegmentNames` setting on all environments to maintain compatibility with existing segments. Without it, any personalization or A/B test created using uMarketingSuite will fail to work and becomes inaccessible and incompatible with the new naming scheme.
-
+It is required to enable the `UseLegacySegmentNames` setting on all environments to maintain compatibility with existing segments. Without it, any personalization or A/B test created using uMarketingSuite will fail to work and become inaccessible and incompatible with the new naming scheme.
 {% endhint %}
 
-5. (Optional) Set the `Engage:Analytics:VisitorCookie:LegacyCookieName` configuration if uMarketingSuite was using a different visitor cookie name setting than the default `uMarketingSuiteAnalyticsVisitorId`:
+5. \[Optional] Set the `Engage:Analytics:VisitorCookie:LegacyCookieName` configuration if uMarketingSuite was using a different visitor cookie name setting than the default `uMarketingSuiteAnalyticsVisitorId`:
 
 ```json
 "Engage": {
@@ -289,12 +300,46 @@ It is required to enable the `UseLegacySegmentNames` setting on all environments
 ```
 
 {% hint style="info" %}
-
-Umbraco Engage will automatically convert cookies previously set by uMarketingSuite to the new cookie name. This setting is only required if you have a custom cookie name set in uMarketingSuite. It will ensure a smooth transition in tracking of existing visitors.
-
+Umbraco Engage will automatically convert cookies previously set by uMarketingSuite to the new cookie name. This setting is only required if you have a custom cookie name set in uMarketingSuite. It will ensure a smooth transition in tracking existing visitors.
 {% endhint %}
 
 6. Run the project.
+
+## **Step 7: Validate the migration**
+
+With the migration complete, there are a few more steps to ensure everything continues to work as expected.
+
+1. Validate the new license:
+   * Go to Settings -> Licenses in the backoffice and click **Validate**.
+2. Generate the reporting data:
+   * Go to Engage -> Settings -> Configuration in the backoffice and click the Regenerate button. Depending on the number of page views in the database this could take a while.
+3. Use the [Troubleshooting Installs](../installation/troubleshooting-installs.md) guide to verify that everything works as expected.
+
+## Step 8: Upgrade additional environments
+
+You have now verified that everything works as expected in the local environment. It is time to upgrade the production environment and any additional environments.
+
+Repeat the steps below for each environment that needs to be migrated.
+
+1. Stop the site.
+2. Run the [Prerequisites Check](migrate-from-umarketingsuite.md#step-2-prerequisites-check) on the database.
+3. Execute [Step 5 ](migrate-from-umarketingsuite.md#step-5-update-the-database)on the database
+4. Create a backup of the website.
+5. Deploy the updated code from the migrated local environment.
+6. Start the site.
+7. Validate the new license, if this has not happened already:
+   * Go to Settings -> Licenses in the backoffice and click **Validate**.
+8. Generate the reporting data
+   * Go to Engage -> Settings -> Configuration in the backoffice and click the Regenerate button. Depending on the number of page views in the database this could take a while.
+9. Use the [Troubleshooting Installs](../installation/troubleshooting-installs.md) guide to verify that everything works as expected.
+
+### **Custom firewall changes**
+
+If the `/umbraco/umarketingsuite/` path was previously allowed, this needs to change to `/umbraco/engage/`.
+
+{% hint style="info" %}
+Are you having issues updating? Contact the support team via the chat on [umbraco.com](https://umbraco.com).
+{% endhint %}
 
 ## Further Migrations
 
@@ -314,8 +359,7 @@ dotnet add package Umbraco.Engage.Forms
 
 If you are using the uMarketingSuite.Headless package, applications that use the uMarketingSuite API will need to be updated. This needs to happen to be able to use the new Umbraco Engage API, accessible via the `/umbraco/engage/api/` routes.
 
-The v1 Engage APIs (v13.0.0 of Umbraco Engage) maintain the same functionality as the v1 uMarketingSuite APIs.
-For more details on the API, please refer to the Swagger documentation provided by Umbraco Engage.
+The v1 Engage APIs (v13.0.0 of Umbraco Engage) maintain the same functionality as the v1 uMarketingSuite APIs. For more details on the API, please refer to the Swagger documentation provided by Umbraco Engage.
 
 You can install the Umbraco Engage Headless add-on package using the following command:
 
@@ -335,4 +379,4 @@ dotnet add package Umbraco.Engage.Commerce
 
 ### uMarketingSuite.ContentBlocks
 
-The uMarketingSuite.ContentBlocks add-on package has been deprecated since version 2.0.0 of uMarketingSuite and is not available for Umbraco Engage.
+The uMarketingSuite.ContentBlocks add-on package has been deprecated since version 2.0.0 of uMarketingSuite and is unavailable for Umbraco Engage.
