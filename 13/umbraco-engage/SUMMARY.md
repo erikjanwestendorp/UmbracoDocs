@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Umbraco Engage Documentation](README.md)
+* [Support](support.md)
 
 ## Installation
 
@@ -119,21 +120,20 @@
 * [Headless](developers/headless/README.md)
   * [Using the Marketing API](developers/headless/using-the-marketing-api.md)
   * [Headless Example](developers/headless/headless-example.md)
-* [Support](developers/support.md)
 
 ## Security and Privacy
 
 * [Security and privacy](security-and-privacy/README.md)
 * [Retention periods of data](security-and-privacy/retention-periods-of-data.md)
 * [Anonymization](security-and-privacy/anonymization.md)
-* [GDPR + EU regulation friendly](security-and-privacy/gdpr/README.md)
+* [GDPR & EU regulation](security-and-privacy/gdpr/README.md)
   * [How to become GDPR compliant using cookiebot](security-and-privacy/gdpr/how-to-become-gdpr-compliant-using-cookiebot.md)
 * [How it works](security-and-privacy/how-it-works.md)
 
 ## Tutorials
 
 * [Overview](tutorials/README.md)
-* [How to get started with Personalization](tutorials/how-to-get-started-with-personalization.md)
+* [How to Get Started with Personalization](tutorials/how-to-get-started-with-personalization.md)
 * [How to Create a Persona](tutorials/how-to-create-a-persona.md)
 * [Create a Personalized Popup in 5 minutes](tutorials/create-a-personalized-popup-in-5-minutes.md)
 * [How to set up an A/B Test](tutorials/set-up-your-first-ab-test.md)

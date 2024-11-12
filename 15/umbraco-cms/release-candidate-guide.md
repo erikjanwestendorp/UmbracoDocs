@@ -64,6 +64,17 @@ Here is a list of all the articles that are new to this version or have been upd
 
 * [Tutorial: Extending the Help Menu](tutorials/extending-the-help-menu.md)
 * [Running Umbraco in Docker using Docker Compose](fundamentals/setup/install/running-umbraco-on-docker-locally.md)
+* [Creating a Custom Seed Key Provider](extending/creating-custom-seed-key-provider.md)
+* [Cache Settings](reference/configuration/cache-settings.md)
+* [Cache Seeding](reference/cache/cache-seeding.md)
+* [API Users](fundamentals/data/users/api-users.md)
+* [External Access](reference/management-api/external-access.md)
+
+* New UI for the Rich Text Editor: Tiptap
+  * [Rich Text Editor](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor/README.md)
+    * [Configuration](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor/configuration.md)
+    * [Blocks](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor/blocks.md)
+    * [Change Rich Text Editor UI](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor/change-rich-text-editor-ui.md)
 
 ### Updated articles
 
@@ -76,6 +87,8 @@ Here is a list of all the articles that are new to this version or have been upd
   * [Working with Caching: Tags example](reference/cache/examples/tags.md)
   * [Unit Testing](implementation/unit-testing.md)
   * [Querying: ITagQuery](reference/querying/itagquery.md)
+  * [UmbracoContext helper](reference/querying/umbraco-context.md)
+  * [Block Grid](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/block-editor/block-grid-editor.md)
 
 * Replacing the deprecated GetAll() method
   * [Working with Caching: Tags example](reference/cache/examples/tags.md)

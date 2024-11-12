@@ -29,7 +29,22 @@
 * [Backoffice](fundamentals/backoffice/README.md)
   * [Property Editors](fundamentals/backoffice/property-editors/README.md)
     * [Built-in Property Editors](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/README.md)
+      * [Rich Text Editor](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor/README.md)
+        * [Configuration](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor/configuration.md)
+        * [Plugins](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor/plugins.md)
+        * [Blocks](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor/blocks.md)
+        * [Change Rich Text Editor UI](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor/change-rich-text-editor-ui.md)
+      * [Rich Text Editor TinyMce](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor-tinymce/README.md)
+        * [Configuration](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor-tinymce/configuration.md)
+        * [Styles](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor-tinymce/styles.md)
+        * [Plugins](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor-tinymce/plugins.md)
+        * [Blocks](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/rich-text-editor-tinymce/blocks.md)
       * [Image Cropper](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/image-cropper.md)
+      * [Block Editors](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/block-editor/README.md)
+        * [Block Grid](fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/block-editor/block-grid-editor.md)
+* [Data](fundamentals/data/README.md)
+  * [Users](fundamentals/data/users/README.md)
+    * [API Users](fundamentals/data/users/api-users.md)
 
 ## Implementation
 
@@ -38,7 +53,7 @@
 
 ## Customize the Backoffice
 
-* [Extend and customize the editing experience](customizing/extend-and-customize-editing-experience.md)
+* [Extend and customize the editing experience](customize-the-backoffice/extend-and-customize-the-editing-experience.md)
 
 ## Extending
 
@@ -47,6 +62,7 @@
   * [Health Check Guides](extending/health-check/guides/README.md)
     * [Content Content Security Policy (CSP)](extending/health-check/guides/contentsecuritypolicy.md)
 * [Creating a Custom Database Table](extending/database.md)
+* [Creating a Custom Seed Key Provider](extending/creating-custom-seed-key-provider.md)
 
 ## Reference
 
@@ -70,7 +86,7 @@
   * [Logging settings](reference/configuration/loggingsettings.md)
   * [Maximum Upload Size Settings](reference/configuration/maximumuploadsizesettings.md)
   * [Models builder settings](reference/configuration/modelsbuildersettings.md)
-  * [NuCache Settings](reference/configuration/nucachesettings.md)
+  * [Cache Settings](reference/configuration/cache-settings.md)
   * [Package Migration](reference/configuration/packagemigrationsettings.md)
   * [Plugins settings](reference/configuration/pluginssettings.md)
   * [Request handler settings](reference/configuration/requesthandlersettings.md)
@@ -82,6 +98,7 @@
   * [Web routing](reference/configuration/webroutingsettings.md)
 * [Querying & Models](reference/querying/README.md)
   * [ITagQuery](reference/querying/itagquery.md)
+  * [UmbracoContext helper](reference/querying/umbraco-context.md)
 * [Routing & Controllers](reference/routing/README.md)
   * [Routing in Umbraco](reference/routing/request-pipeline/README.md)
     * [IContentFinder](reference/routing/request-pipeline/icontentfinder.md)
@@ -91,7 +108,10 @@
 * [Management](reference/management/README.md)
   * [Using Umbraco services](reference/management/using-services/README.md)
     * [Content Type Service](reference/management/using-services/contenttypeservice.md)
+* [Management API](reference/management-api/README.md)
+  * [External Access](reference/management-api/external-access.md)
 * [Cache & Distributed Cache](reference/cache/README.md)
+  * [Cache Seeding](reference/cache/cache-seeding.md)
   * [Examples](reference/cache/examples/README.md)
     * [Working with caching](reference/cache/examples/tags.md)
 
