@@ -21,11 +21,6 @@ Use the [general upgrade guide](../) to complete the upgrade of your project.
 
 <summary>Umbraco 15</summary>
 
-**`TrimStart` & `TrimEnd`**
-
-The string extension methods `TrimStart` and `TrimEnd` are implemented natively in .NET 9 and behave differently from the ones used by Umbraco.
-Due to this, the Umbraco versions have changed names. Use `TrimStartExact` and `TrimEndExact` instead.
-
 **Snapshots are removed**
 
 Snapshots have been removed, meaning any code using `IPublishedSnapshot`, and by extension `IPublishedSnapshotAccessor`, must be updated. Inject `IPublishedContentCache` or `IPublishedMediaCache` and use those directly instead.
@@ -40,8 +35,7 @@ Remove the `umbraco\Data\TEMP\InMemoryAuto` folder to trigger a rebuild of the m
 
 **SourceCodeAuto and SourceCodeManual**
 
-Remove the old models located in the `\umbraco\models` folder by default. This will cause your views to no longer be able to build due to missing types.
-To get around this you can disable the precompiled view temporarily by adding the following to your `.csproj` file:
+Remove the old models located in the `\umbraco\models` folder by default. This will cause your views to no longer be able to build due to missing types. To get around this you can disable the precompiled view temporarily by adding the following to your `.csproj` file:
 
 ```xml
 <PropertyGroup>
@@ -50,7 +44,7 @@ To get around this you can disable the precompiled view temporarily by adding th
 </PropertyGroup>
 ```
 
-This will allow your site to start up, but you will still see an error page when loading a page. 
+This will allow your site to start up, but you will still see an error page when loading a page.
 
 1. Disregard the error.
 2. Enter the backoffice.
@@ -58,8 +52,7 @@ This will allow your site to start up, but you will still see an error page when
 
 You can now re-enable precompiled views and rebuild your site.
 
-If you have custom C# code that references the models this will also not build. You can either comment out your custom code temporarily until the models have been rebuilt or fix the models manually.
-To fix the models manually you need to find and replace `IPublishedSnapshotAccessor` with `IPublishedContentTypeCache`.
+If you have custom C# code that references the models this will also not build. You can either comment out your custom code temporarily until the models have been rebuilt or fix the models manually. To fix the models manually you need to find and replace `IPublishedSnapshotAccessor` with `IPublishedContentTypeCache`.
 
 </details>
 
@@ -1068,6 +1061,14 @@ The **legacy Media Picker** has been removed, use the default Media Picker.
 Macros and partial views macros have been removed in Umbraco 14. We recommend using partial views or blocks in the Rich Text Editor (RTE).
 
 For more information on what has changed in Umbraco 14 read the [Breaking changes in Umbraco 14](./#umbraco-14).
+
+**Block Editor data format has changes**
+
+In Umbraco 15, the internal data format for [Block Editors](../../../../fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/block-editor/README.md) has changed. This causes a content migration to run when upgrading.
+
+This content migration can take a while to complete on a large site, causing it to be unresponsive for the duration. To speed up the migration, it is advised to [clean up old content versions](../../../../fundamentals/data/content-version-cleanup.md) before upgrading.
+
+While we don't recommend this, it might be possible for you to skip the content migration. More details can be found in the [Migrate content to Umbraco 15](migrate-content-to-umbraco-15.md) article.
 
 </details>
 
