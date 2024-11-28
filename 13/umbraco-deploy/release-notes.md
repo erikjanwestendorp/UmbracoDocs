@@ -1,6 +1,7 @@
 ---
 description: >-
-  Get an overview of the things changed and fixed in each version of Umbraco Deploy.
+  Get an overview of the things changed and fixed in each version of Umbraco
+  Deploy.
 ---
 
 # Release notes
@@ -16,6 +17,10 @@ If you are upgrading to a new major version you can find the details about the b
 ## Release History
 
 This section contains the release notes for Umbraco Deploy 13 including all changes for this version.
+
+#### [13.3.0](https://github.com/umbraco/Umbraco.Deploy.Issues/issues?q=is%3Aissue+is%3Aclosed+label%3Arelease%2F13.3.0) (November 21st 2024)
+
+* All items from 13.3.0-rc1
 
 #### [13.3.0-rc1](https://github.com/umbraco/Umbraco.Deploy.Issues/issues?q=is%3Aissue+is%3Aclosed+label%3Arelease%2F13.3.0) (November 13rd 2024)
 
@@ -87,7 +92,7 @@ This section contains the release notes for Umbraco Deploy 13 including all chan
 #### [13.0.3](https://github.com/umbraco/Umbraco.Deploy.Issues/issues?q=is%3Aissue+is%3Aclosed+label%3Arelease%2F13.0.3) (January 16th 2024)
 
 * Added configurable option to avoid overwriting of dictionary items with empty values [#191](https://github.com/umbraco/Umbraco.Deploy.Issues/issues/191)
-    * For more details see the page on [Deploy's settings](./getting-started/deploy-settings.md).
+  * For more details see the page on [Deploy's settings](getting-started/deploy-settings.md).
 * Fixed regression issue with transfer of date values.
 
 #### [13.0.2](https://github.com/umbraco/Umbraco.Deploy.Issues/issues?q=is%3Aissue+is%3Aclosed+label%3Arelease%2F13.0.2) (January 9th 2024)
@@ -160,4 +165,4 @@ This section contains the release notes for Umbraco Deploy 13 including all chan
 
 ## Legacy release notes
 
-You can find the release notes for versions out of support in the [Legacy documentation on Github](https://github.com/umbraco/UmbracoDocs/blob/umbraco-eol-versions/11/umbraco-deploy/release-notes.md) and [Umbraco Deploy Package page](https://our.umbraco.com/packages/developer-tools/umbraco-deploy/)
+You can find the release notes for versions out of support in the [Legacy documentation on GitHub](https://github.com/umbraco/UmbracoDocs/blob/umbraco-eol-versions/11/umbraco-deploy/release-notes.md) and [Umbraco Deploy Package page](https://our.umbraco.com/packages/developer-tools/umbraco-deploy/)

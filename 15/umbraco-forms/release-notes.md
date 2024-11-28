@@ -18,6 +18,22 @@ If you are upgrading to a new major version, you can find information about the 
 
 This section contains the release notes for Umbraco Forms 15 including all changes for this version.
 
+#### [**15.0.2**](https://github.com/umbraco/Umbraco.Forms.Issues/issues?q=is%3Aissue+is%3Aclosed+label%3Arelease%2F15.0.2) **(November 28th 2024)**
+
+* Fixed issue with case sensitive checkbox conditions across multi-page forms [#1325](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1325).
+* Fixed Forms dashboard form title and icon alignment.
+* Migrated rich text features to use the CMS's Tiptap editor [#1326](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1326).
+* Fixed issue with creation of folder for forms.
+
+#### [**15.0.1**](https://github.com/umbraco/Umbraco.Forms.Issues/issues?q=is%3Aissue+is%3Aclosed+label%3Arelease%2F15.0.1) **(November 21st 2024)**
+
+* Fixed issues with multi-page forms used in conjunction with a `FormPrePopulateNotification` handler. File uploads and multi-value fields like checkbox lists now function correctly [#1317](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1317) [#1320](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1320).
+* Added a couple of missing translation keys [#1316](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1316) [#1319](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1319).
+* Rendered file upload previews in the backoffice.
+* Fixed issue with saving the "Hide field validation labels" value when editing form settings.
+* Fixed issue with selection of Document Type on the "Save as Umbraco node" workflow type.
+* Used correct labels for conditions when used on fields, fieldsets, pages or workflows [#1323](https://github.com/umbraco/Umbraco.Forms.Issues/issues/1323).
+
 #### [**15.0.0**](https://github.com/umbraco/Umbraco.Forms.Issues/issues?q=is%3Aissue+is%3Aclosed+label%3Arelease%2F15.0.0) **(November 14th 2024)**
 
 * Compatibility with Umbraco 15.0.0
@@ -84,4 +100,4 @@ This Deploy add-on adds support for transferring, restoring, exporting and impor
 
 ## Legacy release notes
 
-You can find the release notes for versions out of support in the [Legacy documentation on Github](https://github.com/umbraco/UmbracoDocs/blob/umbraco-eol-versions/12/umbraco-forms/release-notes.md) and [Umbraco Forms Package page](https://our.umbraco.com/packages/developer-tools/umbraco-forms/).
+You can find the release notes for versions out of support in the [Legacy documentation on GitHub](https://github.com/umbraco/UmbracoDocs/blob/umbraco-eol-versions/12/umbraco-forms/release-notes.md) and [Umbraco Forms Package page](https://our.umbraco.com/packages/developer-tools/umbraco-forms/).
