@@ -162,7 +162,7 @@ All setting properties for the Forms provider types are marked as `virtual`, so 
 
 ## Umbraco Backoffice Components
 
-With Forms 14, aspects of the presentation and functionality of the custom field are handled by client-side components, registered via manifests:
+With Forms 14+, aspects of the presentation and functionality of the custom field are handled by client-side components, registered via manifests:
 
 * The preview, displayed on the form definition editor.
 * The property editor UI used for editing the the submitted values via the backoffice.
@@ -473,7 +473,7 @@ Each different type of extension for Forms uses a different root value:
 The language files are registered with:
 
 ```javascript
-import type { ManifestLocalization } from "@umbraco-cms/backoffice/extension-registry";
+import type { ManifestLocalization } from '@umbraco-cms/backoffice/localization';
 
 const localizationManifests: Array<ManifestLocalization> = [
   {
