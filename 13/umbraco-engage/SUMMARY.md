@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Umbraco Engage Documentation](README.md)
+* [Release Notes](release-notes.md)
 * [Support](support.md)
 
 ## Installation
@@ -12,6 +13,8 @@
 
 ## Upgrading
 
+* [Upgrade Umbraco Engage](upgrading/upgrade-umbraco-engage.md)
+* [Version specific Upgrade Notes](upgrading/version-specific-upgrade-notes.md)
 * [Migrate from uMarketingSuite](upgrading/migrate-from-umarketingsuite.md)
 
 ## Getting Started
@@ -45,6 +48,7 @@
   * [Videos](marketers-and-editors/analytics/videos.md)
   * [Scroll Heatmap](marketers-and-editors/analytics/scroll-heatmap.md)
   * [Google Analytics vs Umbraco Engage](marketers-and-editors/analytics/google-analytics-vs-umbraco-engage.md)
+  * [Search Terms](marketers-and-editors/analytics/search-terms.md)
 * [A/B Testing](marketers-and-editors/ab-testing/README.md)
   * [What is A/B testing](marketers-and-editors/ab-testing/what-is-ab-testing.md)
   * [Types of A/B Tests](marketers-and-editors/ab-testing/types-of-ab-tests/README.md)
