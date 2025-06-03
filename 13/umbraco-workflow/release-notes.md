@@ -17,6 +17,13 @@ Check the [Version Specific Upgrade Notes](upgrading/version-specific.md) articl
 
 This section contains the release notes for Umbraco Workflow 13 including all changes for this version.
 
+### 13.4.3 (https://github.com/umbraco/Umbraco.Workflow.Issues/issues?q=is%3Aissue+is%3Aclosed+label%3Arelease%2F13.4.3) (May 29 2025)
+* Improves task summary display in notification emails [#94](https://github.com/umbraco/Umbraco.Workflow.Issues/issues/94)
+
+### 13.4.2 (April 2 2025)
+* Improves empty searching in Advanced Search
+* Fixes an issue in Offline Approval where cultures were not always cased consistently
+
 ### 13.4.1 (March 20 2025)
 * Fixes an intermittent issue where fetching approval groups in a mapper resulted in a scoping error
 

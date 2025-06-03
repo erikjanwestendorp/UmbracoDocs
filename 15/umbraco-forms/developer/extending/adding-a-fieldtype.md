@@ -123,7 +123,7 @@ This will be rendered when the default theme is used.
 
 If working with Umbraco 9 or earlier versions, you'll find the `Views\Partials\Forms\Themes\default\` folder on disk and can create the files there.
 
-For Umbraco 10 and above, we've moved to [distributing the theme as part of a Razor Class Library](../../upgrading/version-specific/#views-and-client-side-files) so the folder won't exist. However, you can create it for your custom field type. If you would like to reference the partial views of the default theme, you can download them as mentioned in the [Themes](../themes.md) article.
+For Umbraco 10 and above, we've moved to distributing the theme as part of a Razor Class Library so the folder won't exist. However, you can create it for your custom field type. If you would like to reference the partial views of the default theme, you can download them as mentioned in the [Themes](../themes.md) article.
 
 ### Read-only partial view
 
@@ -261,11 +261,11 @@ import {
   html,
   customElement,
 } from "@umbraco-cms/backoffice/external/lit";
-import type { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/extension-registry";
+import type { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/property-editor";
 import { UmbLitElement } from "@umbraco-cms/backoffice/lit-element";
 import {
-  UmbPropertyValueChangeEvent,
-} from "@umbraco-cms/backoffice/property-editor";
+  UmbChangeEvent,
+} from "@umbraco-cms/backoffice/event";
 import { UmbFormControlMixin } from "@umbraco-cms/backoffice/validation";
 
 const elementName = "my-property-editor-ui-number";
@@ -279,10 +279,10 @@ export class MyPropertyEditorUINumberElement
     const newValue = (e.target as HTMLInputElement).value;
     if (newValue === this.value) return;
     this.value = newValue;
-    this.dispatchEvent(new UmbPropertyValueChangeEvent());
+    this.dispatchEvent(new UmbChangeEvent());
   }
 
-  render() {
+  override render() {
     return html`<uui-input
       .value=${this.value ?? ""}
       type="number"
@@ -328,11 +328,11 @@ import {
   customElement,
   type PropertyValueMap,
 } from "@umbraco-cms/backoffice/external/lit";
-import type { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/extension-registry";
+import type { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/property-editor";
 import { UmbLitElement } from "@umbraco-cms/backoffice/lit-element";
 import {
-  UmbPropertyValueChangeEvent,
-} from "@umbraco-cms/backoffice/property-editor";
+  UmbChangeEvent,
+} from "@umbraco-cms/backoffice/event";
 import { UmbFormControlMixin } from "@umbraco-cms/backoffice/validation";
 
 const elementName = "my-property-editor-ui-color";
@@ -353,10 +353,10 @@ export class MyPropertyEditorUIColorElement
     const newValue = (e.target as HTMLInputElement).value;
     if (newValue === this.value) return;
     this.value = newValue;
-    this.dispatchEvent(new UmbPropertyValueChangeEvent());
+    this.dispatchEvent(new UmbChangeEvent());
   }
 
-  render() {
+  override render() {
     return html`<input
       .value=${this.value ?? ""}
       type="color"

@@ -8,7 +8,7 @@ For the scope of this discussion, we will concentrate solely on the endpoints as
 
 ## Getting started
 
-To integrate Umbraco Cloud into your CI/CD pipeline, you'll need to make API calls to the following endpoint [`https://api.cloud.umbraco.com`](https://api.cloud.umbraco.com):
+To integrate Umbraco Cloud into your CI/CD pipeline, you'll need to make API calls to the following endpoint `https://api.cloud.umbraco.com`:
 
 * `/$projectId/deployments`
 * `/$projectId/deployments/$deploymentId`
@@ -336,10 +336,6 @@ fi
 ```
 
 The API response will vary based on whether or not there are changes to report. If no changes are detected, you'll receive an HTTP 204 No Content status. On the other hand, if there are changes, the API will return an HTTP 200 OK status along with a git-patch file as the content. This git-patch file can then be applied to your local repository to sync it with the changes.
-
-### Promote Deployment
-
-Currently, the feature to transition from a development environment to staging or live, and from staging to live, is pending implementation. In the meantime, you can manage these transitions manually through the [Umbraco Cloud Portal](https://www.s1.umbraco.io/projects) \[link to relevant page in docs.umbraco.com, e.g. the section “Utilizing the Pipeline” of the new page “How To Configure A Sample CI|CD Pipeline”]..
 
 ### Possible errors
 

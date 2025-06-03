@@ -16,12 +16,7 @@ This integration provides a custom Media Picker for digital assets managed in an
 
 ## Minimum version requirements
 
-### Umbraco CMS
-
-| Major      | Minor/Patch |
-| ---------- | ----------- |
-| Version 10 | 10.3.0      |
-| Version 11 | 11.0.0      |
+To ensure compatibility, check the **Dependencies** tab on NuGet for the required Umbraco CMS version. For example, see [Umbraco.Cms.Integrations.DAM.Aprimo](https://www.nuget.org/packages/Umbraco.Cms.Integrations.DAM.Aprimo#dependencies-body-tab).
 
 ## Configuration
 
@@ -79,7 +74,7 @@ Otherwise, you will be able to select one of the two available options for picki
 
 Before using the integration with Aprimo, please make sure to use a browser that is supported by Aprimo Cloud. Without one you will not be able to authenticate, nor use the Content Selector.
 
-Aprimo currently supports these browsers, but make sure to check [this](https://help.aprimo.com/Content/Marketing\_Operations\_Help/aprimo\_basics/browsers\_configuring\_concept.html) topic for an updated list:
+Aprimo currently supports these browsers, but make sure to check [this](https://help.aprimo.com/Content/Marketing_Operations_Help/aprimo_basics/browsers_configuring_concept.html) topic for an updated list:
 
 * Chrome for Windows and Macintosh
 * Edge (Windows 10 only)

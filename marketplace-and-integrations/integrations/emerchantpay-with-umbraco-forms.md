@@ -18,25 +18,13 @@ This integration provides a custom workflow for handling online payments using a
 
 ### Umbraco CMS
 
-| Major      | Minor/Patch |
-| ---------- | ----------- |
-| Version 8  | 8.5.4       |
-| Version 10 | 10.1.0      |
-| Version 11 | 11.0.0      |
-
-### Umbraco Forms
-
-| Major      | Minor/Patch |
-| ---------- | ----------- |
-| Version 8  | 8.13.0      |
-| Version 10 | 10.1.0      |
-| Version 11 | 11.0.0      |
+To ensure compatibility, check the **Dependencies** tab on NuGet for the required Umbraco CMS version. For example, see [Umbraco.Forms.Integrations.Commerce.emerchantpay](https://www.nuget.org/packages/Umbraco.Forms.Integrations.Commerce.emerchantpay#dependencies-body-tab).
 
 ## How To Use
 
 To get started with _emerchantpay_ a merchant needs to be onboarded. This will allow you to get a merchant ID and obtain the keys required by the integration.
 
-To begin the onboarding process and obtain the merchant account, you need to fill out [this](https://www.emerchantpay.com/contact-us?utm\_source\_\_c=umbraco\_referral\&utm\_medium\_\_c=technical\_blog\&utm\_campaign\_\_c=Umbraco) form.
+To begin the onboarding process and obtain the merchant account, you need to fill out [this](https://www.emerchantpay.com/contact-us/?utm_source__c=umbraco_referral&utm_medium__c=technical_blog&utm_campaign__c=Umbraco) form.
 
 Afterwards, a member of the _emerchantpay_ team will reach out to you.
 
