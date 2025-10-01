@@ -262,9 +262,9 @@ The deprecated version, `Microsoft.Data.SQlite`, has been removed and will requi
 {
     ...
     "ConnectionStrings": {
-        "umbracoDbDSN": "Data Source=|DataDirectory|/Umbraco.sqlite.db;Cache=Private;Foreign Keys=True;Pooling=True",
+        "umbracoDbDSN": "Data Source=|DataDirectory|/Umbraco.sqlite.db;Cache=Shared;Foreign Keys=True;Pooling=True",
         "umbracoDbDSN_ProviderName": "Microsoft.Data.Sqlite",
-        "umbracoCommerceDbDSN": "Data Source=|DataDirectory|/Umbraco.Commerce.sqlite.db;Mode=ReadWrite;Foreign Keys=True;Pooling=True;Cache=Private",
+        "umbracoCommerceDbDSN": "Data Source=|DataDirectory|/Umbraco.Commerce.sqlite.db;Mode=ReadWrite;Foreign Keys=True;Pooling=True;Cache=Shared",
         "umbracoCommerceDbDSN_ProviderName": "Microsoft.Data.Sqlite"
     },
     ...
@@ -354,7 +354,7 @@ Below you can find the list of breaking changes introduced in Umbraco 13.
 * [Add default property value converters for all value types](https://github.com/umbraco/Umbraco-CMS/issues/14869)
 * [V13: Add config to limit concurrent logins](https://github.com/umbraco/Umbraco-CMS/issues/14989)
 * [Updates and support for re-use of CMS logic in Deploy](https://github.com/umbraco/Umbraco-CMS/issues/14990)
-* [Dont explicitly index nested property by default](https://github.com/umbraco/Umbraco-CMS/issues/15028)
+* [Don't explicitly index nested property by default](https://github.com/umbraco/Umbraco-CMS/issues/15028)
 * [Blocks in the Rich Text Editor](https://github.com/umbraco/Umbraco-CMS/issues/15029)
 * [Fix FurthestAncestorOrSelfDynamicRootQueryStep and FurthestDescendantOrSelfDynamicRootQueryStep](https://github.com/umbraco/Umbraco-CMS/issues/15113)
 * [Remove parameter value/return nullability in \`IImageSourceParser\`, \`ILocalLinkParser\` and \`IMacroParser\`](https://github.com/umbraco/Umbraco-CMS/issues/15130)
