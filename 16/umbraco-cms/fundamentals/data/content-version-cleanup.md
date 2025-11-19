@@ -13,7 +13,6 @@ The default cleanup policy will:
 * Never delete any specific versions marked as 'Prevent Cleanup' in the Backoffice version history.
 
 {% hint style="info" %}
-
 Based on the default cleanup policy, you can roll back content to the latest version saved on a particular day as long as it was
 
 * Created within the last 90 days, or
@@ -40,7 +39,7 @@ The feature can be configured in the `appSettings.json`:
 }
 ```
 
-For sites with stricter requirements, it is possible to opt-out of both options globally, see [ContentSettings](../../reference/configuration/contentsettings.md#contentversioncleanuppolicy) and by Document Type.
+For sites with stricter requirements, it is possible to opt-out of both options globally, see [ContentSettings](../../reference/configuration/contentsettings.md#content-version-cleanup-policy) and by Document Type.
 
 Additionally, it is possible to keep the feature enabled but mark specific versions to keep forever.
 
@@ -50,7 +49,7 @@ It is worth noting that whilst we delete rows, we do not shrink database files o
 
 It is possible to override the global settings per Document Type in the backoffice to prevent unwanted cleanup. This can be managed in the "permissions" Content App for each Document Type.
 
-<figure><img src="../../.gitbook/assets/image (22).png" alt="Content Version Cleanup - Document Type overrides"><figcaption><p>Content Version Cleanup - Document Type overrides</p></figcaption></figure>
+<figure><img src="../../../../15/umbraco-cms/.gitbook/assets/image (22) (1).png" alt="Content Version Cleanup - Document Type overrides"><figcaption><p>Content Version Cleanup - Document Type overrides</p></figcaption></figure>
 
 ## Prevent cleanup of important versions
 
@@ -58,7 +57,7 @@ It is possible to mark important content versions as "prevent cleanup" to ensure
 
 1.  Open rollback modal.
 
-    <figure><img src="../../../../10/umbraco-cms/fundamentals/data/images/prevent-cleanup-part-1.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../../17/umbraco-cms/fundamentals/data/images/prevent-cleanup-part-1.png" alt=""><figcaption></figcaption></figure>
 2.  Click **Prevent cleanup** button for each important version.
 
-    <figure><img src="../../../../10/umbraco-cms/fundamentals/data/images/prevent-cleanup-part-2.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../../17/umbraco-cms/fundamentals/data/images/prevent-cleanup-part-2.png" alt=""><figcaption></figcaption></figure>

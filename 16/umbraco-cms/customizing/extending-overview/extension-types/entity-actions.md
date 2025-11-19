@@ -22,31 +22,15 @@ If you are developing a custom section or a custom Dashboard, you might want to 
 
 ## Entity Actions in the UI <a href="#entity-actions-in-the-ui" id="entity-actions-in-the-ui"></a>
 
-<div>
+<div><figure><img src="../../../../../15/umbraco-cms/.gitbook/assets/entity-action-sidebar-context (1).svg" alt=""><figcaption><p><strong>Sidebar Context Menu</strong></p></figcaption></figure> <figure><img src="../../../../../15/umbraco-cms/.gitbook/assets/entity-action-workspace-menu (1).svg" alt=""><figcaption><p><strong>Workspace Entity Action Menu</strong></p></figcaption></figure></div>
 
-<figure><img src="../../../.gitbook/assets/entity-action-sidebar-context.svg" alt=""><figcaption><p><strong>Sidebar Context Menu</strong></p></figcaption></figure>
-
- 
-
-<figure><img src="../../../.gitbook/assets/entity-action-workspace-menu.svg" alt=""><figcaption><p><strong>Workspace Entity Action Menu</strong></p></figcaption></figure>
-
-</div>
-
-<div>
-
-<figure><img src="../../../.gitbook/assets/entity-action-collection-menu.svg" alt=""><figcaption><p><strong>Collection</strong></p></figcaption></figure>
-
- 
-
-<figure><img src="../../../.gitbook/assets/entity-action-picker-context-menu.svg" alt=""><figcaption><p><strong>Pickers</strong></p></figcaption></figure>
-
-</div>
+<div><figure><img src="../../../../../15/umbraco-cms/.gitbook/assets/entity-action-collection-menu (1).svg" alt=""><figcaption><p><strong>Collection</strong></p></figcaption></figure> <figure><img src="../../../../../15/umbraco-cms/.gitbook/assets/entity-action-picker-context-menu (1).svg" alt=""><figcaption><p><strong>Pickers</strong></p></figcaption></figure></div>
 
 ### Sidebar Context Menu <a href="#registering-an-entity-action" id="registering-an-entity-action"></a>
 
 Sidebar Context Menu is an entity action that can be performed on a menu item. For example in the content section you can perform some extra actions on the content such as sorting, moving, etc.
 
-<figure><img src="../../../.gitbook/assets/entity-action-example-content-section.png" alt=""><figcaption><p>Default Entity Action in the Content Section</p></figcaption></figure>
+<figure><img src="../../../../../15/umbraco-cms/.gitbook/assets/entity-action-example-content-section (1).png" alt=""><figcaption><p>Default Entity Action in the Content Section</p></figcaption></figure>
 
 ## Registering an Entity Action <a href="#registering-an-entity-action" id="registering-an-entity-action"></a>
 
@@ -147,17 +131,17 @@ Here is a list of the entity actions and associated user permission codes shippe
 
 If you are building a package or adding custom entity actions to your solution, it's important to pick a permission letter. Ensure that it doesn't clash with one of these.
 
-If you have created a package using a custom entity action, please consider providing an update to this documentation page. You can do this via a PR to the [documentation repository](https://github.com/umbraco/UmbracoDocs). This will allow other developers to discover and avoid using the same permission letter.
+If you have created a package using a custom entity action, consider providing an update to this documentation page. You can do this via a PR to the [documentation repository](https://github.com/umbraco/UmbracoDocs). This will allow other developers to discover and avoid using the same permission letter.
 
 Currently, we allow two extension points on the client for user permissions:
 
 * **Entity User Permissions** - Relates to an entity (example document).
 
-<figure><img src="../../../.gitbook/assets/entity-user-permissions-ui.png" alt=""><figcaption><p><strong>Entity User Permissions UI</strong></p></figcaption></figure>
+<figure><img src="../../../../../15/umbraco-cms/.gitbook/assets/entity-user-permissions-ui (1).png" alt=""><figcaption><p><strong>Entity User Permissions UI</strong></p></figcaption></figure>
 
 * **Granular User Permission** - Relates to a $type server schemaType.
 
-<figure><img src="../../../.gitbook/assets/granular-user-permissions-ui.png" alt=""><figcaption><p><strong>Granular User Permission UI</strong></p></figcaption></figure>
+<figure><img src="../../../../../15/umbraco-cms/.gitbook/assets/granular-user-permissions-ui (1).png" alt=""><figcaption><p><strong>Granular User Permission UI</strong></p></figcaption></figure>
 
 Each permission comes with a set of verbs, that will be checked against client and server-side.
 
